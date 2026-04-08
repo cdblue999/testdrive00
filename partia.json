@@ -1,5 +1,33 @@
-Obietnice wyborcze:
-1. wiecej tego
-2.mniej tego
-3.brak tamtego
-4.dodanie owego
+{
+  "last_update": "2026-04-07",
+  "rates": { "EUR": "4.28", "USD": "3.92" },
+  "parties": [
+    {
+      "id": "ko",
+      "name": "Koalicja Obywatelska",
+      "logo_url": "https://placehold.co/100x40?text=KO",
+      "promises": [
+        { "txt": "Kwota wolna 60k", "status": "pending" },
+        { "txt": "Paliwo 5.19", "status": "failed" }
+      ]
+    },
+    {
+      "id": "pis",
+      "name": "Prawo i Sprawiedliwość",
+      "logo_url": "https://placehold.co/100x40?text=PiS",
+      "promises": [
+        { "txt": "Emerytury stażowe", "status": "pending" },
+        { "txt": "CPK", "status": "done" }
+      ]
+    },
+    {
+      "id": "td",
+      "name": "Trzecia Droga",
+      "logo_url": "https://placehold.co/100x40?text=TD",
+      "promises": [
+        { "txt": "Akademik za 1zł", "status": "failed" },
+        { "txt": "Dobrowolny ZUS", "status": "pending" }
+      ]
+    }
+  ]
+}
