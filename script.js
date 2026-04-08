@@ -26,10 +26,19 @@ async function loadDashboard() {
     });
 }
 
-function vote(id) {
-    let count = document.getElementById(`votes-${id}`);
-    count.innerText = parseInt(count.innerText) + 1;
-    alert(`Oddano głos na ${id.toUpperCase()}! (W wersji docelowej zapis w bazie Supabase)`);
+const supabase = supabase.createClient('TWOJ_URL', 'TWOJ_ANON_KEY');
+
+async function vote(partyId) {
+    // Prosta logika: zwiększamy licznik w bazie o 1 dla danego partyId
+    const { data, error } = await supabase
+      .rpc('increment_vote', { party_id_input: partyId });
+
+    if (error) {
+        console.error('Błąd głosowania:', error);
+    } else {
+        updateUI(); // Odśwież licznik na stronie
+    }
+}
 }
 
 loadDashboard();
