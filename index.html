@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monitor Obietnic Wyborczych 2023-2027</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
     <div id="currency-box" class="corner-box left-box">
         <div class="box-title">RYNEK I WSKAŹNIKI</div>
-        <div id="rates">Ładowanie danych...</div>
+        <div id="rates">Ładowanie...</div>
     </div>
 
     <div class="corner-box right-box">
@@ -30,7 +31,6 @@
                 <strong>NADCHODZĄCE:</strong> Parlamentarne X 2027 (za ok. <span id="days-until-parl"></span> dni) | Samorządowe IV 2029 (za ok. <span id="days-until-local"></span> dni)
             </div>
         </div>
-        
         <div class="flag-container">
             <div class="flag-white"></div>
             <div class="flag-red"></div>
@@ -39,8 +39,17 @@
 
     <main class="container">
         <div id="app" class="party-grid">
-            <div class="loading">Inicjalizacja danych...</div>
+            <div class="loading">Inicjalizacja systemu...</div>
         </div>
+
+        <section class="history-section">
+            <div class="section-divider">
+                <span>HISTORIA POPARCIA (OSTATNIE 6 MIESIĘCY)</span>
+            </div>
+            <div class="chart-wrapper">
+                <canvas id="supportChart"></canvas>
+            </div>
+        </section>
     </main>
 
     <footer class="site-footer">
