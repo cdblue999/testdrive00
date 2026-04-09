@@ -2,24 +2,32 @@ const SB_URL = 'https://amixcppknszjfscnepnx.supabase.co';
 const SB_KEY = 'sb_publishable_8pZgzv2BXthAUoBppO8U3A_edhabo2J';
 const supabaseClient = supabase.createClient(SB_URL, SB_KEY);
 
-function updateElectionCounters() {
+function updateCounters() {
     try {
         const now = new Date();
         const getDiff = (d1, d2) => Math.floor(Math.abs(d1 - d2) / (1000 * 60 * 60 * 24));
-        document.getElementById('days-since-parl').innerText = getDiff(now, new Date('2023-10-15'));
-        document.getElementById('days-since-local').innerText = getDiff(now, new Date('2024-04-07'));
-        document.getElementById('days-until-parl').innerText = getDiff(new Date('2027-10-17'), now);
-        document.getElementById('days-until-local').innerText = getDiff(new Date('2029-04-08'), now);
-    } catch(e) { console.error("Counter Error", e); }
+        
+        const dsp = document.getElementById('days-since-parl');
+        const dsl = document.getElementById('days-since-local');
+        const dup = document.getElementById('days-until-parl');
+        const dul = document.getElementById('days-until-local');
+
+        if(dsp) dsp.innerText = getDiff(now, new Date('2023-10-15'));
+        if(dsl) dsl.innerText = getDiff(now, new Date('2024-04-07'));
+        if(dup) dup.innerText = getDiff(new Date('2027-10-17'), now);
+        if(dul) dul.innerText = getDiff(new Date('2029-04-08'), now);
+    } catch (e) { console.error("Błąd liczników:", e); }
 }
 
 async function init() {
     const app = document.getElementById('app');
+    const statusDisplay = document.getElementById('status-display');
     const ratesEl = document.getElementById('rates');
-    updateElectionCounters();
 
+    updateCounters();
+
+    // 1. Ladowanie Walut
     try {
-        // 1. NBP & GUS
         const nbpRes = await fetch('https://api.nbp.pl/api/exchangerates/tables/A/?format=json').then(r => r.json());
         const eur = nbpRes[0].rates.find(x => x.code === 'EUR').mid;
         const usd = nbpRes[0].rates.find(x => x.code === 'USD').mid;
@@ -33,18 +41,23 @@ async function init() {
                 <div style="color:#475569; line-height:1.5;">
                     Inflacja: <b>${gus.inflacja}</b> | PKB: <b>${gus.pkb}</b><br>
                     Deficyt: <b style="color:var(--amarant)">${gus.deficyt} PKB</b><br>
-                    <span style="font-size:11px; color:#94a3b8;">Skala: ${gus.kwota} PLN (2025)</span>
+                    <span style="font-size:11px; color:#94a3b8;">/ ${gus.kwota} PLN (2025)</span>
                 </div>`;
         }
+    } catch (e) {
+        if (ratesEl) ratesEl.innerHTML = "Błąd API NBP";
+    }
 
-        // 2. Data load
+    // 2. Ladowanie Kart Partii
+    try {
         const res = await fetch('data.json');
-        if (!res.ok) throw new Error("Błąd data.json");
+        if (!res.ok) throw new Error(`Nie znaleziono pliku data.json (Status: ${res.status})`);
+        
         const config = await res.json();
-        const { data: voteData } = await supabaseClient.from('votes').select('*');
+        const { data: voteData, error: sbError } = await supabaseClient.from('votes').select('*');
 
         if (app) {
-            app.innerHTML = '';
+            app.innerHTML = ''; // Czyścimy status-msg
             config.parties.forEach(p => {
                 const votes = voteData?.find(v => v.party_id === p.id)?.count || 0;
                 const total = p.promises.length;
@@ -60,7 +73,7 @@ async function init() {
                     </button>
                     <a href="${p.website}" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:inherit;">
                         <div style="height:55px; display:flex; align-items:center; justify-content:center; margin-bottom:10px;">
-                            <img src="${p.logo}" style="max-height:50px; max-width:90%; object-fit:contain;" alt="${p.name}">
+                            <img src="${p.logo}" style="max-height:50px; max-width:90%; object-fit:contain;" alt="${p.name}" onerror="this.src='https://placehold.co/100x50?text=Błąd+Logo'">
                         </div>
                         <h3 style="font-size:1.15em; text-align:center; margin:10px 0; font-weight:800; border-bottom:1px solid #f1f5f9; padding-bottom:8px;">
                             ${p.name} <span style="font-size:10px; color:#94a3b8;">[${rating}]</span>
@@ -82,15 +95,13 @@ async function init() {
                     </ul>
                     <div style="height:1px; background:linear-gradient(to right, transparent, #e2e8f0, transparent); margin:15px 0;"></div>
                     <div style="font-size:8px; font-weight:800; color:#94a3b8; text-transform:uppercase; margin-bottom:10px;">Audyt i Sejm</div>
-                    ${p.critical_sources.slice(0,2).map(src => `<a href="${src.url}" target="_blank" class="sub-link" style="display:flex; align-items:center; gap:8px; text-decoration:none; color:#475569; font-size:10px; margin-bottom:5px;"><img src="${src.icon}" style="width:14px; height:14px; object-fit:contain;"> <span>${src.text}</span></a>`).join('')}
-                    ${p.legislative_initiatives.slice(0,1).map(leg => `<a href="${leg.url}" target="_blank" class="sub-link" style="display:flex; align-items:center; gap:8px; text-decoration:none; color:#475569; font-size:10px; margin-top:5px;"><div style="width:14px; height:14px; background:var(--sejm-blue); color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:8px; font-weight:bold;">S</div> <span>${leg.text}</span></a>`).join('')}
+                    ${p.critical_sources.slice(0,2).map(src => `<a href="${src.url}" target="_blank" style="display:flex; align-items:center; gap:8px; text-decoration:none; color:#475569; font-size:10px; margin-bottom:5px;"><img src="${src.icon}" style="width:14px; height:14px; object-fit:contain;"> <span>${src.text}</span></a>`).join('')}
                 `;
                 app.appendChild(card);
             });
         }
-    } catch (err) {
-        console.error(err);
-        if (app) app.innerHTML = `<div class="status-msg" style="color:var(--amarant)">Błąd krytyczny: ${err.message}. Sprawdź data.json.</div>`;
+    } catch (e) {
+        if (app) app.innerHTML = `<div class="status-msg"><div class="error-msg">BŁĄD SYSTEMU: ${e.message}<br><small>Upewnij się, że plik data.json jest poprawny.</small></div></div>`;
     }
 }
 
@@ -102,4 +113,4 @@ async function vote(id) {
     }
 }
 
-init();
+document.addEventListener('DOMContentLoaded', init);
