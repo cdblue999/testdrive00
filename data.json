@@ -4,51 +4,51 @@
     {
       "id": "ko",
       "name": "Koalicja Obywatelska",
-      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Koalicja_Obywatelska_logo.svg/300px-Koalicja_Obywatelska_logo.svg.png",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Koalicja_Obywatelska_logo.svg",
       "promises": [
-        { "desc": "Kwota wolna od podatku 60 tys. zł", "status": "pending" },
-        { "desc": "Paliwo po 5,19 zł", "status": "failed" },
-        { "desc": "Aktywne Rodziczyństwo (Babciowe)", "status": "done" }
+        { "desc": "Kwota wolna od podatku 60 tys. zł", "status": "pending", "url": "https://www.google.com/search?q=koalicja+obywatelska+kwota+wolna+60+tys" },
+        { "desc": "Paliwo po 5,19 zł", "status": "failed", "url": "https://www.google.com/search?q=paliwo+po+5.19+obietnica" },
+        { "desc": "Babciowe", "status": "done", "url": "https://www.gov.pl/web/rodzina/aktywny-rodzic" }
       ]
     },
     {
       "id": "pis",
       "name": "Prawo i Sprawiedliwość",
-      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Logo_Prawa_i_Sprawiedliwo%C5%9Bci.svg/300px-Logo_Prawa_i_Sprawiedliwo%C5%9Bci.svg.png",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/5/53/Logo_Prawa_i_Sprawiedliwo%C5%9Bci.svg",
       "promises": [
-        { "desc": "Budowa CPK (w pierwotnym kształcie)", "status": "pending" },
-        { "desc": "Emerytury stażowe", "status": "pending" },
-        { "desc": "800 Plus", "status": "done" }
+        { "desc": "Budowa CPK", "status": "pending", "url": "https://cpk.pl" },
+        { "desc": "Emerytury stażowe", "status": "pending", "url": "https://www.google.com/search?q=pis+emerytury+stażowe" },
+        { "desc": "800 Plus", "status": "done", "url": "https://www.gov.pl/web/rodzina/800-plus" }
       ]
     },
     {
       "id": "td",
       "name": "Trzecia Droga",
-      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Trzecia_Droga_logo.svg/300px-Trzecia_Droga_logo.svg.png",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Trzecia_Droga_logo.svg",
       "promises": [
-        { "desc": "Dobrowolny ZUS dla przedsiębiorców", "status": "pending" },
-        { "desc": "Akademik za 1 zł", "status": "failed" },
-        { "desc": "Reforma podatku Belki", "status": "pending" }
+        { "desc": "Dobrowolny ZUS", "status": "pending", "url": "https://www.google.com/search?q=trzecia+droga+dobrowolny+zus" },
+        { "desc": "Akademik za 1 zł", "status": "failed", "url": "https://www.google.com/search?q=akademik+za+1+zl+obietnica" },
+        { "desc": "Reforma podatku Belki", "status": "pending", "url": "https://www.google.com/search?q=reforma+podatku+belki+trzecia+droga" }
       ]
     },
     {
       "id": "lewica",
       "name": "Lewica",
-      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Nowa_Lewica_Logo.svg/300px-Nowa_Lewica_Logo.svg.png",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/9/90/Nowa_Lewica_Logo.svg",
       "promises": [
-        { "desc": "Renta wdowia", "status": "done" },
-        { "desc": "35-godzinny tydzień pracy", "status": "pending" },
-        { "desc": "Budowa mieszkań na tani wynajem", "status": "pending" }
+        { "desc": "Renta wdowia", "status": "done", "url": "https://www.gov.pl/web/rodzina/renta-wdowia" },
+        { "desc": "35-godzinny tydzień pracy", "status": "pending", "url": "https://www.google.com/search?q=lewica+35+godzinny+tydzien+pracy" },
+        { "desc": "Mieszkania na tani wynajem", "status": "pending", "url": "https://www.google.com/search?q=lewica+mieszkania+na+tani+wynajem" }
       ]
     },
     {
       "id": "konf",
       "name": "Konfederacja",
-      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Konfederacja_Wolno%C5%9B%C4%87_i_Niepodleg%C5%82o%C5%9B%C4%87_logo.svg/300px-Konfederacja_Wolno%C5%9B%C4%87_i_Niepodleg%C5%82o%C5%9B%C4%87_logo.svg.png",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/8/81/Konfederacja_Wolno%C5%9B%C4%87_i_Niepodleg%C5%82o%C5%9B%C4%87_logo.svg",
       "promises": [
-        { "desc": "Likwidacja podatku Belki", "status": "pending" },
-        { "desc": "Tanie paliwo (obniżka akcyzy)", "status": "pending" },
-        { "desc": "Dobrowolny ZUS dla wszystkich", "status": "pending" }
+        { "desc": "Likwidacja podatku Belki", "status": "pending", "url": "https://www.google.com/search?q=konfederacja+likwidacja+podatku+belki" },
+        { "desc": "Tanie paliwo", "status": "pending", "url": "https://www.google.com/search?q=konfederacja+tanie+paliwo+ustawa" },
+        { "desc": "Dobrowolny ZUS dla wszystkich", "status": "pending", "url": "https://www.google.com/search?q=konfederacja+dobrowolny+zus" }
       ]
     }
   ]
