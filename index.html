@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; connect-src 'self' https://amixcppknszjfscnepnx.supabase.co https://api.nbp.pl; img-src 'self' https://upload.wikimedia.org https://platforma.org https://pis.org.pl https://trzeciadroga.pl https://lewica.org https://konfederacja.pl data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src * data:;">
     
-    <title>Monitor Obietnic Wyborczych | Dashboard Analityczny</title>
-    
+    <title>Monitor Obietnic Wyborczych | Dashboard</title>
     <link rel="preconnect" href="https://api.nbp.pl">
-    <link rel="preconnect" href="https://amixcppknszjfscnepnx.supabase.co">
-    
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -22,30 +20,35 @@
     <div class="corner-box right-box">
         <div class="box-title">METODOLOGIA STATUSÓW</div>
         <div class="legend-item"><span class="icon done">✓</span> Realizacja (AAA)</div>
-        <div class="legend-item"><span class="icon pending">•</span> Proces (BBB)</div>
+        <div class="legend-item"><span class="icon pending">•</span> W procesie (BBB)</div>
         <div class="legend-item"><span class="icon failed">✕</span> Brak (D)</div>
     </div>
 
     <header class="main-header">
         <h1>Monitor Obietnic Wyborczych</h1>
-        <div class="election-container">
+        
+        <div class="election-wrapper">
             <div class="election-label">WYBORY</div>
-            <div class="election-lines">
-                <div class="election-row"><strong>OSTATNIE:</strong> 15.10.2023 (<span id="days-since-parl"></span> dni temu) | 07.04.2024 (<span id="days-since-local"></span>)</div>
-                <div class="election-row"><strong>PERSPEKTYWA:</strong> X 2027 (za <span id="days-until-parl"></span> dni) | IV 2029 (za <span id="days-until-local"></span>)</div>
+            <div class="election-content">
+                <div class="election-row">
+                    <strong>OSTATNIE:</strong> Parlamentarne 15.10.2023 (<span id="days-since-parl"></span> dni) | Samorządowe 07.04.2024 (<span id="days-since-local"></span> dni)
+                </div>
+                <div class="election-row">
+                    <strong>NADCHODZĄCE:</strong> Parlamentarne X 2027 (za ok. <span id="days-until-parl"></span> dni) | Samorządowe IV 2029 (za ok. <span id="days-until-local"></span> dni)
+                </div>
             </div>
         </div>
+
         <div class="flag-container">
             <div class="flag-white"></div>
             <div class="flag-red"></div>
         </div>
     </header>
 
-    <main id="app" class="party-grid">
-        </main>
+    <main id="app" class="party-grid"></main>
 
     <footer class="site-footer">
-        <p>&copy; 2026 Monitor Obietnic. Dane makro: NBP/GUS. Wykorzystanie danych: FAIR USE. <a href="#" style="color:inherit">Metodologia Ratingu</a></p>
+        <p>&copy; 2026 Monitor Obietnic. Dane: NBP/GUS/SEJM. System weryfikacji niezależnej.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
