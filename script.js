@@ -1,31 +1,100 @@
-// ... (początek funkcji init bez zmian)
+const SB_URL = 'https://amixcppknszjfscnepnx.supabase.co';
+const SB_KEY = 'sb_publishable_8pZgzv2BXthAUoBppO8U3A_edhabo2J';
+const supabaseClient = supabase.createClient(SB_URL, SB_KEY);
+
+function updateCounters() {
+    try {
+        const now = new Date();
+        const getDiff = (d1, d2) => Math.floor(Math.abs(d1 - d2) / (1000 * 60 * 60 * 24));
+        const ids = ['days-since-parl', 'days-since-local', 'days-until-parl', 'days-until-local'];
+        const dates = [new Date('2023-10-15'), new Date('2024-04-07'), new Date('2027-10-17'), new Date('2029-04-08')];
+        ids.forEach((id, i) => {
+            const el = document.getElementById(id);
+            if(el) el.innerText = getDiff(now, dates[i]);
+        });
+    } catch (e) { console.error(e); }
+}
+
+async function init() {
+    const app = document.getElementById('app');
+    const ratesEl = document.getElementById('rates');
+    updateCounters();
 
     try {
-        // 1. Dane rynkowe i makro (Stan na kwiecień 2026)
+        // 1. Waluty i Makro
         const nbpRes = await fetch('https://api.nbp.pl/api/exchangerates/tables/A/?format=json').then(r => r.json());
         const eur = nbpRes[0].rates.find(x => x.code === 'EUR').mid;
         const usd = nbpRes[0].rates.find(x => x.code === 'USD').mid;
         
-        const gus = { 
-            inflacja: "3.2%", 
-            pkb: "+2.8%", 
-            deficytPct: "5.1%", 
-            deficytKwota: "182 mld PLN", 
-            okres: "rok 2025" 
-        };
-
         if (ratesEl) {
             ratesEl.innerHTML = `
                 <div style="border-bottom:1px dashed #e2e8f0; padding-bottom:6px; margin-bottom:6px; font-size:16px;">
                     EUR: <b>${eur}</b> | USD: <b>${usd}</b>
                 </div>
                 <div style="color:#475569; line-height:1.6;">
-                    Inflacja: <b>${gus.inflacja}</b> | PKB: <b>${gus.pkb}</b><br>
-                    Deficyt: <b style="color:var(--amarant)">${gus.deficytPct} PKB</b> 
-                    <span style="font-size:11px; color:#94a3b8; letter-spacing:0;">
-                        (${gus.deficytKwota} / ${gus.okres})
-                    </span>
+                    Inflacja: <b>3.2%</b> | PKB: <b>+2.8%</b><br>
+                    Deficyt: <b style="color:var(--amarant)">5.1% PKB</b> 
+                    <span style="font-size:11px; color:#94a3b8;">(182 mld PLN / rok 2025)</span>
                 </div>`;
         }
 
-// ... (reszta skryptu bez zmian)
+        // 2. Pobieranie danych
+        const res = await fetch('data.json');
+        if (!res.ok) throw new Error("Problem z plikiem data.json");
+        const config = await res.json();
+        
+        // Opcjonalne pobieranie głosów (jeśli Supabase jest skonfigurowane)
+        let voteData = [];
+        try {
+            const { data } = await supabaseClient.from('votes').select('*');
+            voteData = data || [];
+        } catch(e) { console.warn("Supabase connection skipped."); }
+
+        if (app) {
+            app.innerHTML = '';
+            config.parties.forEach(p => {
+                const votes = voteData.find(v => v.party_id === p.id)?.count || 0;
+                const total = p.promises.length;
+                const done = p.promises.filter(pr => pr.status === 'done').length;
+                const percent = Math.round((done / total) * 100) || 0;
+
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <button class="vote-btn" onclick="vote('${p.id}')" style="width:100%; display:flex; justify-content:space-between; padding:8px; font-family:var(--font-data); font-size:10px; cursor:pointer; background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; margin-bottom:15px;">
+                        <span>SENTYMENT</span> <b id="v-${p.id}">${votes}</b>
+                    </button>
+                    <a href="${p.website}" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:inherit;">
+                        <div style="height:55px; display:flex; align-items:center; justify-content:center; margin-bottom:10px;">
+                            <img src="${p.logo}" style="max-height:50px; max-width:90%;" alt="${p.name}">
+                        </div>
+                        <h3 style="text-align:center; margin:0 0 15px 0; font-weight:900;">${p.name}</h3>
+                    </a>
+                    <ul style="list-style:none; padding:0; margin:0; flex-grow:1;">
+                        ${p.promises.map(pr => `
+                            <li class="${pr.status}" style="padding:6px 0; font-size:12px; border-bottom:1px solid #f8fafc;">
+                                <span style="font-weight:bold; width:15px; display:inline-block;">${pr.status==='done'?'✓':(pr.status==='failed'?'✕':'•')}</span>
+                                <a href="${pr.url}" target="_blank" style="text-decoration:none; color:inherit;">${pr.desc}</a>
+                            </li>
+                        `).join('')}
+                    </ul>
+                `;
+                app.appendChild(card);
+            });
+        }
+    } catch (err) {
+        if (app) app.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding:100px; color:var(--amarant); font-family:var(--font-data);">BŁĄD SYSTEMU: ${err.message}</div>`;
+    }
+}
+
+async function vote(id) {
+    try {
+        const { error } = await supabaseClient.rpc('increment_vote', { row_id: id });
+        if (!error) {
+            const el = document.getElementById(`v-${id}`);
+            if (el) el.innerText = parseInt(el.innerText) + 1;
+        }
+    } catch(e) { console.error("Vote failed", e); }
+}
+
+document.addEventListener('DOMContentLoaded', init);
