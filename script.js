@@ -26,12 +26,6 @@ async function init() {
     });
 }
 
-async function vote(id) {
-    await supabase.rpc('increment_vote', { row_id: id });
-    const el = document.getElementById(`v-${id}`);
-    el.innerText = parseInt(el.innerText) + 1;
-}
-
 async function init() {
     const app = document.getElementById('app');
     console.log("Start inicjalizacji...");
