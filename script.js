@@ -7,13 +7,20 @@ async function init() {
     const infoBar = document.getElementById('info-bar');
 
     try {
-        // 1. Kursy walut
-        const nbp = await fetch('https://api.nbp.pl/api/exchangerates/tables/A/?format=json').then(r => r.json());
-        const eur = nbp[0].rates.find(x => x.code === 'EUR').mid;
-        const usd = nbp[0].rates.find(x => x.code === 'USD').mid;
-        if (infoBar) infoBar.innerText = `EUR: ${eur} PLN | USD: ${usd} PLN | Cel inflacyjny: 2.5% | Wybory: 2027`;
+        // 1. Kursy walut z aktywnym linkiem do NBP
+        const nbpRes = await fetch('https://api.nbp.pl/api/exchangerates/tables/A/?format=json').then(r => r.json());
+        const eur = nbpRes[0].rates.find(x => x.code === 'EUR').mid;
+        const usd = nbpRes[0].rates.find(x => x.code === 'USD').mid;
+        
+        if (infoBar) {
+            infoBar.innerHTML = `
+                <a href="https://nbp.pl/statystyka-i-sprawozdawczosc/kursy/tabela-a/" target="_blank">
+                    EUR: ${eur} PLN | USD: ${usd} PLN
+                </a> 
+                | Cel inflacyjny: 2.5% | Wybory: 2027`;
+        }
 
-        // 2. Pobieranie danych aplikacji
+        // 2. Pobieranie danych
         const res = await fetch('data.json');
         const config = await res.json();
         const { data: voteData } = await supabaseClient.from('votes').select('*');
@@ -26,14 +33,20 @@ async function init() {
                 card.className = 'card';
                 card.innerHTML = `
                     <div class="party-header">
-                        <img src="${p.logo}" class="logo" onclick="vote('${p.id}')" title="Oddaj głos poparcia">
-                        <span class="vote-count">Poparcie: <b id="v-${p.id}">${votes}</b></span>
+                        <img src="${p.logo}" class="logo" onclick="vote('${p.id}')" title="Oddaj głos">
+                        <span style="font-size:10px; color:#999; margin-top:5px;">Głosy: <b id="v-${p.id}">${votes}</b></span>
                     </div>
                     <h3>${p.name}</h3>
                     <ul>
                         ${p.promises.map(pr => {
                             let icon = pr.status === 'done' ? '✓' : (pr.status === 'failed' ? '✕' : '•');
-                            return `<li class="${pr.status}"><span class="icon">${icon}</span> ${pr.desc}</li>`;
+                            return `
+                                <li class="${pr.status}">
+                                    <span class="icon">${icon}</span>
+                                    <a href="${pr.url}" target="_blank" class="source-link" title="Zobacz źródło informacji">
+                                        ${pr.desc}
+                                    </a>
+                                </li>`;
                         }).join('')}
                     </ul>
                 `;
@@ -41,7 +54,7 @@ async function init() {
             });
         }
     } catch (err) {
-        console.error("Błąd systemu:", err);
+        console.error("Błąd ładowania:", err);
     }
 }
 
