@@ -1,46 +1,112 @@
 :root {
     --bg-color: #f4f7f6;
     --card-bg: #ffffff;
-    --accent-blue: #0052cc;
     --border-color: #e0e0e0;
+    --accent-blue: #0052cc;
+    --success-green: #155724;
 }
 
-body { font-family: 'Inter', sans-serif; background: var(--bg-color); margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
+body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background-color: var(--bg-color);
+    margin: 0;
+    color: #333;
+}
 
-/* LEGENDA I NAGŁÓWEK */
-.legend { position: fixed; top: 15px; right: 15px; background: white; padding: 10px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 11px; z-index: 1000; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-.main-header { background: white; padding: 40px 20px; text-align: center; border-bottom: 4px solid var(--accent-blue); }
+/* BLOKI W NAROŻNIKACH */
+.corner-box {
+    position: absolute;
+    top: 35px; /* Obniżone, by zrównać z tytułem */
+    background: white;
+    padding: 10px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 11px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    z-index: 100;
+}
 
-/* GRID */
-.party-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; padding: 20px; max-width: 1600px; margin: 0 auto; min-width: 1200px; }
+.left-box { left: 20px; }
+.right-box { right: 20px; }
 
-/* KARTA */
-.card { background: white; border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; box-shadow: 0 4px 6px rgba(0,0,0,0.03); }
+.box-title {
+    font-weight: bold;
+    font-size: 9px;
+    color: #999;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 3px;
+}
+
+.left-box a { color: var(--accent-blue); text-decoration: none; font-weight: bold; }
+
+/* NAGŁÓWEK */
+.main-header {
+    background: white;
+    padding: 40px 20px 30px 20px;
+    text-align: center;
+    border-bottom: 4px solid var(--accent-blue);
+}
+
+.main-header h1 {
+    margin: 0 0 15px 0;
+    font-size: 2em;
+    color: #111;
+}
+
+.election-info {
+    font-size: 0.85em;
+    color: #666;
+    line-height: 1.6;
+}
+
+.election-group { margin: 2px 0; }
+.election-group strong { color: #333; }
+
+/* GRID I KARTY */
+.party-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    padding: 30px 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+    min-width: 1250px;
+}
+
+.card {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
 .party-header { height: 80px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .logo { max-height: 55px; max-width: 90%; cursor: pointer; object-fit: contain; }
-h3 { height: 50px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 1.1em; margin: 10px 0; }
+h3 { height: 50px; display: flex; align-items: center; justify-content: center; text-align: center; margin: 10px 0; font-size: 1.1em; }
 
-/* PROGRES */
-.progress-container { height: 35px; margin-bottom: 10px; }
+/* PROGRES I LISTY */
+.progress-container { height: 35px; margin-bottom: 15px; }
 .progress-bar-bg { background: #eee; height: 6px; border-radius: 10px; overflow: hidden; }
-.progress-bar-fill { background: #155724; height: 100%; transition: width 0.5s ease; }
+.progress-bar-fill { background: var(--success-green); height: 100%; transition: width 0.5s ease; }
 
-/* LISTY OBIETNIC */
 ul { list-style: none; padding: 0; margin: 0; flex-grow: 1; }
-li { padding: 6px 0; font-size: 12px; border-bottom: 1px solid #f9f9f9; }
+li { padding: 6px 0; font-size: 12.5px; border-bottom: 1px solid #f9f9f9; line-height: 1.3; }
 .source-link { text-decoration: none; color: inherit; }
 .source-link:hover { text-decoration: underline; }
 
-/* SEKCJA KRYTYCZNA */
-hr { border: 0; border-top: 1px solid #eee; margin: 15px 0; }
-.critical-title { font-size: 10px; font-weight: bold; color: #999; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-.critical-link { display: flex; align-items: center; gap: 8px; text-decoration: none; color: #555; font-size: 11px; margin-bottom: 6px; transition: color 0.2s; }
-.critical-link:hover { color: var(--accent-blue); }
-.mini-icon { width: 16px; height: 16px; object-fit: contain; border-radius: 2px; }
-
-/* STATUSY */
-.pending { color: #856404; } .done { color: #155724; font-weight: bold; } .failed { color: #b02a37; text-decoration: line-through; opacity: 0.7; }
+.pending { color: #856404; }
+.done { color: var(--success-green); font-weight: bold; }
+.failed { color: #b02a37; text-decoration: line-through; opacity: 0.7; }
 .icon { font-weight: bold; width: 15px; display: inline-block; }
 
-/* STOPKA */
-.site-footer { background: white; padding: 20px; text-align: center; border-top: 1px solid var(--border-color); margin-top: auto; }
+/* KRYTYKA */
+hr { border: 0; border-top: 1px solid #eee; margin: 15px 0; }
+.critical-title { font-size: 9px; font-weight: bold; color: #aaa; text-transform: uppercase; margin-bottom: 8px; }
+.critical-link { display: flex; align-items: center; gap: 6px; text-decoration: none; color: #666; font-size: 10.5px; margin-bottom: 5px; }
+.mini-icon { width: 14px; height: 14px; object-fit: contain; }
+
+.site-footer { text-align: center; padding: 20px; border-top: 1px solid var(--border-color); margin-top: 40px; font-size: 0.8em; color: #888; }
