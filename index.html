@@ -9,8 +9,8 @@
 <body>
 
     <div id="currency-box" class="corner-box left-box">
-        <div class="box-title">RYNEK (NBP)</div>
-        <div id="rates">Ładowanie...</div>
+        <div class="box-title">RYNEK I WSKAŹNIKI</div>
+        <div id="rates">Ładowanie danych...</div>
     </div>
 
     <div class="corner-box right-box">
@@ -24,28 +24,23 @@
         <h1>Monitor Obietnic Wyborczych</h1>
         <div class="election-info">
             <div class="election-group">
-                <strong>OSTATNIE:</strong> 
-                Parlamentarne 15.10.2023 (<span id="days-since-parl" class="day-count"></span> dni temu) | 
-                Samorządowe 07.04.2024 (<span id="days-since-local" class="day-count"></span> dni temu)
+                <strong>OSTATNIE:</strong> Parlamentarne 15.10.2023 (<span id="days-since-parl"></span> dni temu) | Samorządowe 07.04.2024 (<span id="days-since-local"></span> dni temu)
             </div>
             <div class="election-group">
-                <strong>NADCHODZĄCE:</strong> 
-                Parlamentarne X 2027 (za ok. <span id="days-until-parl" class="day-count"></span> dni) | 
-                Samorządowe IV 2029 (za ok. <span id="days-until-local" class="day-count"></span> dni)
+                <strong>NADCHODZĄCE:</strong> Parlamentarne X 2027 (za ok. <span id="days-until-parl"></span> dni) | Samorządowe IV 2029 (za ok. <span id="days-until-local"></span> dni)
             </div>
         </div>
+        <div class="flag-strip"></div>
     </header>
 
     <main class="container">
         <div id="app" class="party-grid">
-            <div class="loading">Inicjalizacja systemu...</div>
+            <div class="loading">Inicjalizacja danych...</div>
         </div>
     </main>
 
     <footer class="site-footer">
-        <div class="footer-content">
-            <p>&copy; 2026 Monitor Obietnic. Wszelkie prawa zastrzeżone.</p>
-        </div>
+        <p>&copy; 2026 Monitor Obietnic. Wszelkie prawa zastrzeżone.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
