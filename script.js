@@ -27,9 +27,9 @@ async function init() {
                 <div style="border-bottom:1px dashed #eee; padding-bottom:3px; margin-bottom:3px;">
                     EUR: <b>${eur}</b> | USD: <b>${usd}</b>
                 </div>
-                <div style="color:#666; font-size:9.5px;">
+                <div style="color:#666; font-size:9px;">
                     Inflacja: <b>${gus.inflacja}</b> | PKB: <b>${gus.pkb}</b><br>
-                    Bezrobocie: <b>${gus.bezrobocie}</b> | Pensja: <b>${gus.pensja}</b>
+                    Bezrobocie: <b>${gus.bezrobocie}</b> | Śr. płaca: <b>${gus.pensja}</b>
                 </div>`;
         }
 
@@ -49,7 +49,7 @@ async function init() {
                 card.className = 'card';
                 card.innerHTML = `
                     <button class="vote-btn" onclick="vote('${p.id}')">
-                        <span>ODDAJ GŁOS POPARCIA</span>
+                        <span>POPRZYJ PARTIĘ</span>
                         <b id="v-${p.id}">${votes}</b>
                     </button>
 
@@ -61,22 +61,23 @@ async function init() {
                     </a>
 
                     <div class="progress-container">
-                        <div style="font-size: 8px; text-align:right;">Realizacja: ${percent}%</div>
+                        <div style="font-size: 8px; text-align:right; margin-bottom:2px;">Realizacja programu: ${percent}%</div>
                         <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: ${percent}%"></div></div>
                     </div>
 
                     <ul>
                         ${p.promises.map(pr => {
                             let icon = pr.status === 'done' ? '✓' : (pr.status === 'failed' ? '✕' : '•');
-                            return `<li class="${pr.status}"><span style="font-weight:bold;width:12px;display:inline-block">${icon}</span><a href="${pr.url}" target="_blank" rel="noopener noreferrer" class="source-link">${pr.desc}</a></li>`;
+                            return `<li class="${pr.status}"><span class="icon">${icon}</span><a href="${pr.url}" target="_blank" rel="noopener noreferrer" class="source-link">${pr.desc}</a></li>`;
                         }).join('')}
                     </ul>
-                    <hr>
-                    <div class="critical-title">Weryfikacja</div>
-                    <div class="critical-list">
+
+                    <div class="verification-box">
+                        <div class="critical-title">Weryfikacja i Krytyka</div>
                         ${p.critical_sources ? p.critical_sources.map(src => `
-                            <a href="${src.url}" target="_blank" rel="noopener noreferrer" class="critical-link" style="text-decoration:none; margin-bottom:4px; display:flex; align-items:center; gap:5px;">
-                                <img src="${src.icon}" class="mini-icon"> ${src.text}
+                            <a href="${src.url}" target="_blank" rel="noopener noreferrer" class="critical-link">
+                                <img src="${src.icon}" class="mini-icon">
+                                <span>${src.text}</span>
                             </a>
                         `).join('') : ''}
                     </div>
@@ -84,7 +85,7 @@ async function init() {
                 app.appendChild(card);
             });
         }
-    } catch (err) { console.error(err); }
+    } catch (err) { console.error("System Error:", err); }
 }
 
 async function vote(id) {
