@@ -32,4 +32,32 @@ async function vote(id) {
     el.innerText = parseInt(el.innerText) + 1;
 }
 
-init();
+async function init() {
+    const app = document.getElementById('app');
+    console.log("Start inicjalizacji...");
+
+    try {
+        const res = await fetch('data.json');
+        if (!res.ok) throw new Error("Nie znaleziono pliku data.json na serwerze!");
+        
+        const config = await res.json();
+        console.log("Dane załadowane:", config);
+
+        app.innerHTML = ''; // Czyścimy napis "Inicjalizacja..."
+        
+        config.parties.forEach(p => {
+            const card = document.createElement('div');
+            card.className = 'party-col';
+            card.innerHTML = `<h3>${p.name}</h3>`;
+            app.appendChild(card);
+        });
+
+    } catch (e) {
+        console.error("BŁĄD:", e);
+        app.innerHTML = `<div style="color:red; padding:20px; background:white;">
+            <h3>Wystąpił problem:</h3>
+            <p>${e.message}</p>
+            <p>Sprawdź czy plik <b>data.json</b> został wgrany na Netlify.</p>
+        </div>`;
+    }
+}
