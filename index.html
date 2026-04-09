@@ -1,16 +1,41 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8"><title>Licznik Obietnic</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Licznik Obietnic Partyjnych</title>
     <link rel="stylesheet" href="style.css">
+    
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-    <header>
-        <div id="info-bar">EUR: ... | Wybory: 2027</div>
-        <h1>Licznik Obietnic Partyjnych</h1>
+
+    <header class="main-header">
+        <div class="top-info-bar">
+            <div class="left">
+                <span id="info-bar">Ładowanie kursów walut...</span>
+            </div>
+            <div class="right">
+                Wybory Parl.: <b>Jesień 2027</b> | Samorządowe: <b>2029</b>
+            </div>
+        </div>
+        <div class="header-content">
+            <h1>Monitor Obietnic Wyborczych</h1>
+            <p class="subtitle">Zwięzłe zestawienie faktów, realizacji i kłamstw</p>
+        </div>
     </header>
-    <div id="app" class="grid"></div>
+
+    <main class="container">
+        <div id="app" class="party-grid">
+            <div class="loading">Inicjalizacja danych...</div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Licznik Partyjny - Dane oparte na źródłach rzetelnych (RSS/NBP)</p>
+    </footer>
+
     <script src="script.js"></script>
+
 </body>
 </html>
