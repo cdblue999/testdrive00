@@ -4,28 +4,56 @@ const supabaseClient = supabase.createClient(SB_URL, SB_KEY);
 
 function updateElectionCounters() {
     const now = new Date();
-    const parlPast = new Date('2023-10-15');
-    const localPast = new Date('2024-04-07');
-    const parlFuture = new Date('2027-10-17'); 
-    const localFuture = new Date('2029-04-08');
+    const parlPast = new Date('2023-10-15'); const localPast = new Date('2024-04-07');
+    const parlFuture = new Date('2027-10-17'); const localFuture = new Date('2029-04-08');
     const getDiff = (d1, d2) => Math.floor(Math.abs(d1 - d2) / (1000 * 60 * 60 * 24));
-
     document.getElementById('days-since-parl').innerText = getDiff(now, parlPast);
     document.getElementById('days-since-local').innerText = getDiff(now, localPast);
     document.getElementById('days-until-parl').innerText = getDiff(parlFuture, now);
     document.getElementById('days-until-local').innerText = getDiff(localFuture, now);
 }
 
+// NOWA FUNKCJA: WYKRES HISTORYCZNY
+function initHistoryChart() {
+    const ctx = document.getElementById('supportChart').getContext('2d');
+    
+    // Dane przykładowe (trend poparcia w twoim liczniku)
+    const labels = ['Listopad', 'Grudzień', 'Styczeń', 'Luty', 'Marzec', 'Kwiecień'];
+    
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [
+                { label: 'KO', data: [31, 32, 30, 33, 31, 34], borderColor: '#0052cc', tension: 0.3, fill: false },
+                { label: 'PiS', data: [29, 28, 30, 27, 28, 26], borderColor: '#E52B50', tension: 0.3, fill: false },
+                { label: '3D', data: [14, 13, 15, 12, 11, 12], borderColor: '#1e8449', tension: 0.3, fill: false },
+                { label: 'Konf', data: [10, 11, 9, 12, 13, 14], borderColor: '#1a1a1a', tension: 0.3, fill: false },
+                { label: 'Lewica', data: [8, 9, 8, 7, 9, 8], borderColor: '#d63031', tension: 0.3, fill: false }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } } },
+            scales: {
+                y: { beginAtZero: false, grid: { color: '#f0f0f0' }, ticks: { font: { size: 9 } } },
+                x: { grid: { display: false }, ticks: { font: { size: 9 } } }
+            }
+        }
+    });
+}
+
 async function init() {
     const app = document.getElementById('app');
     const ratesEl = document.getElementById('rates');
     updateElectionCounters();
+    initHistoryChart(); // Uruchomienie wykresu
 
     try {
         const nbpRes = await fetch('https://api.nbp.pl/api/exchangerates/tables/A/?format=json').then(r => r.json());
         const eur = nbpRes[0].rates.find(x => x.code === 'EUR').mid;
         const usd = nbpRes[0].rates.find(x => x.code === 'USD').mid;
-
         const gus = { inflacja: "3.2%", pkb: "+2.8%", bezrobocie: "4.9%", pensja: "8 450 PLN" };
 
         if (ratesEl) {
