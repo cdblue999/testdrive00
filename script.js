@@ -15,7 +15,7 @@ async function init() {
             infoBar.innerHTML = `<a href="https://nbp.pl" target="_blank">EUR: ${eur} PLN | USD: ${usd} PLN</a> | Cel inflacyjny: 2.5% | Wybory: 2027`;
         }
 
-        // 2. Dane
+        // 2. Pobieranie danych
         const res = await fetch('data.json');
         const config = await res.json();
         const { data: voteData } = await supabaseClient.from('votes').select('*');
@@ -32,7 +32,7 @@ async function init() {
                 card.className = 'card';
                 card.innerHTML = `
                     <div class="party-header">
-                        <img src="${p.logo}" class="logo" crossorigin="anonymous" onclick="vote('${p.id}')">
+                        <img src="${p.logo}" class="logo" onclick="vote('${p.id}')" alt="${p.name}">
                         <span style="font-size:10px; color:#999; margin-top:5px;">POPARCIE: <b id="v-${p.id}">${votes}</b></span>
                     </div>
                     <h3>${p.name}</h3>
