@@ -1,32 +1,53 @@
 {
-  "last_update": "2026-04-07",
-  "rates": { "EUR": "4.28", "USD": "3.92" },
   "parties": [
     {
       "id": "ko",
       "name": "Koalicja Obywatelska",
-      "logo_url": "https://placehold.co/100x40?text=KO",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Koalicja_Obywatelska_logo.svg/400px-Koalicja_Obywatelska_logo.svg.png",
       "promises": [
-        { "txt": "Kwota wolna 60k", "status": "pending" },
-        { "txt": "Paliwo 5.19", "status": "failed" }
+        { "desc": "Kwota wolna 60 tys. zł", "status": "pending", "url": "https://www.google.com/search?q=ko+kwota+wolna" },
+        { "desc": "Paliwo po 5,19 zł", "status": "failed", "url": "https://www.google.com/search?q=paliwo+5.19+obietnica" },
+        { "desc": "Babciowe", "status": "done", "url": "https://www.gov.pl/web/rodzina/aktywny-rodzic" }
       ]
     },
     {
       "id": "pis",
       "name": "Prawo i Sprawiedliwość",
-      "logo_url": "https://placehold.co/100x40?text=PiS",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Logo_Prawa_i_Sprawiedliwo%C5%9Bci.svg/400px-Logo_Prawa_i_Sprawiedliwo%C5%9Bci.svg.png",
       "promises": [
-        { "txt": "Emerytury stażowe", "status": "pending" },
-        { "txt": "CPK", "status": "done" }
+        { "desc": "Budowa CPK", "status": "pending", "url": "https://cpk.pl" },
+        { "desc": "Emerytury stażowe", "status": "pending", "url": "https://www.google.com/search?q=pis+emerytury+stazowe" },
+        { "desc": "800 Plus", "status": "done", "url": "https://www.gov.pl/web/rodzina/800-plus" }
       ]
     },
     {
       "id": "td",
       "name": "Trzecia Droga",
-      "logo_url": "https://placehold.co/100x40?text=TD",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Trzecia_Droga_logo.svg/400px-Trzecia_Droga_logo.svg.png",
       "promises": [
-        { "txt": "Akademik za 1zł", "status": "failed" },
-        { "txt": "Dobrowolny ZUS", "status": "pending" }
+        { "desc": "Dobrowolny ZUS", "status": "pending", "url": "https://www.google.com/search?q=td+dobrowolny+zus" },
+        { "desc": "Akademik za 1 zł", "status": "failed", "url": "https://www.google.com/search?q=akademik+za+1zl" },
+        { "desc": "Podatek Belki", "status": "pending", "url": "https://www.google.com/search?q=reforma+belki" }
+      ]
+    },
+    {
+      "id": "lewica",
+      "name": "Lewica",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Nowa_Lewica_Logo.svg/400px-Nowa_Lewica_Logo.svg.png",
+      "promises": [
+        { "desc": "Renta wdowia", "status": "done", "url": "https://www.gov.pl/web/rodzina/renta-wdowia" },
+        { "desc": "35h tydzień pracy", "status": "pending", "url": "https://www.google.com/search?q=lewica+35h" },
+        { "desc": "Tanie mieszkania", "status": "pending", "url": "https://www.google.com/search?q=lewica+mieszkania" }
+      ]
+    },
+    {
+      "id": "konf",
+      "name": "Konfederacja",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Konfederacja_Wolno%C5%9B%C4%87_i_Niepodleg%C5%82o%C5%9B%C4%87_logo.svg/400px-Konfederacja_Wolno%C5%9B%C4%87_i_Niepodleg%C5%82o%C5%9B%C4%87_logo.svg.png",
+      "promises": [
+        { "desc": "Likwidacja Belki", "status": "pending", "url": "https://www.google.com/search?q=konfederacja+belka" },
+        { "desc": "Tanie paliwo", "status": "pending", "url": "https://www.google.com/search?q=konfederacja+paliwo" },
+        { "desc": "Dobrowolny ZUS", "status": "pending", "url": "https://www.google.com/search?q=konfederacja+zus" }
       ]
     }
   ]
