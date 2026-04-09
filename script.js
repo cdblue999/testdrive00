@@ -4,13 +4,21 @@ const supabaseClient = supabase.createClient(SB_URL, SB_KEY);
 
 async function init() {
     const app = document.getElementById('app');
-    const infoBar = document.getElementById('info-bar');
+    const ratesEl = document.getElementById('rates');
 
     try {
-        const nbp = await fetch('https://api.nbp.pl/api/exchangerates/tables/A/?format=json').then(r => r.json());
-        const eur = nbp[0].rates.find(x => x.code === 'EUR').mid;
-        if (infoBar) infoBar.innerHTML = `<a href="https://nbp.pl" target="_blank">Kurs EUR: ${eur} PLN</a> | Wybory: 2027`;
+        // 1. Kursy walut
+        const nbpRes = await fetch('https://api.nbp.pl/api/exchangerates/tables/A/?format=json').then(r => r.json());
+        const eur = nbpRes[0].rates.find(x => x.code === 'EUR').mid;
+        const usd = nbpRes[0].rates.find(x => x.code === 'USD').mid;
+        if (ratesEl) {
+            ratesEl.innerHTML = `
+                <a href="https://nbp.pl" target="_blank">EUR: ${eur} PLN</a><br>
+                <a href="https://nbp.pl" target="_blank">USD: ${usd} PLN</a>
+            `;
+        }
 
+        // 2. Pobieranie danych
         const res = await fetch('data.json');
         const config = await res.json();
         const { data: voteData } = await supabaseClient.from('votes').select('*');
@@ -27,12 +35,12 @@ async function init() {
                 card.className = 'card';
                 card.innerHTML = `
                     <div class="party-header">
-                        <img src="${p.logo}" class="logo" onclick="vote('${p.id}')" alt="Głosuj">
-                        <span style="font-size:10px; color:#999; margin-top:5px;">POPARCIE: <b id="v-${p.id}">${votes}</b></span>
+                        <img src="${p.logo}" class="logo" crossorigin="anonymous" onclick="vote('${p.id}')">
+                        <span style="font-size:10px; color:#aaa; margin-top:5px;">POPARCIE: <b id="v-${p.id}">${votes}</b></span>
                     </div>
                     <h3>${p.name}</h3>
                     <div class="progress-container">
-                        <div style="font-size: 9px; text-align:right;">Realizacja: ${percent}%</div>
+                        <div style="font-size: 9px; text-align:right; margin-bottom:2px;">Realizacja: ${percent}%</div>
                         <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: ${percent}%"></div></div>
                     </div>
                     <ul>
@@ -41,14 +49,12 @@ async function init() {
                             return `<li class="${pr.status}"><span class="icon">${icon}</span><a href="${pr.url}" target="_blank" class="source-link">${pr.desc}</a></li>`;
                         }).join('')}
                     </ul>
-                    
                     <hr>
-                    <div class="critical-title">Weryfikacja i Krytyka</div>
+                    <div class="critical-title">Weryfikacja</div>
                     <div class="critical-list">
                         ${p.critical_sources ? p.critical_sources.map(src => `
                             <a href="${src.url}" target="_blank" class="critical-link">
-                                <img src="${src.icon}" class="mini-icon">
-                                ${src.text}
+                                <img src="${src.icon}" class="mini-icon"> ${src.text}
                             </a>
                         `).join('') : ''}
                     </div>
@@ -56,7 +62,7 @@ async function init() {
                 app.appendChild(card);
             });
         }
-    } catch (err) { console.error(err); }
+    } catch (err) { console.error("Błąd:", err); }
 }
 
 async function vote(id) {
