@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src * data:;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src * data:;">
     
-    <title>Monitor Obietnic Wyborczych | Dashboard</title>
-    <link rel="preconnect" href="https://api.nbp.pl">
+    <title>Monitor Obietnic Wyborczych | Dashboard Analityczny</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
     <div id="currency-box" class="corner-box left-box">
         <div class="box-title">RYNEK I WSKAŹNIKI (LIVE)</div>
-        <div id="rates">Ładowanie danych...</div>
+        <div id="rates">Ładowanie...</div>
     </div>
 
     <div class="corner-box right-box">
@@ -49,6 +52,7 @@
 
     <footer class="site-footer">
         <p>&copy; 2026 Monitor Obietnic. Dane: NBP/GUS/SEJM. System weryfikacji niezależnej.</p>
+        <p style="font-size: 10px; margin-top: 5px; opacity: 0.7;">Analiza oparta na oficjalnych dokumentach programowych partii politycznych.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
