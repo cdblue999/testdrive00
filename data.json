@@ -1,5 +1,4 @@
 {
-  "last_update": "2026-04-09",
   "parties": [
     {
       "id": "ko",
@@ -44,7 +43,7 @@
     {
       "id": "konf",
       "name": "Konfederacja",
-      "logo": "https://upload.wikimedia.org/wikipedia/commons/8/81/Konfederacja_Wolno%C5%9B%C4%87_i_Niepodleg%C5%82o%C5%9B%C4%87_logo.svg",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/8/81/Konfederacja_Wolno%C5%9B%C4%87_ i_Niepodleg%C5%82o%C5%9B%C4%87_logo.svg",
       "promises": [
         { "desc": "Likwidacja podatku Belki", "status": "pending", "url": "https://www.google.com/search?q=konfederacja+likwidacja+podatku+belki" },
         { "desc": "Tanie paliwo", "status": "pending", "url": "https://www.google.com/search?q=konfederacja+tanie+paliwo+ustawa" },
