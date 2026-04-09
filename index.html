@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src * data:;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src * data:;">
     
-    <title>Terminal obywatelski | Monitor Obietnic</title>
+    <title>Terminal obywatelski | Monitor</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,8 +16,8 @@
 <body>
 
     <div id="currency-box" class="corner-box left-box">
-        <div class="box-title">RYNEK I WSKAŹNIKI</div>
-        <div id="rates">Ładowanie danych...</div>
+        <div class="box-title">RYNEK I WSKAŹNIKI (LIVE)</div>
+        <div id="rates">Ładowanie...</div>
     </div>
 
     <div class="corner-box right-box">
@@ -28,7 +28,7 @@
     </div>
 
     <header class="main-header">
-        <h1>Terminal obywatelski</h1>
+        <h1>terminal obywatelski</h1>
         
         <div class="election-wrapper">
             <div class="election-title">WYBORY</div>
@@ -49,11 +49,11 @@
     </header>
 
     <main id="app" class="party-grid">
-        <div class="loading">Inicjalizacja terminala...</div>
+        <div class="status-msg">Inicjalizacja systemu...</div>
     </main>
 
     <footer class="site-footer">
-        <p>&copy; 2026 Terminal obywatelski. System weryfikacji merytorycznej opartej na danych NBP, GUS i SEJM.</p>
+        <p>&copy; 2026 Terminal obywatelski. Dane: NBP/GUS/SEJM.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
