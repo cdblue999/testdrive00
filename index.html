@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monitor Obietnic Wyborczych</title>
+    <title>Monitor Obietnic Wyborczych 2023-2027</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -24,17 +24,21 @@
         <h1>Monitor Obietnic Wyborczych</h1>
         <div class="election-info">
             <div class="election-group">
-                <strong>OSTATNIE:</strong> Parlamentarne (15.10.2023) | Samorządowe (07.04.2024)
+                <strong>OSTATNIE:</strong> 
+                Parlamentarne 15.10.2023 (<span id="days-since-parl" class="day-count"></span> dni temu) | 
+                Samorządowe 07.04.2024 (<span id="days-since-local" class="day-count"></span> dni temu)
             </div>
             <div class="election-group">
-                <strong>NADCHODZĄCE:</strong> Parlamentarne (X 2027) | Samorządowe (IV 2029)
+                <strong>NADCHODZĄCE:</strong> 
+                Parlamentarne X 2027 (za ok. <span id="days-until-parl" class="day-count"></span> dni) | 
+                Samorządowe IV 2029 (za ok. <span id="days-until-local" class="day-count"></span> dni)
             </div>
         </div>
     </header>
 
     <main class="container">
         <div id="app" class="party-grid">
-            <div class="loading">Inicjalizacja danych...</div>
+            <div class="loading">Inicjalizacja systemu...</div>
         </div>
     </main>
 
