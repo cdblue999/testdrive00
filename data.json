@@ -10,13 +10,8 @@
         { "desc": "Babciowe (Aktywny Rodzic)", "status": "done", "url": "https://100konkretow.pl/konkret-nr-4/" },
         { "desc": "Paliwo po 5,19 zł", "status": "failed", "url": "https://100konkretow.pl/konkret-nr-3/" }
       ],
-      "critical_sources": [
-        { "text": "Analiza FOR: Budżet", "url": "https://for.org.pl", "icon": "https://placehold.co/20?text=F" },
-        { "text": "DGP: Koszty realne", "url": "https://gazetaprawna.pl", "icon": "https://placehold.co/20?text=P" }
-      ],
-      "legislative_initiatives": [
-        { "text": "Projekt: Aktywny Rodzic", "url": "https://www.sejm.gov.pl/Sejm10.nsf/proces.xsp?view=1&id=1073B4D" }
-      ]
+      "critical_sources": [{ "text": "Analiza FOR", "url": "https://for.org.pl", "icon": "https://placehold.co/20?text=F" }],
+      "legislative_initiatives": [{ "text": "Projekt: Aktywny Rodzic", "url": "https://www.sejm.gov.pl/Sejm10.nsf/proces.xsp?view=1&id=1073B4D" }]
     },
     {
       "id": "pis",
@@ -27,12 +22,8 @@
         { "desc": "Budowa CPK", "status": "pending", "url": "https://pis.org.pl/dokumenty" },
         { "desc": "800 Plus", "status": "done", "url": "https://pis.org.pl/aktualnosci/800-plus-od-1-stycznia" }
       ],
-      "critical_sources": [
-        { "text": "Lasek: Raport CPK", "url": "https://tvn24.pl", "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/TVN24_logo.svg/30px-TVN24_logo.svg.png" }
-      ],
-      "legislative_initiatives": [
-        { "text": "Projekt: Kontynuacja CPK", "url": "https://www.sejm.gov.pl/Sejm10.nsf/proces.xsp" }
-      ]
+      "critical_sources": [{ "text": "Lasek: Raport CPK", "url": "https://tvn24.pl", "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/TVN24_logo.svg/30px-TVN24_logo.svg.png" }],
+      "legislative_initiatives": [{ "text": "Projekt: Kontynuacja CPK", "url": "https://www.sejm.gov.pl/Sejm10.nsf/proces.xsp" }]
     },
     {
       "id": "td",
@@ -43,12 +34,8 @@
         { "desc": "Dobrowolny ZUS", "status": "pending", "url": "https://trzeciadroga.pl/program/" },
         { "desc": "Akademik za 1 zł", "status": "failed", "url": "https://trzeciadroga.pl/program/" }
       ],
-      "critical_sources": [
-        { "text": "Money.pl: ZUS", "url": "https://money.pl", "icon": "https://placehold.co/20?text=M" }
-      ],
-      "legislative_initiatives": [
-        { "text": "Składka zdrowotna", "url": "https://www.sejm.gov.pl/Sejm10.nsf/proces.xsp" }
-      ]
+      "critical_sources": [{ "text": "Money.pl: ZUS", "url": "https://money.pl", "icon": "https://placehold.co/20?text=M" }],
+      "legislative_initiatives": [{ "text": "Składka zdrowotna", "url": "https://www.sejm.gov.pl/Sejm10.nsf/proces.xsp" }]
     },
     {
       "id": "lewica",
@@ -59,12 +46,8 @@
         { "desc": "Renta wdowia", "status": "done", "url": "https://lewica.org/program/" },
         { "desc": "35h tydzień pracy", "status": "pending", "url": "https://lewica.org/program/" }
       ],
-      "critical_sources": [
-        { "text": "BCC: Analiza", "url": "https://bcc.org.pl", "icon": "https://placehold.co/20?text=B" }
-      ],
-      "legislative_initiatives": [
-        { "text": "Renta Wdowia", "url": "https://www.sejm.gov.pl/Sejm10.nsf/proces.xsp" }
-      ]
+      "critical_sources": [{ "text": "BCC: Analiza", "url": "https://bcc.org.pl", "icon": "https://placehold.co/20?text=B" }],
+      "legislative_initiatives": [{ "text": "Renta Wdowia", "url": "https://www.sejm.gov.pl/Sejm10.nsf/proces.xsp" }]
     },
     {
       "id": "konf",
@@ -75,12 +58,8 @@
         { "desc": "Likwidacja Belki", "status": "pending", "url": "https://konfederacja.pl/program/" },
         { "desc": "Tanie paliwo", "status": "pending", "url": "https://konfederacja.pl/program/" }
       ],
-      "critical_sources": [
-        { "text": "MF: Budżet", "url": "https://gov.pl", "icon": "https://placehold.co/20?text=G" }
-      ],
-      "legislative_initiatives": [
-        { "text": "Kwota wolna", "url": "https://www.sejm.gov.pl/Sejm10.nsf/proces.xsp" }
-      ]
+      "critical_sources": [{ "text": "MF: Budżet", "url": "https://gov.pl", "icon": "https://placehold.co/20?text=G" }],
+      "legislative_initiatives": [{ "text": "Kwota wolna", "url": "https://www.sejm.gov.pl/Sejm10.nsf/proces.xsp" }]
     }
   ]
 }
