@@ -15,19 +15,22 @@
     </div>
 
     <header class="main-header">
-        <div id="info-bar" class="info-bar">Ładowanie danych NBP...</div>
+        <div id="info-bar" class="info-bar">Pobieranie danych NBP...</div>
         <h1>Monitor Obietnic Wyborczych</h1>
-        <p class="subtitle">Analiza realizacji programów partii parlamentarnych 2023-2027</p>
+        <p class="subtitle">Niezależne zestawienie realizacji programów partii politycznych</p>
     </header>
 
     <main class="container">
         <div id="app" class="party-grid">
-            <div class="loading">Inicjalizacja danych...</div>
+            <div class="loading">Inicjalizacja systemu...</div>
         </div>
     </main>
 
-    <footer style="text-align: center; padding: 20px; border-top: 1px solid #dee2e6; background: white; margin-top: 30px;">
-        <p style="font-size: 0.9em; color: #666; margin: 0;">Strona ma charakter informacyjny. Ostatnia aktualizacja danych: 09.04.2026. Favicon: stylized chart.</p>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Licznik Obietnic. Wszelkie prawa zastrzeżone.</p>
+            <p class="footer-note">Dane o obietnicach pochodzą z oficjalnych programów wyborczych oraz serwisów informacyjnych. Kursy walut dostarczane przez API NBP.</p>
+        </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
