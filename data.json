@@ -5,8 +5,8 @@
       "name": "Koalicja Obywatelska",
       "logo": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Koalicja_Obywatelska_logo.svg",
       "promises": [
-        { "desc": "Kwota wolna od podatku 60 tys. zł", "status": "pending", "url": "https://www.google.com/search?q=koalicja+obywatelska+kwota+wolna+60+tys" },
-        { "desc": "Paliwo po 5,19 zł", "status": "failed", "url": "https://www.google.com/search?q=paliwo+po+5.19+obietnica" },
+        { "desc": "Kwota wolna 60 tys. zł", "status": "pending", "url": "https://www.google.com/search?q=ko+kwota+wolna" },
+        { "desc": "Paliwo po 5,19 zł", "status": "failed", "url": "https://www.google.com/search?q=paliwo+5.19+obietnica" },
         { "desc": "Babciowe", "status": "done", "url": "https://www.gov.pl/web/rodzina/aktywny-rodzic" }
       ]
     },
@@ -16,7 +16,7 @@
       "logo": "https://upload.wikimedia.org/wikipedia/commons/5/53/Logo_Prawa_i_Sprawiedliwo%C5%9Bci.svg",
       "promises": [
         { "desc": "Budowa CPK", "status": "pending", "url": "https://cpk.pl" },
-        { "desc": "Emerytury stażowe", "status": "pending", "url": "https://www.google.com/search?q=pis+emerytury+stażowe" },
+        { "desc": "Emerytury stażowe", "status": "pending", "url": "https://www.google.com/search?q=pis+emerytury+stazowe" },
         { "desc": "800 Plus", "status": "done", "url": "https://www.gov.pl/web/rodzina/800-plus" }
       ]
     },
@@ -25,9 +25,9 @@
       "name": "Trzecia Droga",
       "logo": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Trzecia_Droga_logo.svg",
       "promises": [
-        { "desc": "Dobrowolny ZUS", "status": "pending", "url": "https://www.google.com/search?q=trzecia+droga+dobrowolny+zus" },
-        { "desc": "Akademik za 1 zł", "status": "failed", "url": "https://www.google.com/search?q=akademik+za+1+zl+obietnica" },
-        { "desc": "Reforma podatku Belki", "status": "pending", "url": "https://www.google.com/search?q=reforma+podatku+belki+trzecia+droga" }
+        { "desc": "Dobrowolny ZUS", "status": "pending", "url": "https://www.google.com/search?q=td+dobrowolny+zus" },
+        { "desc": "Akademik za 1 zł", "status": "failed", "url": "https://www.google.com/search?q=akademik+za+1zl" },
+        { "desc": "Podatek Belki", "status": "pending", "url": "https://www.google.com/search?q=reforma+belki" }
       ]
     },
     {
@@ -36,18 +36,18 @@
       "logo": "https://upload.wikimedia.org/wikipedia/commons/9/90/Nowa_Lewica_Logo.svg",
       "promises": [
         { "desc": "Renta wdowia", "status": "done", "url": "https://www.gov.pl/web/rodzina/renta-wdowia" },
-        { "desc": "35-godzinny tydzień pracy", "status": "pending", "url": "https://www.google.com/search?q=lewica+35+godzinny+tydzien+pracy" },
-        { "desc": "Mieszkania na tani wynajem", "status": "pending", "url": "https://www.google.com/search?q=lewica+mieszkania+na+tani+wynajem" }
+        { "desc": "35h tydzień pracy", "status": "pending", "url": "https://www.google.com/search?q=lewica+35h" },
+        { "desc": "Tanie mieszkania", "status": "pending", "url": "https://www.google.com/search?q=lewica+mieszkania" }
       ]
     },
     {
       "id": "konf",
       "name": "Konfederacja",
-      "logo": "https://upload.wikimedia.org/wikipedia/commons/8/81/Konfederacja_Wolno%C5%9B%C4%87_ i_Niepodleg%C5%82o%C5%9B%C4%87_logo.svg",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/8/81/Konfederacja_Wolno%C5%9B%C4%87_i_Niepodleg%C5%82o%C5%9B%C4%87_logo.svg",
       "promises": [
-        { "desc": "Likwidacja podatku Belki", "status": "pending", "url": "https://www.google.com/search?q=konfederacja+likwidacja+podatku+belki" },
-        { "desc": "Tanie paliwo", "status": "pending", "url": "https://www.google.com/search?q=konfederacja+tanie+paliwo+ustawa" },
-        { "desc": "Dobrowolny ZUS dla wszystkich", "status": "pending", "url": "https://www.google.com/search?q=konfederacja+dobrowolny+zus" }
+        { "desc": "Likwidacja Belki", "status": "pending", "url": "https://www.google.com/search?q=konfederacja+belka" },
+        { "desc": "Tanie paliwo", "status": "pending", "url": "https://www.google.com/search?q=konfederacja+paliwo" },
+        { "desc": "Dobrowolny ZUS", "status": "pending", "url": "https://www.google.com/search?q=konfederacja+zus" }
       ]
     }
   ]
