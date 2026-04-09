@@ -16,7 +16,7 @@ body {
 /* BLOKI W NAROŻNIKACH */
 .corner-box {
     position: absolute;
-    top: 35px; /* Obniżone, by zrównać z tytułem */
+    top: 35px;
     background: white;
     padding: 10px 15px;
     border: 1px solid var(--border-color);
@@ -61,8 +61,14 @@ body {
     line-height: 1.6;
 }
 
-.election-group { margin: 2px 0; }
+.election-group { margin: 4px 0; }
 .election-group strong { color: #333; }
+
+/* Styl dla licznika dni */
+.day-count {
+    color: var(--accent-blue);
+    font-weight: bold;
+}
 
 /* GRID I KARTY */
 .party-grid {
@@ -88,7 +94,6 @@ body {
 .logo { max-height: 55px; max-width: 90%; cursor: pointer; object-fit: contain; }
 h3 { height: 50px; display: flex; align-items: center; justify-content: center; text-align: center; margin: 10px 0; font-size: 1.1em; }
 
-/* PROGRES I LISTY */
 .progress-container { height: 35px; margin-bottom: 15px; }
 .progress-bar-bg { background: #eee; height: 6px; border-radius: 10px; overflow: hidden; }
 .progress-bar-fill { background: var(--success-green); height: 100%; transition: width 0.5s ease; }
@@ -103,7 +108,6 @@ li { padding: 6px 0; font-size: 12.5px; border-bottom: 1px solid #f9f9f9; line-h
 .failed { color: #b02a37; text-decoration: line-through; opacity: 0.7; }
 .icon { font-weight: bold; width: 15px; display: inline-block; }
 
-/* KRYTYKA */
 hr { border: 0; border-top: 1px solid #eee; margin: 15px 0; }
 .critical-title { font-size: 9px; font-weight: bold; color: #aaa; text-transform: uppercase; margin-bottom: 8px; }
 .critical-link { display: flex; align-items: center; gap: 6px; text-decoration: none; color: #666; font-size: 10.5px; margin-bottom: 5px; }
