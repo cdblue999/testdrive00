@@ -23,14 +23,19 @@
 
     <header class="main-header">
         <h1>Monitor Obietnic Wyborczych</h1>
-        <div class="election-info">
-            <div class="election-group">
-                <strong>OSTATNIE:</strong> Parlamentarne 15.10.2023 (<span id="days-since-parl"></span> dni temu) | Samorządowe 07.04.2024 (<span id="days-since-local"></span> dni temu)
-            </div>
-            <div class="election-group">
-                <strong>NADCHODZĄCE:</strong> Parlamentarne X 2027 (za ok. <span id="days-until-parl"></span> dni) | Samorządowe IV 2029 (za ok. <span id="days-until-local"></span> dni)
+        
+        <div class="election-container">
+            <div class="election-label">WYBORY</div>
+            <div class="election-lines">
+                <div class="election-row">
+                    <strong>OSTATNIE:</strong> Parlamentarne 15.10.2023 (<span id="days-since-parl"></span> dni temu) | Samorządowe 07.04.2024 (<span id="days-since-local"></span> dni temu)
+                </div>
+                <div class="election-row">
+                    <strong>NADCHODZĄCE:</strong> Parlamentarne X 2027 (za ok. <span id="days-until-parl"></span> dni) | Samorządowe IV 2029 (za ok. <span id="days-until-local"></span> dni)
+                </div>
             </div>
         </div>
+
         <div class="flag-container">
             <div class="flag-white"></div>
             <div class="flag-red"></div>
@@ -38,18 +43,7 @@
     </header>
 
     <main class="container">
-        <div id="app" class="party-grid">
-            <div class="loading">Inicjalizacja systemu...</div>
-        </div>
-
-        <section class="history-section">
-            <div class="section-divider">
-                <span>HISTORIA POPARCIA (OSTATNIE 6 MIESIĘCY)</span>
-            </div>
-            <div class="chart-wrapper">
-                <canvas id="supportChart"></canvas>
-            </div>
-        </section>
+        <div id="app" class="party-grid"></div>
     </main>
 
     <footer class="site-footer">
@@ -58,6 +52,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
-
 </body>
 </html>
