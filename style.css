@@ -1,65 +1,125 @@
-/* Kontener główny - siatka (Grid) */
-.party-grid {
-    display: grid;
-    /* Tworzy kolumny o szerokości min. 250px, które wypełniają całą dostępną przestrzeń */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px; /* Odstęp między kolumnami */
-    padding: 20px;
-    max-width: 1400px;
-    margin: 0 auto; /* Wyśrodkowanie całej siatki */
+:root {
+    --bg-color: #f0f2f5;
+    --card-bg: #ffffff;
+    --text-main: #1a1a1a;
+    --border-color: #e1e4e8;
+    --accent-blue: #0052cc;
 }
 
-/* Styl pojedynczej karty (kolumny) */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.main-header {
+    background: white;
+    padding: 30px 20px;
+    text-align: center;
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 30px;
+}
+
+.info-bar {
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #666;
+    margin-top: 5px;
+}
+
+/* SIATKA KOLUMN */
+.party-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    padding: 0 20px 40px 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* KARTA PARTII */
 .card {
-    background: #ffffff;
-    border: 1px solid #e1e4e8;
+    background: var(--card-bg);
     border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    transition: transform 0.2s ease;
+    border: 1px solid var(--border-color);
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     display: flex;
     flex-direction: column;
 }
 
 .card:hover {
-    transform: translateY(-5px); /* Efekt lekkiego uniesienia po najechaniu */
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
 }
 
-/* Nagłówki i teksty wewnątrz karty */
-.card h3 {
+.party-header {
     text-align: center;
-    color: #2c3e50;
-    border-bottom: 2px solid #f0f0f0;
-    padding-bottom: 10px;
-    margin-top: 15px;
+    margin-bottom: 20px;
 }
 
-.card ul {
+.logo {
+    max-height: 45px;
+    max-width: 150px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.logo:active {
+    transform: scale(0.9);
+}
+
+.vote-count {
+    display: block;
+    font-size: 0.8em;
+    color: #888;
+    margin-top: 8px;
+}
+
+h3 {
+    margin: 10px 0;
+    font-size: 1.4em;
+    text-align: center;
+    border-bottom: 2px solid var(--bg-color);
+    padding-bottom: 10px;
+}
+
+/* LISTA OBIETNIC */
+ul {
     list-style: none;
     padding: 0;
-    flex-grow: 1; /* Sprawia, że lista wypełnia kartę */
+    margin: 0;
 }
 
-.card li {
-    padding: 8px 0;
-    border-bottom: 1px solid #f9f9f9;
+li {
+    padding: 10px 0;
+    border-bottom: 1px solid #f5f5f5;
     font-size: 0.95em;
 }
 
-/* Kolory statusów obietnic */
-.pending { color: #d68910; } /* Pomarańczowy */
-.done { color: #1e8449; font-weight: bold; } /* Zielony */
-.failed { color: #a93226; text-decoration: line-through; } /* Czerwony przekreślony */
-
-/* Logo i przycisk głosowania */
-.logo {
-    display: block;
-    margin: 0 auto;
-    max-height: 50px;
-    transition: opacity 0.2s;
+li:last-child {
+    border-bottom: none;
 }
 
-.logo:hover {
-    opacity: 0.8;
+/* STATUSY */
+.pending { color: #856404; }
+.pending::before { content: "⏳ "; }
+
+.done { color: #155724; font-weight: bold; }
+.done::before { content: "✅ "; }
+
+.failed { color: #721c24; text-decoration: line-through; opacity: 0.7; }
+.failed::before { content: "❌ "; }
+
+.loading {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 50px;
+    font-style: italic;
 }
