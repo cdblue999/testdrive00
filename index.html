@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src * data:;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src * data:;">
     
-    <title>Terminal obywatelski | Monitor</title>
+    <title>Terminal obywatelski</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,8 +16,8 @@
 <body>
 
     <div id="currency-box" class="corner-box left-box">
-        <div class="box-title">RYNEK I WSKAŹNIKI (LIVE)</div>
-        <div id="rates">Ładowanie...</div>
+        <div class="box-title">RYNEK I WSKAŹNIKI</div>
+        <div id="rates"><span class="loading-mini">Ładowanie danych NBP...</span></div>
     </div>
 
     <div class="corner-box right-box">
@@ -34,10 +34,10 @@
             <div class="election-title">WYBORY</div>
             <div class="election-data">
                 <div class="election-row">
-                    <strong>OSTATNIE:</strong> Parlamentarne 15.10.2023 (<span id="days-since-parl"></span> dni) | Samorządowe 07.04.2024 (<span id="days-since-local"></span> dni)
+                    <strong>OSTATNIE:</strong> Parlamentarne 15.10.2023 (<span id="days-since-parl">--</span> dni) | Samorządowe 07.04.2024 (<span id="days-since-local">--</span> dni)
                 </div>
                 <div class="election-row">
-                    <strong>NADCHODZĄCE:</strong> Parlamentarne X 2027 (za ok. <span id="days-until-parl"></span> dni) | Samorządowe IV 2029 (za ok. <span id="days-until-local"></span> dni)
+                    <strong>NADCHODZĄCE:</strong> Parlamentarne X 2027 (za ok. <span id="days-until-parl">--</span> dni) | Samorządowe IV 2029 (za ok. <span id="days-until-local">--</span> dni)
                 </div>
             </div>
         </div>
@@ -49,11 +49,11 @@
     </header>
 
     <main id="app" class="party-grid">
-        <div class="status-msg">Inicjalizacja systemu...</div>
+        <div id="status-display" class="status-msg">Inicjalizacja systemu...</div>
     </main>
 
     <footer class="site-footer">
-        <p>&copy; 2026 Terminal obywatelski. Dane: NBP/GUS/SEJM.</p>
+        <p>&copy; 2026 Terminal obywatelski. Dane makroekonomiczne: NBP & GUS. Weryfikacja: Sejm RP.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
