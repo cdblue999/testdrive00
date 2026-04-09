@@ -1,5 +1,5 @@
-const SB_URL = 'TWOJ_URL';
-const SB_KEY = 'TWOJ_KLUCZ_ANON';
+const SB_URL = 'https://licznikpartyjny.netlify.app/';
+const SB_KEY = 'amixcppknszjfscnepnx';
 const supabase = supabase.createClient(SB_URL, SB_KEY);
 
 async function init() {
