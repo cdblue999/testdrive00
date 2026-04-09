@@ -44,4 +44,12 @@
     {
       "id": "konf",
       "name": "Konfederacja",
-      "logo": "https://
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Konfederacja_Wolno%C5%9B%C4%87_i_Niepodleg%C5%82o%C5%9B%C4%87_logo.svg/300px-Konfederacja_Wolno%C5%9B%C4%87_i_Niepodleg%C5%82o%C5%9B%C4%87_logo.svg.png",
+      "promises": [
+        { "desc": "Likwidacja podatku Belki", "status": "pending" },
+        { "desc": "Tanie paliwo (obniżka akcyzy)", "status": "pending" },
+        { "desc": "Dobrowolny ZUS dla wszystkich", "status": "pending" }
+      ]
+    }
+  ]
+}
