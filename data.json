@@ -4,7 +4,7 @@
     {
       "id": "ko",
       "name": "Koalicja Obywatelska",
-      "logo": "https://placehold.co/120x40?text=KO",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Koalicja_Obywatelska_logo.svg/300px-Koalicja_Obywatelska_logo.svg.png",
       "promises": [
         { "desc": "Kwota wolna od podatku 60 tys. zł", "status": "pending" },
         { "desc": "Paliwo po 5,19 zł", "status": "failed" },
@@ -14,7 +14,7 @@
     {
       "id": "pis",
       "name": "Prawo i Sprawiedliwość",
-      "logo": "https://placehold.co/120x40?text=PiS",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Logo_Prawa_i_Sprawiedliwo%C5%9Bci.svg/300px-Logo_Prawa_i_Sprawiedliwo%C5%9Bci.svg.png",
       "promises": [
         { "desc": "Budowa CPK (w pierwotnym kształcie)", "status": "pending" },
         { "desc": "Emerytury stażowe", "status": "pending" },
@@ -24,7 +24,7 @@
     {
       "id": "td",
       "name": "Trzecia Droga",
-      "logo": "https://placehold.co/120x40?text=3D",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Trzecia_Droga_logo.svg/300px-Trzecia_Droga_logo.svg.png",
       "promises": [
         { "desc": "Dobrowolny ZUS dla przedsiębiorców", "status": "pending" },
         { "desc": "Akademik za 1 zł", "status": "failed" },
@@ -34,7 +34,7 @@
     {
       "id": "lewica",
       "name": "Lewica",
-      "logo": "https://placehold.co/120x40?text=LEWICA",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Nowa_Lewica_Logo.svg/300px-Nowa_Lewica_Logo.svg.png",
       "promises": [
         { "desc": "Renta wdowia", "status": "done" },
         { "desc": "35-godzinny tydzień pracy", "status": "pending" },
@@ -44,12 +44,4 @@
     {
       "id": "konf",
       "name": "Konfederacja",
-      "logo": "https://placehold.co/120x40?text=KONF",
-      "promises": [
-        { "desc": "Likwidacja podatku Belki", "status": "pending" },
-        { "desc": "Tanie paliwo (obniżka akcyzy)", "status": "pending" },
-        { "desc": "Dobrowolny ZUS dla wszystkich", "status": "pending" }
-      ]
-    }
-  ]
-}
+      "logo": "https://
