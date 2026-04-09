@@ -13,20 +13,20 @@ body {
     color: #333;
 }
 
-/* BLOKI W NAROŻNIKACH */
 .corner-box {
     position: absolute;
     top: 35px;
     background: white;
-    padding: 10px 15px;
+    padding: 12px 15px;
     border: 1px solid var(--border-color);
     border-radius: 8px;
     font-size: 11px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     z-index: 100;
+    line-height: 1.5;
 }
 
-.left-box { left: 20px; }
+.left-box { left: 20px; min-width: 140px; } /* Zwiększona szerokość dla danych GUS */
 .right-box { right: 20px; }
 
 .box-title {
@@ -39,9 +39,9 @@ body {
     padding-bottom: 3px;
 }
 
-.left-box a { color: var(--accent-blue); text-decoration: none; font-weight: bold; }
+.corner-box a { color: var(--accent-blue); text-decoration: none; }
+.corner-box b { color: #111; }
 
-/* NAGŁÓWEK */
 .main-header {
     background: white;
     padding: 40px 20px 30px 20px;
@@ -49,28 +49,10 @@ body {
     border-bottom: 4px solid var(--accent-blue);
 }
 
-.main-header h1 {
-    margin: 0 0 15px 0;
-    font-size: 2em;
-    color: #111;
-}
+.main-header h1 { margin: 0 0 15px 0; font-size: 2em; }
+.election-info { font-size: 0.85em; color: #666; line-height: 1.6; }
+.day-count { color: var(--accent-blue); font-weight: bold; }
 
-.election-info {
-    font-size: 0.85em;
-    color: #666;
-    line-height: 1.6;
-}
-
-.election-group { margin: 4px 0; }
-.election-group strong { color: #333; }
-
-/* Styl dla licznika dni */
-.day-count {
-    color: var(--accent-blue);
-    font-weight: bold;
-}
-
-/* GRID I KARTY */
 .party-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -81,15 +63,7 @@ body {
     min-width: 1250px;
 }
 
-.card {
-    background: white;
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
+.card { background: white; border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; }
 .party-header { height: 80px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .logo { max-height: 55px; max-width: 90%; cursor: pointer; object-fit: contain; }
 h3 { height: 50px; display: flex; align-items: center; justify-content: center; text-align: center; margin: 10px 0; font-size: 1.1em; }
@@ -99,9 +73,7 @@ h3 { height: 50px; display: flex; align-items: center; justify-content: center; 
 .progress-bar-fill { background: var(--success-green); height: 100%; transition: width 0.5s ease; }
 
 ul { list-style: none; padding: 0; margin: 0; flex-grow: 1; }
-li { padding: 6px 0; font-size: 12.5px; border-bottom: 1px solid #f9f9f9; line-height: 1.3; }
-.source-link { text-decoration: none; color: inherit; }
-.source-link:hover { text-decoration: underline; }
+li { padding: 6px 0; font-size: 12.5px; border-bottom: 1px solid #f9f9f9; }
 
 .pending { color: #856404; }
 .done { color: var(--success-green); font-weight: bold; }
