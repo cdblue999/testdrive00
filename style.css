@@ -1,73 +1,82 @@
-:root {
-    --bg-color: #f8fafc;
-    --card-bg: #ffffff;
-    --border-color: #e2e8f0;
-    --amarant: #E52B50;
-    --success-green: #166534;
-    --font-main: 'Inter', sans-serif;
-    --font-data: 'Roboto Mono', monospace;
+const SB_URL = 'https://amixcppknszjfscnepnx.supabase.co';
+const SB_KEY = 'sb_publishable_8pZgzv2BXthAUoBppO8U3A_edhabo2J';
+const supabaseClient = supabase.createClient(SB_URL, SB_KEY);
+
+function updateCounters() {
+    try {
+        const now = new Date();
+        const getDiff = (d1, d2) => Math.floor(Math.abs(d1 - d2) / (1000 * 60 * 60 * 24));
+        const ids = ['days-since-parl', 'days-since-local', 'days-until-parl', 'days-until-local'];
+        const dates = [new Date('2023-10-15'), new Date('2024-04-07'), new Date('2027-10-17'), new Date('2029-04-08')];
+        ids.forEach((id, i) => {
+            const el = document.getElementById(id);
+            if(el) el.innerText = getDiff(now, dates[i]);
+        });
+    } catch (e) { console.error(e); }
 }
 
-body { font-family: var(--font-main); background: var(--bg-color); margin: 0; color: #1e293b; }
+async function init() {
+    const app = document.getElementById('app');
+    const ratesEl = document.getElementById('rates');
+    updateCounters();
 
-/* NAROŻNIKI - DUŻE I CZYTELNE */
-.corner-box { 
-    position: absolute; top: 10px; background: white; padding: 12px 18px; 
-    border: 1px solid var(--border-color); border-radius: 8px; 
-    font-size: 14px; font-family: var(--font-data); z-index: 1000; 
-}
-.left-box { left: 10px; min-width: 320px; } /* Szerzej dla deficytu */
-.right-box { right: 10px; min-width: 200px; }
-.box-title { font-weight: 800; font-size: 10px; color: #94a3b8; text-transform: uppercase; margin-bottom: 8px; }
+    try {
+        const nbpRes = await fetch('https://api.nbp.pl/api/exchangerates/tables/A/?format=json').then(r => r.json());
+        const eur = nbpRes[0].rates.find(x => x.code === 'EUR').mid;
+        const usd = nbpRes[0].rates.find(x => x.code === 'USD').mid;
+        
+        if (ratesEl) {
+            ratesEl.innerHTML = `
+                <div style="border-bottom:1px dashed #e2e8f0; padding-bottom:6px; margin-bottom:6px; font-size:16px;">
+                    EUR: <b>${eur}</b> | USD: <b>${usd}</b>
+                </div>
+                <div style="color:#475569; line-height:1.6;">
+                    Inflacja: <b>3.2%</b> | PKB: <b>+2.8%</b><br>
+                    Deficyt: <b style="color:var(--amarant)">5.1% PKB</b> 
+                    <span style="font-size:11px; color:#94a3b8;">(182 mld PLN / rok 2025)</span>
+                </div>`;
+        }
 
-/* NAGŁÓWEK - terminal obywatelski */
-.main-header { background: white; padding: 45px 20px 0 20px; text-align: center; position: relative; }
-.main-header h1 { 
-    margin: 0 0 15px 0; font-size: 3em; font-weight: 900; 
-    letter-spacing: -3px; text-transform: lowercase; color: #0f172a;
-}
+        const res = await fetch('data.json');
+        const config = await res.json();
+        const { data: voteData } = await supabaseClient.from('votes').select('*');
 
-/* WYBORY - ZRÓWNANE Z DANYMI */
-.election-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-    margin-bottom: 40px;
-}
-.election-title {
-    font-family: var(--font-data);
-    font-size: 15px; /* Taka sama jak dane */
-    font-weight: 700;
-    color: var(--amarant);
-    letter-spacing: 2px;
-}
-.election-data {
-    font-family: var(--font-data);
-    font-size: 15px;
-    color: #475569;
-    text-align: center;
-    line-height: 1.6;
-}
-
-/* FLAGA */
-.flag-container { width: 100%; display: flex; flex-direction: column; border-top: 1px solid var(--amarant); }
-.flag-white, .flag-red { height: 8px; }
-.flag-white { background: #FFF; }
-.flag-red { background: var(--amarant); }
-
-/* GRID */
-.party-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; padding: 30px 20px; max-width: 1750px; margin: 0 auto; align-items: start; }
-.card { background: white; border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; }
-
-/* CIENKIE PRZEKREŚLENIE FAILED */
-.failed { 
-    color: var(--amarant) !important; 
-    text-decoration: line-through !important; 
-    text-decoration-thickness: 1px !important; /* Cienka linia */
-    text-decoration-color: var(--amarant) !important;
-    opacity: 0.85;
+        if (app) {
+            app.innerHTML = '';
+            config.parties.forEach(p => {
+                const votes = voteData?.find(v => v.party_id === p.id)?.count || 0;
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <button class="vote-btn" onclick="vote('${p.id}')" style="width:100%; display:flex; justify-content:space-between; padding:8px; font-family:var(--font-data); font-size:10px; cursor:pointer; background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; margin-bottom:15px;">
+                        <span>SENTYMENT</span> <b id="v-${p.id}">${votes}</b>
+                    </button>
+                    <a href="${p.website}" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:inherit;">
+                        <div style="height:55px; display:flex; align-items:center; justify-content:center; margin-bottom:10px;">
+                            <img src="${p.logo}" style="max-height:50px; max-width:90%;" alt="${p.name}">
+                        </div>
+                        <h3 style="text-align:center; margin:0 0 15px 0; font-weight:900;">${p.name}</h3>
+                    </a>
+                    <ul style="list-style:none; padding:0; margin:0; flex-grow:1;">
+                        ${p.promises.map(pr => `
+                            <li class="${pr.status}" style="padding:6px 0; font-size:12px; border-bottom:1px solid #f8fafc;">
+                                <span style="font-weight:bold; width:15px; display:inline-block;">${pr.status==='done'?'✓':(pr.status==='failed'?'✕':'•')}</span>
+                                <a href="${pr.url}" target="_blank" style="text-decoration:none; color:inherit;">${pr.desc}</a>
+                            </li>
+                        `).join('')}
+                    </ul>
+                `;
+                app.appendChild(card);
+            });
+        }
+    } catch (err) { if (app) app.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding:100px; color:var(--amarant); font-family:var(--font-data);">BŁĄD DANYCH: Sprawdź plik data.json</div>`; }
 }
 
-/* STOPKA */
-.site-footer { text-align: center; padding: 60px 20px; font-size: 12px; color: #94a3b8; border-top: 1px solid var(--border-color); margin-top: 50px; }
+async function vote(id) {
+    const { error } = await supabaseClient.rpc('increment_vote', { row_id: id });
+    if (!error) {
+        const el = document.getElementById(`v-${id}`);
+        if (el) el.innerText = parseInt(el.innerText) + 1;
+    }
+}
+document.addEventListener('DOMContentLoaded', init);
