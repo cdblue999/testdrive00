@@ -53,13 +53,4 @@
       "id": "konf",
       "name": "Konfederacja",
       "website": "https://konfederacja.pl",
-      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Konfederacja_Wolno%C5%9B%C4%87_i_Niepodleg%C5%82o%C5%9B%C4%87_logo.svg/400px-Konfederacja_Wolno%C5%9B%C4%87_i_Niepodleg%C5%82o%C5%9B%C4%87_logo.svg.png",
-      "promises": [
-        { "desc": "Likwidacja Belki", "status": "pending", "url": "https://konfederacja.pl/program/" },
-        { "desc": "Tanie paliwo", "status": "pending", "url": "https://konfederacja.pl/program/" }
-      ],
-      "critical_sources": [{ "text": "MF: Budżet", "url": "https://gov.pl", "icon": "https://placehold.co/20?text=G" }],
-      "legislative_initiatives": [{ "text": "Kwota wolna", "url": "https://www.sejm.gov.pl/Sejm10.nsf/proces.xsp" }]
-    }
-  ]
-}
+      "logo": "
