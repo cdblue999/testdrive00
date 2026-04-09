@@ -1,12 +1,14 @@
 {
+  "last_update": "2026-04-09",
   "parties": [
     {
       "id": "ko",
       "name": "Koalicja Obywatelska",
       "logo": "https://placehold.co/120x40?text=KO",
       "promises": [
-        {"desc": "Kwota wolna od podatku 60 tys. zł", "status": "pending"},
-        {"desc": "Paliwo po 5,19 zł", "status": "failed"}
+        { "desc": "Kwota wolna od podatku 60 tys. zł", "status": "pending" },
+        { "desc": "Paliwo po 5,19 zł", "status": "failed" },
+        { "desc": "Aktywne Rodziczyństwo (Babciowe)", "status": "done" }
       ]
     },
     {
@@ -14,8 +16,39 @@
       "name": "Prawo i Sprawiedliwość",
       "logo": "https://placehold.co/120x40?text=PiS",
       "promises": [
-        {"desc": "800 Plus", "status": "done"},
-        {"desc": "Emerytury stażowe", "status": "pending"}
+        { "desc": "Budowa CPK (w pierwotnym kształcie)", "status": "pending" },
+        { "desc": "Emerytury stażowe", "status": "pending" },
+        { "desc": "800 Plus", "status": "done" }
+      ]
+    },
+    {
+      "id": "td",
+      "name": "Trzecia Droga",
+      "logo": "https://placehold.co/120x40?text=3D",
+      "promises": [
+        { "desc": "Dobrowolny ZUS dla przedsiębiorców", "status": "pending" },
+        { "desc": "Akademik za 1 zł", "status": "failed" },
+        { "desc": "Reforma podatku Belki", "status": "pending" }
+      ]
+    },
+    {
+      "id": "lewica",
+      "name": "Lewica",
+      "logo": "https://placehold.co/120x40?text=LEWICA",
+      "promises": [
+        { "desc": "Renta wdowia", "status": "done" },
+        { "desc": "35-godzinny tydzień pracy", "status": "pending" },
+        { "desc": "Budowa mieszkań na tani wynajem", "status": "pending" }
+      ]
+    },
+    {
+      "id": "konf",
+      "name": "Konfederacja",
+      "logo": "https://placehold.co/120x40?text=KONF",
+      "promises": [
+        { "desc": "Likwidacja podatku Belki", "status": "pending" },
+        { "desc": "Tanie paliwo (obniżka akcyzy)", "status": "pending" },
+        { "desc": "Dobrowolny ZUS dla wszystkich", "status": "pending" }
       ]
     }
   ]
