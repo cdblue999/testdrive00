@@ -7,12 +7,12 @@ async function init() {
     const infoBar = document.getElementById('info-bar');
 
     try {
-        // 1. Waluty
+        // Kursy NBP
         const nbp = await fetch('https://api.nbp.pl/api/exchangerates/tables/A/?format=json').then(r => r.json());
         const eur = nbp[0].rates.find(x => x.code === 'EUR').mid;
-        if (infoBar) infoBar.innerText = `Kurs EUR: ${eur} PLN | Wybory Parl.: 2027`;
+        if (infoBar) infoBar.innerText = `Kurs EUR: ${eur} PLN | Wybory: 2027`;
 
-        // 2. Dane
+        // Pobieranie danych
         const res = await fetch('data.json');
         const config = await res.json();
         const { data: voteData } = await supabaseClient.from('votes').select('*');
@@ -25,7 +25,7 @@ async function init() {
                 card.className = 'card';
                 card.innerHTML = `
                     <div class="party-header">
-                        <img src="${p.logo}" class="logo" onclick="vote('${p.id}')">
+                        <img src="${p.logo}" class="logo" crossorigin="anonymous" onclick="vote('${p.id}')">
                         <span class="vote-count">Głosy: <b id="v-${p.id}">${votes}</b></span>
                     </div>
                     <h3>${p.name}</h3>
@@ -37,7 +37,7 @@ async function init() {
             });
         }
     } catch (err) {
-        console.error("Init error:", err);
+        console.error("Błąd inicjalizacji:", err);
     }
 }
 
