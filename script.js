@@ -2,13 +2,6 @@ const SB_URL = 'https://amixcppknszjfscnepnx.supabase.co';
 const SB_KEY = 'sb_publishable_8pZgzv2BXthAUoBppO8U3A_edhabo2J';
 const supabaseClient = supabase.createClient(SB_URL, SB_KEY);
 
-// Funkcja zabezpieczająca przed XSS (Sanitization)
-function escapeHTML(str) {
-    const div = document.createElement('div');
-    div.textContent = str;
-    return div.innerHTML;
-}
-
 function updateElectionCounters() {
     const now = new Date();
     const getDiff = (d1, d2) => Math.floor(Math.abs(d1 - d2) / (1000 * 60 * 60 * 24));
@@ -28,17 +21,17 @@ async function init() {
         const eur = nbpRes[0].rates.find(x => x.code === 'EUR').mid;
         const usd = nbpRes[0].rates.find(x => x.code === 'USD').mid;
         
-        // Dane makro (GUS/MF 2026)
         const gus = { inflacja: "3.2%", pkb: "+2.8%", deficyt: "5.1%", kwota: "182 mld" };
 
         if (ratesEl) {
             ratesEl.innerHTML = `
-                <div style="border-bottom:1px dashed #eee; padding-bottom:3px; margin-bottom:3px;">
+                <div style="border-bottom:1px dashed #e2e8f0; padding-bottom:5px; margin-bottom:5px;">
                     EUR: <b>${eur}</b> | USD: <b>${usd}</b>
                 </div>
-                <div style="color:#666; font-size:9px;">
-                    Inflacja: <b>${gus.inflacja}</b> | PKB: <b>${gus.pkb}</b> | Deficyt: <b style="color:var(--amarant)">${gus.deficyt}</b><br>
-                    <span style="font-size:8px; color:#999;">Skala długu: ${gus.kwota} PLN (2025)</span>
+                <div style="color:#64748b; font-size:9px; line-height:1.5;">
+                    Inflacja: <b>${gus.inflacja}</b> | PKB: <b>${gus.pkb}</b><br>
+                    Deficyt: <b style="color:var(--amarant)">${gus.deficyt} PKB</b><br>
+                    <span style="font-size:8px; color:#94a3b8;">Skala długu: ${gus.kwota} PLN (2025)</span>
                 </div>`;
         }
 
@@ -54,27 +47,30 @@ async function init() {
                 const done = p.promises.filter(pr => pr.status === 'done').length;
                 const percent = total > 0 ? Math.round((done / total) * 100) : 0;
                 
-                // Rating Agency Style: Outlook (Przykładowy logiczny trend)
-                const outlook = percent > 50 ? '↑' : (percent < 20 ? '↓' : '→');
-                const rating = percent > 80 ? 'AAA' : (percent > 40 ? 'BBB' : 'C');
+                // Rating Agency Logic
+                const rating = percent > 75 ? 'AAA' : (percent > 40 ? 'BBB' : 'B-');
+                const outlook = percent > 50 ? 'Stable' : 'Negative';
+                const trendIcon = percent > 50 ? '↑' : '↓';
 
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.innerHTML = `
                     <button class="vote-btn" onclick="vote('${p.id}')">
-                        <span>SENTYMENT RYNKOWY</span>
+                        <span>SENTYMENT OBYWATELSKI</span>
                         <b id="v-${p.id}">${votes}</b>
                     </button>
 
                     <a href="${p.website}" target="_blank" rel="noopener noreferrer" class="party-link">
-                        <div class="party-header"><img src="${p.logo}" class="logo" alt="${p.name}" onerror="this.src='https://placehold.co/50?text=Logo'"></div>
-                        <h3>${escapeHTML(p.name)} <span style="font-size:10px; color:#999">[${rating}]</span></h3>
+                        <div class="party-header">
+                            <img src="${p.logo}" class="logo" alt="${p.name}" loading="lazy">
+                        </div>
+                        <h3>${p.name} <span style="font-size:11px; color:#94a3b8; font-weight:400;">[${rating}]</span></h3>
                     </a>
 
                     <div class="progress-container">
-                        <div style="font-size: 8px; display:flex; justify-content:space-between;">
-                            <span>Realizacja: ${percent}%</span>
-                            <span style="font-weight:bold; color:var(--amarant)">Outlook: ${outlook}</span>
+                        <div style="font-size: 8.5px; display:flex; justify-content:space-between; font-weight:700;">
+                            <span>PROGRES: ${percent}%</span>
+                            <span style="color:var(--amarant)">OUTLOOK: ${outlook} ${trendIcon}</span>
                         </div>
                         <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: ${percent}%"></div></div>
                     </div>
@@ -82,24 +78,26 @@ async function init() {
                     <ul>
                         ${p.promises.map(pr => {
                             let icon = pr.status === 'done' ? '✓' : (pr.status === 'failed' ? '✕' : '•');
-                            return `<li class="${pr.status}"><span style="font-weight:bold;width:12px;display:inline-block">${icon}</span><a href="${pr.url}" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:inherit;">${escapeHTML(pr.desc)}</a></li>`;
+                            return `<li class="${pr.status}"><span style="font-weight:bold;width:15px;display:inline-block">${icon}</span><a href="${pr.url}" target="_blank" rel="noopener noreferrer" class="source-link">${pr.desc}</a></li>`;
                         }).join('')}
                     </ul>
 
                     <div class="bottom-info">
-                        <div class="label">Audyt i Weryfikacja (3rd Party)</div>
-                        ${p.critical_sources.slice(0, 3).map(src => `
+                        <div class="label">AUDYT I KRYTYKA RYNKOWA</div>
+                        ${p.critical_sources.map(src => `
                             <a href="${src.url}" target="_blank" rel="noopener noreferrer" class="sub-link">
-                                <img src="${src.icon}" class="mini-icon" onerror="this.src='https://placehold.co/14?text=i'"> <span>${escapeHTML(src.text)}</span>
+                                <img src="${src.icon}" class="mini-icon" onerror="this.src='https://placehold.co/20?text=i'">
+                                <span>${src.text}</span>
                             </a>
                         `).join('')}
                     </div>
 
                     <div class="bottom-info" style="border-top:none; padding-top:0;">
-                        <div class="label">Działania Sejmowe (X Kadencja)</div>
-                        ${p.legislative_initiatives.slice(0, 2).map(leg => `
+                        <div class="label">PROCES LEGISLACYJNY (SEJM X)</div>
+                        ${p.legislative_initiatives.map(leg => `
                             <a href="${leg.url}" target="_blank" rel="noopener noreferrer" class="sub-link">
-                                <div class="s-icon">S</div> <span>${escapeHTML(leg.text)}</span>
+                                <div class="s-icon">S</div>
+                                <span>${leg.text}</span>
                             </a>
                         `).join('')}
                     </div>
@@ -107,7 +105,7 @@ async function init() {
                 app.appendChild(card);
             });
         }
-    } catch (err) { console.error("Critical Security/Load Error:", err); }
+    } catch (err) { console.error("System Error:", err); }
 }
 
 async function vote(id) {
