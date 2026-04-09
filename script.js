@@ -1,57 +1,63 @@
+// 1. Konfiguracja (wpisana tylko RAZ)
 const SB_URL = 'https://amixcppknszjfscnepnx.supabase.co';
 const SB_KEY = 'sb_publishable_8pZgzv2BXthAUoBppO8U3A_edhabo2J';
+
+// Używamy nazwy supabaseClient, aby nie gryzła się z biblioteką
 const supabaseClient = supabase.createClient(SB_URL, SB_KEY);
 
 async function init() {
-    // Kursy NBP
-    const nbp = await fetch('https://api.nbp.pl/api/exchangerates/tables/A/?format=json').then(r => r.json());
-    document.getElementById('info-bar').innerText = `EUR: ${nbp[0].rates.find(x => x.code === 'EUR').mid} PLN`;
-
-    // Dane i Głosy
-    const { parties } = await fetch('data.json').then(r => r.json());
-    const { data: voteData } = await supabase.from('votes').select('*');
-
     const app = document.getElementById('app');
-    parties.forEach(p => {
-        const vCount = voteData.find(v => v.party_id === p.id)?.count || 0;
-        const col = document.createElement('div');
-        col.className = 'card';
-        col.innerHTML = `
-            <img src="${p.logo}" class="logo" onclick="vote('${p.id}')">
-            <center><small>Głosów: <b id="v-${p.id}">${vCount}</b></small></center>
-            <h3>${p.name}</h3>
-            <ul>${p.promises.map(pr => `<li class="${pr.status}">${pr.txt}</li>`).join('')}</ul>
-        `;
-        app.appendChild(col);
-    });
-}
-
-async function init() {
-    const app = document.getElementById('app');
-    console.log("Start inicjalizacji...");
+    console.log("Inicjalizacja licznika...");
 
     try {
+        // Kursy walut z NBP
+        try {
+            const nbp = await fetch('https://api.nbp.pl/api/exchangerates/tables/A/?format=json').then(r => r.json());
+            const eur = nbp[0].rates.find(x => x.code === 'EUR').mid;
+            document.getElementById('info-bar').innerText = `EUR: ${eur} PLN | Wybory: 2027`;
+        } catch (e) { console.warn("NBP niedostępne"); }
+
+        // Pobieranie Twoich obietnic z pliku data.json
         const res = await fetch('data.json');
-        if (!res.ok) throw new Error("Nie znaleziono pliku data.json na serwerze!");
-        
+        if (!res.ok) throw new Error("Nie znaleziono pliku data.json");
         const config = await res.json();
-        console.log("Dane załadowane:", config);
+
+        // Pobieranie głosów z Supabase
+        const { data: voteData, error: dbError } = await supabaseClient.from('votes').select('*');
+        if (dbError) console.error("Błąd bazy danych:", dbError);
 
         app.innerHTML = ''; // Czyścimy napis "Inicjalizacja..."
-        
+
         config.parties.forEach(p => {
+            const vCount = voteData?.find(v => v.party_id === p.id)?.count || 0;
             const card = document.createElement('div');
-            card.className = 'party-col';
-            card.innerHTML = `<h3>${p.name}</h3>`;
+            card.className = 'party-col'; // upewnij się, że masz to w style.css
+            card.innerHTML = `
+                <div style="text-align:center;">
+                    <img src="${p.logo}" style="height:40px; cursor:pointer;" onclick="vote('${p.id}')">
+                    <div><small>Głosów: <b id="v-${p.id}">${vCount}</b></small></div>
+                </div>
+                <h3>${p.name}</h3>
+                <ul style="list-style:none; padding:0;">
+                    ${p.promises.map(pr => `<li class="${pr.status}" style="margin-bottom:5px;">• ${pr.desc}</li>`).join('')}
+                </ul>
+            `;
             app.appendChild(card);
         });
 
-    } catch (e) {
-        console.error("BŁĄD:", e);
-        app.innerHTML = `<div style="color:red; padding:20px; background:white;">
-            <h3>Wystąpił problem:</h3>
-            <p>${e.message}</p>
-            <p>Sprawdź czy plik <b>data.json</b> został wgrany na Netlify.</p>
-        </div>`;
+    } catch (err) {
+        app.innerHTML = `<div style="color:red; padding:20px;">Błąd: ${err.message}</div>`;
+        console.error(err);
     }
 }
+
+async function vote(id) {
+    const { error } = await supabaseClient.rpc('increment_vote', { row_id: id });
+    if (!error) {
+        const el = document.getElementById(`v-${id}`);
+        el.innerText = parseInt(el.innerText) + 1;
+    }
+}
+
+// Startujemy!
+init();
