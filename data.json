@@ -6,12 +6,17 @@
       "website": "https://platforma.org",
       "logo": "https://platforma.org/upload/images/logo/koalicja-obywatelska.png",
       "promises": [
-        { "desc": "Kwota wolna 60 tys. zł", "status": "pending", "url": "https://www.google.com/search?q=ko+kwota+wolna" },
-        { "desc": "Paliwo po 5,19 zł", "status": "failed", "url": "https://www.google.com/search?q=paliwo+5.19+obietnica" },
+        { "desc": "Kwota wolna 60 tys. zł", "status": "pending", "url": "https://www.google.com/search?q=ko+60+tys+wolna" },
         { "desc": "Babciowe", "status": "done", "url": "https://www.gov.pl/web/rodzina/aktywny-rodzic" }
       ],
       "critical_sources": [
-        { "text": "PiS: To obietnica bez pokrycia", "url": "https://twitter.com/pisorgpl", "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Logo_Prawa_i_Sprawiedliwo%C5%9Bci.svg/30px-Logo_Prawa_i_Sprawiedliwo%C5%9Bci.svg.png" }
+        { "text": "Analiza FOR: Budżet", "url": "https://for.org.pl", "icon": "https://placehold.co/20?text=F" },
+        { "text": "PiS: Brak pokrycia", "url": "https://pis.org.pl", "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Logo_Prawa_i_Sprawiedliwo%C5%9Bci.svg/30px-Logo_Prawa_i_Sprawiedliwo%C5%9Bci.svg.png" },
+        { "text": "DGP: Koszty realne", "url": "https://gazetaprawna.pl", "icon": "https://placehold.co/20?text=P" }
+      ],
+      "legislative_initiatives": [
+        { "text": "Projekt: Aktywny Rodzic", "url": "https://www.sejm.gov.pl/Sejm10.nsf/proces.xsp?view=1&id=1073B4D" },
+        { "text": "Ustawa o ochronie przyrody", "url": "https://www.sejm.gov.pl/Sejm10.nsf/proces.xsp" }
       ]
     },
     {
@@ -24,7 +29,13 @@
         { "desc": "800 Plus", "status": "done", "url": "https://www.gov.pl/web/rodzina/800-plus" }
       ],
       "critical_sources": [
-        { "text": "KO: Koszty CPK", "url": "https://platforma.org", "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Koalicja_Obywatelska_logo.svg/30px-Koalicja_Obywatelska_logo.svg.png" }
+        { "text": "Lasek: Raport CPK", "url": "https://tvn24.pl", "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/TVN24_logo.svg/30px-TVN24_logo.svg.png" },
+        { "text": "KO: Gigantomania", "url": "https://platforma.org", "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Koalicja_Obywatelska_logo.svg/30px-Koalicja_Obywatelska_logo.svg.png" },
+        { "text": "Ekspert: Rynek lotniczy", "url": "https://rynek-lotniczy.pl", "icon": "https://placehold.co/20?text=R" }
+      ],
+      "legislative_initiatives": [
+        { "text": "Projekt: Kontynuacja CPK", "url": "https://www.sejm.gov.pl/Sejm10.nsf/proces.xsp" },
+        { "text": "Projekt: Emerytury stażowe", "url": "https://www.sejm.gov.pl/Sejm10.nsf/proces.xsp" }
       ]
     },
     {
@@ -37,7 +48,13 @@
         { "desc": "Akademik za 1 zł", "status": "failed", "url": "https://www.google.com/search?q=akademik+za+1zl" }
       ],
       "critical_sources": [
-        { "text": "Konfederacja: To nie wolność", "url": "https://konfederacja.pl", "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Konfederacja_Wolno%C5%9B%C4%87_i_Niepodleg%C5%82o%C5%9B%C4%87_logo.svg/30px-Konfederacja_Wolno%C5%9B%C4%87_i_Niepodleg%C5%82o%C5%9B%C4%87_logo.svg.png" }
+        { "text": "Konfederacja: Krytyka ZUS", "url": "https://konfederacja.pl", "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Konfederacja_Wolno%C5%9B%C4%87_i_Niepodleg%C5%82o%C5%9B%C4%87_logo.svg/30px-Konfederacja_Wolno%C5%9B%C4%87_i_Niepodleg%C5%82o%C5%9B%C4%87_logo.svg.png" },
+        { "text": "Money.pl: Dziura w ZUS", "url": "https://money.pl", "icon": "https://placehold.co/20?text=M" },
+        { "text": "Analiza: Koszty akademików", "url": "https://rp.pl", "icon": "https://placehold.co/20?text=R" }
+      ],
+      "legislative_initiatives": [
+        { "text": "Reforma składki zdrowotnej", "url": "https://www.sejm.gov.pl/Sejm10.nsf/proces.xsp" },
+        { "text": "Ustawa o ułatwieniach MŚP", "url": "https://www.sejm.gov.pl/Sejm10.nsf/proces.xsp" }
       ]
     },
     {
@@ -47,10 +64,16 @@
       "logo": "https://lewica.org/images/logotypy/logo_lewica_podstawowe.png",
       "promises": [
         { "desc": "Renta wdowia", "status": "done", "url": "https://www.gov.pl/web/rodzina/renta-wdowia" },
-        { "desc": "35h tydzień pracy", "status": "pending", "url": "https://www.google.com/search?q=lewica+35h" }
+        { "desc": "35h tydzień pracy", "status": "pending", "url": "https://www.google.com/search?q=35h+lewica" }
       ],
       "critical_sources": [
-        { "text": "Analiza: Skutki rynkowe", "url": "https://money.pl", "icon": "https://placehold.co/20?text=M" }
+        { "text": "BCC: Konkurencyjność", "url": "https://bcc.org.pl", "icon": "https://placehold.co/20?text=B" },
+        { "text": "ZPP: Czas pracy", "url": "https://zpp.net.pl", "icon": "https://placehold.co/20?text=Z" },
+        { "text": "Krytyka: Finansowanie mieszkań", "url": "https://gazetaprawna.pl", "icon": "https://placehold.co/20?text=P" }
+      ],
+      "legislative_initiatives": [
+        { "text": "Ustawa o bezpiecznym najmie", "url": "https://www.sejm.gov.pl/Sejm10.nsf/proces.xsp" },
+        { "text": "Projekt: Skrócenie czasu pracy", "url": "https://www.sejm.gov.pl/Sejm10.nsf/proces.xsp" }
       ]
     },
     {
@@ -59,11 +82,17 @@
       "website": "https://konfederacja.pl",
       "logo": "https://konfederacja.pl/wp-content/uploads/2023/07/logo-konfederacja-poziome.png",
       "promises": [
-        { "desc": "Likwidacja Belki", "status": "pending", "url": "https://www.google.com/search?q=konfederacja+belka" },
+        { "desc": "Likwidacja podatku Belki", "status": "pending", "url": "https://www.google.com/search?q=konfederacja+belka" },
         { "desc": "Tanie paliwo", "status": "pending", "url": "https://www.google.com/search?q=konfederacja+paliwo" }
       ],
       "critical_sources": [
-        { "text": "Lewica: Wpływy budżetowe", "url": "https://lewica.org", "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Nowa_Lewica_Logo.svg/30px-Nowa_Lewica_Logo.svg.png" }
+        { "text": "Lewica: System emerytalny", "url": "https://lewica.org", "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Nowa_Lewica_Logo.svg/30px-Nowa_Lewica_Logo.svg.png" },
+        { "text": "MF: Straty budżetowe", "url": "https://gov.pl", "icon": "https://placehold.co/20?text=G" },
+        { "text": "TVN24: Ceny paliw", "url": "https://tvn24.pl", "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/TVN24_logo.svg/30px-TVN24_logo.svg.png" }
+      ],
+      "legislative_initiatives": [
+        { "text": "Kwota wolna x12 pensji", "url": "https://www.sejm.gov.pl/Sejm10.nsf/proces.xsp" },
+        { "text": "Projekt: Dobrowolny ZUS", "url": "https://www.sejm.gov.pl/Sejm10.nsf/proces.xsp" }
       ]
     }
   ]
