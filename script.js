@@ -7,15 +7,10 @@ async function init() {
     const infoBar = document.getElementById('info-bar');
 
     try {
-        // 1. Waluty
-        const nbpRes = await fetch('https://api.nbp.pl/api/exchangerates/tables/A/?format=json').then(r => r.json());
-        const eur = nbpRes[0].rates.find(x => x.code === 'EUR').mid;
-        const usd = nbpRes[0].rates.find(x => x.code === 'USD').mid;
-        if (infoBar) {
-            infoBar.innerHTML = `<a href="https://nbp.pl" target="_blank">EUR: ${eur} PLN | USD: ${usd} PLN</a> | Cel inflacyjny: 2.5% | Wybory: 2027`;
-        }
+        const nbp = await fetch('https://api.nbp.pl/api/exchangerates/tables/A/?format=json').then(r => r.json());
+        const eur = nbp[0].rates.find(x => x.code === 'EUR').mid;
+        if (infoBar) infoBar.innerHTML = `<a href="https://nbp.pl" target="_blank">Kurs EUR: ${eur} PLN</a> | Wybory: 2027`;
 
-        // 2. Pobieranie danych
         const res = await fetch('data.json');
         const config = await res.json();
         const { data: voteData } = await supabaseClient.from('votes').select('*');
@@ -32,31 +27,36 @@ async function init() {
                 card.className = 'card';
                 card.innerHTML = `
                     <div class="party-header">
-                        <img src="${p.logo}" class="logo" onclick="vote('${p.id}')" alt="${p.name}">
+                        <img src="${p.logo}" class="logo" onclick="vote('${p.id}')" alt="Głosuj">
                         <span style="font-size:10px; color:#999; margin-top:5px;">POPARCIE: <b id="v-${p.id}">${votes}</b></span>
                     </div>
                     <h3>${p.name}</h3>
-                    
                     <div class="progress-container">
-                        <div style="font-size: 10px; margin-bottom: 4px; text-align:right;">Realizacja: ${percent}%</div>
-                        <div class="progress-bar-bg">
-                            <div class="progress-bar-fill" style="width: ${percent}%"></div>
-                        </div>
+                        <div style="font-size: 9px; text-align:right;">Realizacja: ${percent}%</div>
+                        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: ${percent}%"></div></div>
                     </div>
-
                     <ul>
                         ${p.promises.map(pr => {
                             let icon = pr.status === 'done' ? '✓' : (pr.status === 'failed' ? '✕' : '•');
                             return `<li class="${pr.status}"><span class="icon">${icon}</span><a href="${pr.url}" target="_blank" class="source-link">${pr.desc}</a></li>`;
                         }).join('')}
                     </ul>
+                    
+                    <hr>
+                    <div class="critical-title">Weryfikacja i Krytyka</div>
+                    <div class="critical-list">
+                        ${p.critical_sources ? p.critical_sources.map(src => `
+                            <a href="${src.url}" target="_blank" class="critical-link">
+                                <img src="${src.icon}" class="mini-icon">
+                                ${src.text}
+                            </a>
+                        `).join('') : ''}
+                    </div>
                 `;
                 app.appendChild(card);
             });
         }
-    } catch (err) {
-        console.error("System error:", err);
-    }
+    } catch (err) { console.error(err); }
 }
 
 async function vote(id) {
