@@ -3,33 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monitor Obietnic Wyborczych 2023-2027</title>
+    <title>Monitor Obietnic Wyborczych</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="legend">
+    <div id="currency-box" class="corner-box left-box">
+        <div class="box-title">RYNEK (NBP)</div>
+        <div id="rates">Ładowanie...</div>
+    </div>
+
+    <div class="corner-box right-box">
+        <div class="box-title">LEGENDA STATUSÓW</div>
         <div class="legend-item"><span class="icon done">✓</span> Zrealizowane</div>
         <div class="legend-item"><span class="icon pending">•</span> W trakcie</div>
         <div class="legend-item"><span class="icon failed">✕</span> Niezrealizowane</div>
     </div>
 
     <header class="main-header">
-        <div id="info-bar" class="info-bar">Pobieranie danych NBP...</div>
         <h1>Monitor Obietnic Wyborczych</h1>
-        <p class="subtitle">Niezależne zestawienie realizacji programów partii politycznych</p>
+        <div class="election-info">
+            <div class="election-group">
+                <strong>OSTATNIE:</strong> Parlamentarne (15.10.2023) | Samorządowe (07.04.2024)
+            </div>
+            <div class="election-group">
+                <strong>NADCHODZĄCE:</strong> Parlamentarne (X 2027) | Samorządowe (IV 2029)
+            </div>
+        </div>
     </header>
 
     <main class="container">
         <div id="app" class="party-grid">
-            <div class="loading">Inicjalizacja systemu...</div>
+            <div class="loading">Inicjalizacja danych...</div>
         </div>
     </main>
 
     <footer class="site-footer">
         <div class="footer-content">
-            <p>&copy; 2026 Licznik Obietnic. Wszelkie prawa zastrzeżone.</p>
-            <p class="footer-note">Dane o obietnicach pochodzą z oficjalnych programów wyborczych oraz serwisów informacyjnych. Kursy walut dostarczane przez API NBP.</p>
+            <p>&copy; 2026 Monitor Obietnic. Wszelkie prawa zastrzeżone.</p>
         </div>
     </footer>
 
