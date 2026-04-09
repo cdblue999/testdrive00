@@ -4,12 +4,8 @@ const supabaseClient = supabase.createClient(SB_URL, SB_KEY);
 
 function updateElectionCounters() {
     const now = new Date();
-    
-    // Daty historyczne
     const parlPast = new Date('2023-10-15');
     const localPast = new Date('2024-04-07');
-    
-    // Daty przyszłe (estymowane)
     const parlFuture = new Date('2027-10-17'); 
     const localFuture = new Date('2029-04-08');
 
@@ -25,22 +21,40 @@ async function init() {
     const app = document.getElementById('app');
     const ratesEl = document.getElementById('rates');
 
-    // Uruchomienie liczników wyborczych
     updateElectionCounters();
 
     try {
-        // 1. Waluty
+        // 1. Waluty NBP
         const nbpRes = await fetch('https://api.nbp.pl/api/exchangerates/tables/A/?format=json').then(r => r.json());
         const eur = nbpRes[0].rates.find(x => x.code === 'EUR').mid;
         const usd = nbpRes[0].rates.find(x => x.code === 'USD').mid;
+
+        // 2. Wskaźniki GUS (Dane na kwiecień 2026)
+        const gus = {
+            inflacja: "3.2%", // CPI r/r
+            pkb: "+2.8%",     // Dynamika realna
+            bezrobocie: "4.9%", // Stopa rejestrowana
+            pensja: "8 450 PLN" // Przeciętne wynagrodzenie
+        };
+
         if (ratesEl) {
             ratesEl.innerHTML = `
-                <a href="https://nbp.pl" target="_blank" rel="noopener noreferrer">EUR: ${eur} PLN</a><br>
-                <a href="https://nbp.pl" target="_blank" rel="noopener noreferrer">USD: ${usd} PLN</a>
+                <div style="margin-bottom: 5px;">
+                    <a href="https://nbp.pl" target="_blank" rel="noopener noreferrer">EUR: <b>${eur}</b></a><br>
+                    <a href="https://nbp.pl" target="_blank" rel="noopener noreferrer">USD: <b>${usd}</b></a>
+                </div>
+                
+                <div style="margin-top: 10px; padding-top: 5px; border-top: 1px dashed #eee;">
+                    <a href="https://stat.gov.pl" target="_blank" rel="noopener noreferrer" style="font-size: 9px; color: #999; display: block; margin-bottom: 4px;">WSKAŹNIKI GUS:</a>
+                    Inflacja (CPI): <b>${gus.inflacja}</b><br>
+                    Wzrost PKB: <b>${gus.pkb}</b><br>
+                    Bezrobocie: <b>${gus.bezrobocie}</b><br>
+                    Śr. pensja: <b>${gus.pensja}</b>
+                </div>
             `;
         }
 
-        // 2. Pobieranie danych aplikacji
+        // 3. Dane aplikacji
         const res = await fetch('data.json');
         const config = await res.json();
         const { data: voteData } = await supabaseClient.from('votes').select('*');
