@@ -1,0 +1,8 @@
+{
+  "parties": [
+    { "id": "ko", "name": "Koalicja Obywatelska", "logo": "https://placehold.co/100x40?text=KO", 
+      "promises": [{ "txt": "Kwota wolna 60k", "status": "pending" }] },
+    { "id": "pis", "name": "PiS", "logo": "https://placehold.co/100x40?text=PiS", 
+      "promises": [{ "txt": "CPK", "status": "done" }] }
+  ]
+}
