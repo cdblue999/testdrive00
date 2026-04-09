@@ -1,4 +1,4 @@
-const SB_URL = 'https://licznikpartyjny.netlify.app/';
+const SB_URL = 'https://amixcppknszjfscnepnx.supabase.co';
 const SB_KEY = 'amixcppknszjfscnepnx';
 const supabase = supabase.createClient(SB_URL, SB_KEY);
 
