@@ -1,5 +1,5 @@
 const SB_URL = 'https://amixcppknszjfscnepnx.supabase.co';
-const SB_KEY = 'amixcppknszjfscnepnx';
+const SB_KEY = 'sb_publishable_8pZgzv2BXthAUoBppO8U3A_edhabo2J';
 const supabase = supabase.createClient(SB_URL, SB_KEY);
 
 async function init() {
