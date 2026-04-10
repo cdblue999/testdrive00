@@ -33,33 +33,4 @@
       "website": "https://trzeciadroga.pl",
       "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Trzecia_Droga_logo.svg/400px-Trzecia_Droga_logo.svg.png",
       "promises": [
-        { "desc_pl": "Dobrowolny ZUS", "desc_en": "Voluntary Social Security", "desc_de": "Freiwillige Sozialversicherung", "status": "pending", "url": "https://trzeciadroga.pl/program/" },
-        { "desc_pl": "Akademik za 1 zł", "desc_en": "Dormitory for 1 PLN", "desc_de": "Studentenwohnheim für 1 PLN", "status": "failed", "url": "https://trzeciadroga.pl/program/" }
-      ]
-    },
-    {
-      "id": "lewica",
-      "name_pl": "Lewica",
-      "name_en": "The Left",
-      "name_de": "Die Linke",
-      "website": "https://lewica.org",
-      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Nowa_Lewica_Logo.svg/400px-Nowa_Lewica_Logo.svg.png",
-      "promises": [
-        { "desc_pl": "Renta wdowia", "desc_en": "Widow's Pension", "desc_de": "Witwenrente", "status": "done", "url": "https://lewica.org/program/" },
-        { "desc_pl": "35h tydzień pracy", "desc_en": "35h Working Week", "desc_de": "35-Stunden-Woche", "status": "pending", "url": "https://lewica.org/program/" }
-      ]
-    },
-    {
-      "id": "konf",
-      "name_pl": "Konfederacja",
-      "name_en": "Confederation",
-      "name_de": "Konföderation",
-      "website": "https://konfederacja.pl",
-      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Konfederacja_Wolno%C5%9B%C4%87_i_Niepodleg%C5%82o%C5%9B%C4%87_logo.svg/400px-Konfederacja_Wolno%C5%9B%C4%87_i_Niepodleg%C5%82o%C5%9B%C4%87_logo.svg.png",
-      "promises": [
-        { "desc_pl": "Likwidacja podatku Belki", "desc_en": "Abolition of Capital Gains Tax", "desc_de": "Abschaffung der Kapitalertragsteuer", "status": "pending", "url": "https://konfederacja.pl/program/" },
-        { "desc_pl": "Tanie paliwo", "desc_en": "Cheap Fuel", "desc_de": "Billiger Kraftstoff", "status": "pending", "url": "https://konfederacja.pl/program/" }
-      ]
-    }
-  ]
-}
+        { "desc_pl": "Dobrowolny ZUS", "desc_en": "Voluntary Social Security", "desc_de": "Freiwillige Sozialversicherung", "status": "pending", "url": "https://
