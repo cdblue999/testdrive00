@@ -46,13 +46,13 @@ async function init() {
     document.getElementById('t-market-title').innerText = t.market;
     document.getElementById('t-rating-title').innerText = t.statusTitle;
     document.getElementById('t-footer').innerText = t.footer;
-    
     document.getElementById('legend-content').innerHTML = `
         <div class="legend-item"><span class="icon done">✓</span> ${t.aaa}</div>
         <div class="legend-item"><span class="icon pending">•</span> ${t.bbb}</div>
         <div class="legend-item"><span class="icon failed">✕</span> ${t.d}</div>
     `;
 
+    // Counters
     const now = new Date();
     const getDiff = (d1, d2) => Math.floor(Math.abs(d1 - d2) / (1000 * 60 * 60 * 24));
     document.getElementById('election-data-box').innerHTML = `
@@ -71,7 +71,7 @@ async function init() {
             </div>
             <div style="color:#475569; line-height:1.6;">
                 ${t.inflation}: <b>3.2%</b> | ${t.gdp}: <b>+2.8%</b><br>
-                ${t.deficit}: <b style="color:var(--amarant)">5.1% ${t.gdp}</b> 
+                ${t.deficit}: <b style="color:var(--amarant)">5.1% ${currentLang === 'de' ? 'BIP' : 'GDP'}</b> 
                 <span style="font-size:11px; color:#94a3b8; display:block; margin-top:2px;">
                     / 182 mld PLN (${t.period})
                 </span>
@@ -98,22 +98,4 @@ async function init() {
                 <ul>
                     ${p.promises.map(pr => `
                         <li class="${pr.status}">
-                            <span style="font-weight:bold; width:15px; display:inline-block;">${pr.status==='done'?'✓':(pr.status==='failed'?'✕':'•')}</span>
-                            <a href="${pr.url}" target="_blank" style="text-decoration:none; color:inherit;">${pr[`desc_${currentLang}`]}</a>
-                        </li>
-                    `).join('')}
-                </ul>
-            `;
-            app.appendChild(card);
-        });
-    } catch (e) { app.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:50px;">Błąd danych: Sprawdź format data.json</div>`; }
-}
-
-async function vote(id) {
-    const { error } = await supabaseClient.rpc('increment_vote', { row_id: id });
-    if (!error) {
-        const el = document.getElementById(`v-${id}`);
-        if (el) el.innerText = parseInt(el.innerText) + 1;
-    }
-}
-document.addEventListener('DOMContentLoaded', init);
+                            <span style="font-weight:bold; width:15px; display:inline-block;">${pr.status==='done'?'✓':(pr
