@@ -31,7 +31,7 @@ const translations = {
 function setLanguage(lang) {
     currentLang = lang;
     localStorage.setItem('lang', lang);
-    init(); // Przeładowanie interfejsu
+    init();
 }
 
 async function init() {
@@ -39,7 +39,7 @@ async function init() {
     const ratesEl = document.getElementById('rates');
     const t = translations[currentLang];
     
-    // UI Static Update
+    // UI Update
     document.title = t.title;
     document.getElementById('t-main-title').innerText = t.title;
     document.getElementById('t-election-title').innerText = t.election;
@@ -47,7 +47,6 @@ async function init() {
     document.getElementById('t-rating-title').innerText = t.statusTitle;
     document.getElementById('t-footer').innerText = t.footer;
     
-    // Legend i Liczniki
     document.getElementById('legend-content').innerHTML = `
         <div class="legend-item"><span class="icon done">✓</span> ${t.aaa}</div>
         <div class="legend-item"><span class="icon pending">•</span> ${t.bbb}</div>
@@ -72,7 +71,7 @@ async function init() {
             </div>
             <div style="color:#475569; line-height:1.6;">
                 ${t.inflation}: <b>3.2%</b> | ${t.gdp}: <b>+2.8%</b><br>
-                ${t.deficit}: <b style="color:var(--amarant)">5.1% ${currentLang === 'pl' ? 'PKB' : 'GDP'}</b> 
+                ${t.deficit}: <b style="color:var(--amarant)">5.1% ${t.gdp}</b> 
                 <span style="font-size:11px; color:#94a3b8; display:block; margin-top:2px;">
                     / 182 mld PLN (${t.period})
                 </span>
@@ -89,7 +88,7 @@ async function init() {
             const card = document.createElement('div');
             card.className = 'card';
             card.innerHTML = `
-                <button class="vote-btn" onclick="vote('${p.id}')">
+                <button class="vote-btn" onclick="vote('${p.id}')" style="width:100%; display:flex; justify-content:space-between; padding:8px; font-family:var(--font-data); font-size:10px; cursor:pointer; background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; margin-bottom:15px;">
                     <span>${t.sentiment}</span> <b id="v-${p.id}">${votes}</b>
                 </button>
                 <div style="height:55px; display:flex; align-items:center; justify-content:center; margin-bottom:10px;">
@@ -107,7 +106,14 @@ async function init() {
             `;
             app.appendChild(card);
         });
-    } catch (e) { app.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:50px;">Error: Check data.json and current translations.</div>`; }
+    } catch (e) { app.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:50px;">Błąd danych: Sprawdź format data.json</div>`; }
 }
-// Reszta funkcji (vote itp.) pozostaje bez zmian.
+
+async function vote(id) {
+    const { error } = await supabaseClient.rpc('increment_vote', { row_id: id });
+    if (!error) {
+        const el = document.getElementById(`v-${id}`);
+        if (el) el.innerText = parseInt(el.innerText) + 1;
+    }
+}
 document.addEventListener('DOMContentLoaded', init);
