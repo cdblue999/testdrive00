@@ -11,45 +11,35 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div id="currency-box" class="corner-box left-box">
         <div class="box-title" id="t-market-title">RYNEK I WSKAŹNIKI (LIVE)</div>
         <div id="rates">Ładowanie...</div>
     </div>
-
     <div class="corner-box right-box">
         <div class="box-title" id="t-rating-title">STATUSY RATINGOWE</div>
         <div id="legend-content"></div>
     </div>
-
     <header class="main-header">
         <h1 id="t-main-title">terminal obywatelski</h1>
-        
         <div class="election-wrapper">
             <div class="election-title" id="t-election-title">WYBORY</div>
-            <div class="election-data" id="election-data-box">
-                </div>
+            <div class="election-data" id="election-data-box"></div>
         </div>
-
         <div class="lang-switch">
             <img src="https://flagcdn.com/w40/pl.png" class="lang-icon" onclick="setLanguage('pl')" alt="PL">
             <img src="https://flagcdn.com/w40/gb.png" class="lang-icon" onclick="setLanguage('en')" alt="EN">
         </div>
-
         <div class="flag-container">
             <div class="flag-white"></div>
             <div class="flag-red"></div>
         </div>
     </header>
-
     <main id="app" class="party-grid">
         <div class="status-msg">Inicjalizacja systemu...</div>
     </main>
-
     <footer class="site-footer">
-        <p id="t-footer">&copy; 2026 terminal obywatelski. Dane: NBP, MF, SEJM.</p>
+        <p id="t-footer"></p>
     </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
 </body>
