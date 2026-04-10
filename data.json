@@ -2,54 +2,53 @@
   "parties": [
     {
       "id": "ko",
-      "name": "Koalicja Obywatelska",
+      "name_pl": "Koalicja Obywatelska",
+      "name_en": "Civic Coalition",
       "website": "https://platforma.org",
       "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Koalicja_Obywatelska_logo.svg/400px-Koalicja_Obywatelska_logo.svg.png",
       "promises": [
-        { "desc": "Kwota wolna 60 tys. zł", "status": "pending", "url": "https://100konkretow.pl/konkret-nr-1/" },
-        { "desc": "Babciowe (Aktywny Rodzic)", "status": "done", "url": "https://100konkretow.pl/konkret-nr-4/" },
-        { "desc": "Paliwo po 5,19 zł", "status": "failed", "url": "https://100konkretow.pl/konkret-nr-3/" }
+        { "desc_pl": "Kwota wolna 60 tys. zł", "desc_en": "Tax-free allowance 60k PLN", "status": "pending", "url": "https://100konkretow.pl/konkret-nr-1/" },
+        { "desc_pl": "Babciowe (Aktywny Rodzic)", "desc_en": "Active Parent Grant", "status": "done", "url": "https://100konkretow.pl/konkret-nr-4/" },
+        { "desc_pl": "Paliwo po 5,19 zł", "desc_en": "Fuel at 5.19 PLN/L", "status": "failed", "url": "https://100konkretow.pl/konkret-nr-3/" }
       ]
     },
     {
       "id": "pis",
-      "name": "Prawo i Sprawiedliwość",
+      "name_pl": "Prawo i Sprawiedliwość",
+      "name_en": "Law and Justice",
       "website": "https://pis.org.pl",
       "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Logo_Prawa_i_Sprawiedliwo%C5%9Bci.svg/400px-Logo_Prawa_i_Sprawiedliwo%C5%9Bci.svg.png",
       "promises": [
-        { "desc": "Budowa CPK", "status": "pending", "url": "https://pis.org.pl/dokumenty" },
-        { "desc": "800 Plus", "status": "done", "url": "https://pis.org.pl/aktualnosci/800-plus-od-1-stycznia" }
+        { "desc_pl": "Budowa CPK", "desc_en": "Construction of CPK Airport", "status": "pending", "url": "https://pis.org.pl/dokumenty" },
+        { "desc_pl": "800 Plus", "desc_en": "800 Plus Benefit", "status": "done", "url": "https://pis.org.pl/aktualnosci/800-plus-od-1-stycznia" }
       ]
     },
     {
       "id": "td",
-      "name": "Trzecia Droga",
+      "name_pl": "Trzecia Droga",
+      "name_en": "Third Way",
       "website": "https://trzeciadroga.pl",
       "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Trzecia_Droga_logo.svg/400px-Trzecia_Droga_logo.svg.png",
       "promises": [
-        { "desc": "Dobrowolny ZUS", "status": "pending", "url": "https://trzeciadroga.pl/program/" },
-        { "desc": "Akademik za 1 zł", "status": "failed", "url": "https://trzeciadroga.pl/program/" }
+        { "desc_pl": "Dobrowolny ZUS", "desc_en": "Voluntary Social Security", "status": "pending", "url": "https://trzeciadroga.pl/program/" },
+        { "desc_pl": "Akademik za 1 zł", "desc_en": "Dormitory for 1 PLN", "status": "failed", "url": "https://trzeciadroga.pl/program/" }
       ]
     },
     {
       "id": "lewica",
-      "name": "Lewica",
+      "name_pl": "Lewica",
+      "name_en": "The Left",
       "website": "https://lewica.org",
       "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Nowa_Lewica_Logo.svg/400px-Nowa_Lewica_Logo.svg.png",
       "promises": [
-        { "desc": "Renta wdowia", "status": "done", "url": "https://lewica.org/program/" },
-        { "desc": "35h tydzień pracy", "status": "pending", "url": "https://lewica.org/program/" }
+        { "desc_pl": "Renta wdowia", "desc_en": "Widow's Pension", "status": "done", "url": "https://lewica.org/program/" },
+        { "desc_pl": "35h tydzień pracy", "desc_en": "35h Working Week", "status": "pending", "url": "https://lewica.org/program/" }
       ]
     },
     {
       "id": "konf",
-      "name": "Konfederacja",
+      "name_pl": "Konfederacja",
+      "name_en": "Confederation",
       "website": "https://konfederacja.pl",
       "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Konfederacja_Wolno%C5%9B%C4%87_i_Niepodleg%C5%82o%C5%9B%C4%87_logo.svg/400px-Konfederacja_Wolno%C5%9B%C4%87_i_Niepodleg%C5%82o%C5%9B%C4%87_logo.svg.png",
-      "promises": [
-        { "desc": "Likwidacja Belki", "status": "pending", "url": "https://konfederacja.pl/program/" },
-        { "desc": "Tanie paliwo", "status": "pending", "url": "https://konfederacja.pl/program/" }
-      ]
-    }
-  ]
-}
+      "promises":
