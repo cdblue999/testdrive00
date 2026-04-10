@@ -24,14 +24,15 @@ const translations = {
 function setLanguage(lang) {
     currentLang = lang;
     localStorage.setItem('lang', lang);
-    init();
+    init(); // Ponowne renderowanie wszystkiego
 }
 
-function updateElectionUI() {
+function updateStaticUI() {
     const t = translations[currentLang];
     const now = new Date();
     const getDiff = (d1, d2) => Math.floor(Math.abs(d1 - d2) / (1000 * 60 * 60 * 24));
     
+    // Liczniki
     const d1 = getDiff(now, new Date('2023-10-15'));
     const d2 = getDiff(now, new Date('2024-04-07'));
     const d3 = getDiff(new Date('2027-10-17'), now);
@@ -58,7 +59,7 @@ async function init() {
     const app = document.getElementById('app');
     const ratesEl = document.getElementById('rates');
     const t = translations[currentLang];
-    updateElectionUI();
+    updateStaticUI();
 
     try {
         const nbpRes = await fetch('https://api.nbp.pl/api/exchangerates/tables/A/?format=json').then(r => r.json());
@@ -71,7 +72,7 @@ async function init() {
             </div>
             <div style="color:#475569; line-height:1.6;">
                 ${t.inflation}: <b>3.2%</b> | ${t.gdp}: <b>+2.8%</b><br>
-                ${t.deficit}: <b style="color:var(--amarant)">5.1% PKB</b> 
+                ${t.deficit}: <b style="color:var(--amarant)">5.1% GDP</b> 
                 <span style="font-size:11px; color:#94a3b8;">(182 mld PLN / ${t.exec})</span>
             </div>`;
 
@@ -82,6 +83,8 @@ async function init() {
         app.innerHTML = '';
         config.parties.forEach(p => {
             const votes = voteData?.find(v => v.party_id === p.id)?.count || 0;
+            const partyName = p[`name_${currentLang}`]; // Dynamiczny wybór nazwy
+            
             const card = document.createElement('div');
             card.className = 'card';
             card.innerHTML = `
@@ -89,21 +92,21 @@ async function init() {
                     <span>${t.sentiment}</span> <b id="v-${p.id}">${votes}</b>
                 </button>
                 <div style="height:55px; display:flex; align-items:center; justify-content:center; margin-bottom:10px;">
-                    <img src="${p.logo}" style="max-height:50px; max-width:90%;" alt="${p.name}">
+                    <img src="${p.logo}" style="max-height:50px; max-width:90%; object-fit:contain;" alt="${partyName}">
                 </div>
-                <h3 style="text-align:center; margin:0 0 15px 0; font-weight:900;">${p.name}</h3>
-                <ul>
+                <h3 style="text-align:center; margin:0 0 15px 0; font-weight:900;">${partyName}</h3>
+                <ul style="list-style:none; padding:0; margin:0; flex-grow:1;">
                     ${p.promises.map(pr => `
                         <li class="${pr.status}">
                             <span style="font-weight:bold; width:15px; display:inline-block;">${pr.status==='done'?'✓':(pr.status==='failed'?'✕':'•')}</span>
-                            <a href="${pr.url}" target="_blank" style="text-decoration:none; color:inherit;">${pr.desc}</a>
+                            <a href="${pr.url}" target="_blank" style="text-decoration:none; color:inherit;">${pr[`desc_${currentLang}`]}</a>
                         </li>
                     `).join('')}
                 </ul>
             `;
             app.appendChild(card);
         });
-    } catch (e) { app.innerHTML = `<div style="grid-column:1/-1; text-align:center; color:red;">Błąd ładowania systemu. Sprawdź data.json</div>`; }
+    } catch (e) { app.innerHTML = `<div style="grid-column:1/-1; text-align:center; color:red;">System Error. Check data.json</div>`; }
 }
 
 async function vote(id) {
