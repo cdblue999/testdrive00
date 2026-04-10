@@ -51,4 +51,10 @@
       "name_en": "Confederation",
       "website": "https://konfederacja.pl",
       "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Konfederacja_Wolno%C5%9B%C4%87_i_Niepodleg%C5%82o%C5%9B%C4%87_logo.svg/400px-Konfederacja_Wolno%C5%9B%C4%87_i_Niepodleg%C5%82o%C5%9B%C4%87_logo.svg.png",
-      "promises":
+      "promises": [
+        { "desc_pl": "Likwidacja podatku Belki", "desc_en": "Abolition of Capital Gains Tax", "status": "pending", "url": "https://konfederacja.pl/program/" },
+        { "desc_pl": "Tanie paliwo", "desc_en": "Cheap Fuel", "status": "pending", "url": "https://konfederacja.pl/program/" }
+      ]
+    }
+  ]
+}
