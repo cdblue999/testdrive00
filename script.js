@@ -10,21 +10,27 @@ const translations = {
         days: "dni", about: "za ok.", inflation: "Inflacja", gdp: "PKB", deficit: "Deficyt",
         period: "za rok 2025", market: "RYNEK I WSKAŹNIKI (LIVE)", statusTitle: "STATUSY RATINGOWE",
         aaa: "Realizacja (AAA)", bbb: "W procesie (BBB)", d: "Brak (D)", sentiment: "SENTYMENT",
-        parl: "Parlamentarne", local: "Samorządowe", footer: "© 2026 terminal obywatelski. Wszelkie prawa zastrzeżone. Dane: NBP, MF, SEJM."
+        parl: "Parlamentarne", local: "Samorządowe",
+        news: " PILNE: Polska gospodarka przyspiesza • GUS potwierdza spadek inflacji • Stabilizacja na rynkach światowych • Sejm proceduje nowe ustawy • ",
+        footer: "© 2026 terminal obywatelski. Wszelkie prawa zastrzeżone. Dane: NBP, MF, SEJM."
     },
     en: {
         title: "citizen terminal", election: "ELECTIONS", last: "LAST", next: "UPCOMING",
         days: "days", about: "approx.", inflation: "Inflation", gdp: "GDP", deficit: "Deficit",
         period: "for 2025", market: "MARKET INDICATORS (LIVE)", statusTitle: "RATING STATUS",
         aaa: "Completed (AAA)", bbb: "In progress (BBB)", d: "Failed (D)", sentiment: "SENTIMENT",
-        parl: "General", local: "Local", footer: "© 2026 citizen terminal. All rights reserved. Data: NBP, MF, SEJM."
+        parl: "General", local: "Local",
+        news: " BREAKING: Polish economy gains momentum • Stats office confirms inflation drop • Global markets remain stable • Parliament processes bills • ",
+        footer: "© 2026 citizen terminal. All rights reserved. Data: NBP, MF, SEJM."
     },
     de: {
         title: "Bürgerterminal", election: "WAHLEN", last: "LETZTE", next: "NÄCHSTE",
         days: "Tage", about: "ca.", inflation: "Inflation", gdp: "BIP", deficit: "Defizit",
         period: "für 2025", market: "MARKTINDIKATOREN (LIVE)", statusTitle: "RATING-STATUS",
         aaa: "Erledigt (AAA)", bbb: "In Bearbeitung (BBB)", d: "Fehlgeschlagen (D)", sentiment: "STIMMUNG",
-        parl: "Parlamentswahlen", local: "Kommunalwahlen", footer: "© 2026 Bürgerterminal. Alle Rechte vorbehalten. Daten: NBP, MF, SEJM."
+        parl: "Parlamentswahlen", local: "Kommunalwahlen",
+        news: " EILMELDUNG: Polnische Wirtschaft nimmt an Fahrt auf • BIP-Prognosen stabil • Rückgang der Inflation bestätigt • Neue Gesetze im Parlament • ",
+        footer: "© 2026 Bürgerterminal. Alle Rechte vorbehalten. Daten: NBP, MF, SEJM."
     }
 };
 
@@ -36,7 +42,6 @@ function setLanguage(lang) {
 
 async function init() {
     const app = document.getElementById('app');
-    const ratesEl = document.getElementById('rates');
     const t = translations[currentLang] || translations['pl'];
     
     // UI Static
@@ -46,13 +51,14 @@ async function init() {
     document.getElementById('t-market-title').innerText = t.market;
     document.getElementById('t-rating-title').innerText = t.statusTitle;
     document.getElementById('t-footer').innerText = t.footer;
+    document.getElementById('ticker-content').innerText = t.news + t.news;
+
     document.getElementById('legend-content').innerHTML = `
         <div class="legend-item"><span class="icon done">✓</span> ${t.aaa}</div>
         <div class="legend-item"><span class="icon pending">•</span> ${t.bbb}</div>
         <div class="legend-item"><span class="icon failed">✕</span> ${t.d}</div>
     `;
 
-    // Counters
     const now = new Date();
     const getDiff = (d1, d2) => Math.floor(Math.abs(d1 - d2) / (1000 * 60 * 60 * 24));
     document.getElementById('election-data-box').innerHTML = `
@@ -65,22 +71,18 @@ async function init() {
         const eur = nbpRes[0].rates.find(x => x.code === 'EUR').mid;
         const usd = nbpRes[0].rates.find(x => x.code === 'USD').mid;
         
-        ratesEl.innerHTML = `
+        document.getElementById('rates').innerHTML = `
             <div style="border-bottom:1px dashed #e2e8f0; padding-bottom:6px; margin-bottom:6px; font-size:16px;">
                 EUR: <b>${eur}</b> | USD: <b>${usd}</b>
             </div>
             <div style="color:#475569; line-height:1.6;">
                 ${t.inflation}: <b>3.2%</b> | ${t.gdp}: <b>+2.8%</b><br>
                 ${t.deficit}: <b style="color:var(--amarant)">5.1% ${currentLang === 'de' ? 'BIP' : 'GDP'}</b> 
-                <span style="font-size:11px; color:#94a3b8; display:block; margin-top:2px;">
-                    / 182 mld PLN (${t.period})
-                </span>
+                <span style="font-size:11px; color:#94a3b8; display:block; margin-top:2px;">/ 182 mld PLN (${t.period})</span>
             </div>`;
 
         const res = await fetch('data.json');
-        if (!res.ok) throw new Error("JSON fail");
         const config = await res.json();
-        
         const { data: voteData } = await supabaseClient.from('votes').select('*');
 
         app.innerHTML = '';
@@ -108,7 +110,7 @@ async function init() {
             `;
             app.appendChild(card);
         });
-    } catch (e) { app.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:50px;">Błąd danych: Sprawdź data.json</div>`; }
+    } catch (e) { app.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:50px;">Błąd danych.</div>'; }
 }
 
 async function vote(id) {
