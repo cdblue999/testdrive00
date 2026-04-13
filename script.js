@@ -29,18 +29,4 @@ const translations = {
         period: "für 2025", market: "MARKTINDIKATOREN (LIVE)", statusTitle: "RATING-STATUS",
         aaa: "Erledigt (AAA)", bbb: "In Bearbeitung (BBB)", d: "Fehlgeschlagen (D)", sentiment: "STIMMUNG",
         parl: "Parlamentswahlen", local: "Kommunalwahlen",
-        news: " EILMELDUNG: Polnische Wirtschaft nimmt an Fahrt auf • BIP-Prognosen stabil • Rückgang der Inflation bestätigt • Neue Gesetze im Parlament • ",
-        footer: "© 2026 Bürgerterminal. Alle Rechte vorbehalten. Daten: NBP, MF, SEJM."
-    }
-};
-
-function setLanguage(lang) {
-    currentLang = lang;
-    localStorage.setItem('lang', lang);
-    init();
-}
-
-async function init() {
-    const app = document.getElementById('app');
-    const ratesEl = document.getElementById('rates');
-    const t = translations[currentLang]
+        news: " EILMELD
