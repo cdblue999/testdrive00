@@ -10,57 +10,16 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-        <div class="news-ticker">
+
+    <div class="news-ticker">
         <div class="ticker-wrapper" id="ticker-content">
-            </div>
+            Inicjalizacja paska wiadomości...
+        </div>
     </div>
 
     <div id="currency-box" class="corner-box left-box">
-        ```
-
----
-
-### 2. Plik `style.css`
-Dodaj te style, aby uzyskać efekt żółtego paska i płynnego ruchu. Zwróć uwagę na `position: fixed`, który trzyma pasek na samej górze.
-
-```css
-/* NEWS TICKER - ŻÓŁTY PASEK */
-.news-ticker {
-    background: #fde047; /* Intensywny żółty */
-    color: #000;
-    overflow: hidden;
-    white-space: nowrap;
-    padding: 6px 0;
-    font-family: var(--font-data); /* Ta sama czcionka co Inflacja */
-    font-size: 13px;
-    font-weight: 700;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 3000;
-    border-bottom: 1px solid #eab308;
-}
-
-.ticker-wrapper {
-    display: inline-block;
-    padding-left: 100%;
-    animation: ticker-move 40s linear infinite; /* Prędkość dopasowana do czytania */
-}
-
-@keyframes ticker-move {
-    0% { transform: translate3d(0, 0, 0); }
-    100% { transform: translate3d(-100%, 0, 0); }
-}
-
-/* Korekta dla reszty strony, aby pasek niczego nie zasłaniał */
-body { padding-top: 30px; }
-.corner-box { top: 40px; } /* Przesunięcie narożników niżej */
-.main-header { padding-top: 60px; }
-
-    <div id="currency-box" class="corner-box left-box">
         <div class="box-title" id="t-market-title">RYNEK I WSKAŹNIKI (LIVE)</div>
-        <div id="rates">Ładowanie danych...</div>
+        <div id="rates">Ładowanie danych rynkowych...</div>
     </div>
 
     <div class="corner-box right-box">
@@ -77,9 +36,9 @@ body { padding-top: 30px; }
         </div>
 
         <div class="lang-switch">
-            <img src="https://flagcdn.com/w40/pl.png" class="lang-icon" onclick="setLanguage('pl')" alt="PL">
-            <img src="https://flagcdn.com/w40/gb.png" class="lang-icon" onclick="setLanguage('en')" alt="EN">
-            <img src="https://flagcdn.com/w40/de.png" class="lang-icon" onclick="setLanguage('de')" alt="DE">
+            <img src="https://flagcdn.com/w40/pl.png" class="lang-icon" onclick="setLanguage('pl')" title="Polski" alt="PL">
+            <img src="https://flagcdn.com/w40/gb.png" class="lang-icon" onclick="setLanguage('en')" title="English" alt="EN">
+            <img src="https://flagcdn.com/w40/de.png" class="lang-icon" onclick="setLanguage('de')" title="Deutsch" alt="DE">
         </div>
 
         <div class="flag-container">
@@ -89,7 +48,9 @@ body { padding-top: 30px; }
     </header>
 
     <main id="app" class="party-grid">
-        <div class="status-msg">Inicjalizacja systemu...</div>
+        <div style="grid-column: 1/-1; text-align: center; padding: 50px; font-family: var(--font-data);">
+            Ładowanie bazy obietnic...
+        </div>
     </main>
 
     <footer class="site-footer">
