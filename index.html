@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; ... img-src * data:;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src * data:;">
     <title>terminal obywatelski</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div class="news-ticker">
         <div class="ticker-wrapper" id="ticker-content"></div>
     </div>
@@ -44,7 +43,7 @@
     </header>
 
     <main id="app" class="party-grid">
-        <div style="grid-column:1/-1; text-align:center; padding:50px; font-family:var(--font-data);">Inicjalizacja...</div>
+        <div style="grid-column:1/-1; text-align:center; padding:50px; font-family:var(--font-data);">Inicjalizacja systemu...</div>
     </main>
 
     <footer class="site-footer">
