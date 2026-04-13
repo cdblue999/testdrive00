@@ -10,21 +10,21 @@ const translations = {
         days: "dni", about: "za ok.", inflation: "Inflacja", gdp: "PKB", deficit: "Deficyt",
         period: "za rok 2025", market: "RYNEK I WSKAŹNIKI (LIVE)", statusTitle: "STATUSY RATINGOWE",
         aaa: "Realizacja (AAA)", bbb: "W procesie (BBB)", d: "Brak (D)", sentiment: "SENTYMENT",
-        parl: "Parlamentarne", local: "Samorządowe", footer: "© 2026 terminal obywatelski. Dane: NBP, MF, SEJM."
+        parl: "Parlamentarne", local: "Samorządowe", footer: "© 2026 terminal obywatelski. Wszelkie prawa zastrzeżone. Dane: NBP, MF, SEJM."
     },
     en: {
         title: "citizen terminal", election: "ELECTIONS", last: "LAST", next: "UPCOMING",
         days: "days", about: "approx.", inflation: "Inflation", gdp: "GDP", deficit: "Deficit",
         period: "for 2025", market: "MARKET INDICATORS (LIVE)", statusTitle: "RATING STATUS",
         aaa: "Completed (AAA)", bbb: "In progress (BBB)", d: "Failed (D)", sentiment: "SENTIMENT",
-        parl: "General", local: "Local", footer: "© 2026 citizen terminal. Data: NBP, MF, SEJM."
+        parl: "General", local: "Local", footer: "© 2026 citizen terminal. All rights reserved. Data: NBP, MF, SEJM."
     },
     de: {
         title: "Bürgerterminal", election: "WAHLEN", last: "LETZTE", next: "NÄCHSTE",
         days: "Tage", about: "ca.", inflation: "Inflation", gdp: "BIP", deficit: "Defizit",
         period: "für 2025", market: "MARKTINDIKATOREN (LIVE)", statusTitle: "RATING-STATUS",
         aaa: "Erledigt (AAA)", bbb: "In Bearbeitung (BBB)", d: "Fehlgeschlagen (D)", sentiment: "STIMMUNG",
-        parl: "Parlamentswahlen", local: "Kommunalwahlen", footer: "© 2026 Bürgerterminal. Daten: NBP, MF, SEJM."
+        parl: "Parlamentswahlen", local: "Kommunalwahlen", footer: "© 2026 Bürgerterminal. Alle Rechte vorbehalten. Daten: NBP, MF, SEJM."
     }
 };
 
@@ -39,21 +39,20 @@ async function init() {
     const ratesEl = document.getElementById('rates');
     const t = translations[currentLang] || translations['pl'];
     
-    // UI Static Update
+    // UI Static
     document.title = t.title;
     document.getElementById('t-main-title').innerText = t.title;
     document.getElementById('t-election-title').innerText = t.election;
     document.getElementById('t-market-title').innerText = t.market;
     document.getElementById('t-rating-title').innerText = t.statusTitle;
     document.getElementById('t-footer').innerText = t.footer;
-    
     document.getElementById('legend-content').innerHTML = `
         <div class="legend-item"><span class="icon done">✓</span> ${t.aaa}</div>
         <div class="legend-item"><span class="icon pending">•</span> ${t.bbb}</div>
         <div class="legend-item"><span class="icon failed">✕</span> ${t.d}</div>
     `;
 
-    // Election counters
+    // Counters
     const now = new Date();
     const getDiff = (d1, d2) => Math.floor(Math.abs(d1 - d2) / (1000 * 60 * 60 * 24));
     document.getElementById('election-data-box').innerHTML = `
@@ -79,16 +78,20 @@ async function init() {
             </div>`;
 
         const res = await fetch('data.json');
+        if (!res.ok) throw new Error("JSON fail");
         const config = await res.json();
+        
+        const { data: voteData } = await supabaseClient.from('votes').select('*');
 
         app.innerHTML = '';
         config.parties.forEach(p => {
+            const votes = voteData?.find(v => v.party_id === p.id)?.count || 0;
             const partyName = p[`name_${currentLang}`] || p.name_pl;
             const card = document.createElement('div');
             card.className = 'card';
             card.innerHTML = `
-                <button class="vote-btn" onclick="vote('${p.id}')">
-                    <span>${t.sentiment}</span> <b id="v-${p.id}">0</b>
+                <button class="vote-btn" onclick="vote('${p.id}')" style="width:100%; display:flex; justify-content:space-between; padding:8px; font-family:var(--font-data); font-size:10px; cursor:pointer; background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; margin-bottom:15px;">
+                    <span>${t.sentiment}</span> <b id="v-${p.id}">${votes}</b>
                 </button>
                 <div style="height:55px; display:flex; align-items:center; justify-content:center; margin-bottom:10px;">
                     <img src="${p.logo}" style="max-height:50px; max-width:90%;" alt="${partyName}">
@@ -105,9 +108,14 @@ async function init() {
             `;
             app.appendChild(card);
         });
-    } catch (e) { 
-        app.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:50px;">Błąd danych: Sprawdź format data.json</div>`; 
+    } catch (e) { app.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:50px;">Błąd danych: Sprawdź data.json</div>`; }
+}
+
+async function vote(id) {
+    const { error } = await supabaseClient.rpc('increment_vote', { row_id: id });
+    if (!error) {
+        const el = document.getElementById(`v-${id}`);
+        if (el) el.innerText = parseInt(el.innerText) + 1;
     }
 }
-async function vote(id) { /* logika Supabase bez zmian */ }
 document.addEventListener('DOMContentLoaded', init);
