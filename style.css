@@ -1,41 +1,11 @@
-:root {
-    --bg-color: #f8fafc;
-    --card-bg: #ffffff;
-    --border-color: #e2e8f0;
-    --amarant: #E52B50;
-    --success-green: #166534;
-    --font-main: 'Inter', sans-serif;
-    --font-data: 'Roboto Mono', monospace;
-}
-
-body { font-family: var(--font-main); background: var(--bg-color); margin: 0; color: #1e293b; line-height: 1.5; }
-
-.corner-box { 
-    position: absolute; top: 10px; background: white; padding: 12px 18px; 
-    border: 1px solid var(--border-color); border-radius: 8px; 
-    font-size: 14px; font-family: var(--font-data); z-index: 1000; 
-}
-.left-box { left: 10px; min-width: 340px; }
-.right-box { right: 10px; min-width: 200px; }
-
-.main-header { background: white; padding: 40px 20px 0 20px; text-align: center; }
-.main-header h1 { margin: 0 0 15px 0; font-size: 3em; font-weight: 900; letter-spacing: -3px; text-transform: lowercase; }
-
-.party-grid { 
-    display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; 
-    padding: 30px 20px; max-width: 1750px; margin: 0 auto; min-width: 1300px; 
-    align-items: stretch; /* To wyrównuje dolne krawędzie */
-}
-
-.card { 
-    background: white; border: 1px solid var(--border-color); border-radius: 12px; 
-    padding: 20px; display: flex; flex-direction: column; 
-}
-
-ul { list-style: none; padding: 0; margin: 0; flex-grow: 1; } /* flex-grow wypełnia przestrzeń */
-
-.failed { 
-    color: var(--amarant) !important; text-decoration: line-through !important; 
-    text-decoration-thickness: 1px !important; text-decoration-color: var(--amarant) !important; 
-    opacity: 0.8;
+.site-footer {
+    text-align: center; /* Wyśrodkowanie tekstu */
+    padding: 60px 20px;
+    font-family: var(--font-data); /* Czcionka Roboto Mono (jak Inflacja) */
+    font-size: 14px; /* Wielkość spójna z narożnikami */
+    font-weight: 500;
+    color: #94a3b8;
+    border-top: 1px solid var(--border-color);
+    margin-top: 50px;
+    letter-spacing: -0.5px;
 }
