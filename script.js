@@ -10,8 +10,7 @@ const translations = {
         days: "dni", about: "za ok.", inflation: "Inflacja", gdp: "PKB", deficit: "Deficyt",
         period: "za rok 2025", market: "RYNEK I WSKAŹNIKI (LIVE)", statusTitle: "STATUSY RATINGOWE",
         aaa: "Realizacja (AAA)", bbb: "W procesie (BBB)", d: "Brak (D)", sentiment: "SENTYMENT",
-        parl: "Parlamentarne", local: "Samorządowe",
-        news: " PILNE: Polska gospodarka przyspiesza • GUS potwierdza spadek inflacji • Stabilizacja na rynkach światowych • Sejm proceduje nowe ustawy • ",
+        parl: "Parlamentarne", news: " PILNE: Polska gospodarka przyspiesza • GUS potwierdza spadek inflacji • ",
         footer: "© 2026 terminal obywatelski. Wszelkie prawa zastrzeżone. Dane: NBP, MF, SEJM."
     },
     en: {
@@ -19,8 +18,7 @@ const translations = {
         days: "days", about: "approx.", inflation: "Inflation", gdp: "GDP", deficit: "Deficit",
         period: "for 2025", market: "MARKET INDICATORS (LIVE)", statusTitle: "RATING STATUS",
         aaa: "Completed (AAA)", bbb: "In progress (BBB)", d: "Failed (D)", sentiment: "SENTIMENT",
-        parl: "General", local: "Local",
-        news: " BREAKING: Polish economy gains momentum • Stats office confirms inflation drop • Global markets remain stable • Parliament processes bills • ",
+        parl: "General", news: " BREAKING: Polish economy gains momentum • Stats office confirms inflation drop • ",
         footer: "© 2026 citizen terminal. All rights reserved. Data: NBP, MF, SEJM."
     },
     de: {
@@ -28,5 +26,92 @@ const translations = {
         days: "Tage", about: "ca.", inflation: "Inflation", gdp: "BIP", deficit: "Defizit",
         period: "für 2025", market: "MARKTINDIKATOREN (LIVE)", statusTitle: "RATING-STATUS",
         aaa: "Erledigt (AAA)", bbb: "In Bearbeitung (BBB)", d: "Fehlgeschlagen (D)", sentiment: "STIMMUNG",
-        parl: "Parlamentswahlen", local: "Kommunalwahlen",
-        news: " EILMELD
+        parl: "Parlamentswahlen", news: " EILMELDUNG: Polnische Wirtschaft nimmt an Fahrt auf • BIP-Prognosen stabil • ",
+        footer: "© 2026 Bürgerterminal. Alle Rechte vorbehalten. Daten: NBP, MF, SEJM."
+    }
+};
+
+function setLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem('lang', lang);
+    init();
+}
+
+async function init() {
+    const app = document.getElementById('app');
+    const t = translations[currentLang] || translations['pl'];
+    
+    document.getElementById('t-footer').innerText = t.footer;
+    document.getElementById('ticker-content').innerText = t.news + t.news;
+
+    // 1. RATING
+    document.getElementById('legend-content').innerHTML = `
+        <div><span style="color:#166534; font-weight:bold;">✓</span> ${t.aaa}</div>
+        <div><span style="color:#475569; font-weight:bold;">•</span> ${t.bbb}</div>
+        <div><span style="color:#E52B50; font-weight:bold;">✕</span> ${t.d}</div>
+    `;
+
+    // 2. WYBORY
+    const now = new Date();
+    const getDiff = (d1, d2) => Math.floor(Math.abs(d1 - d2) / (1000 * 60 * 60 * 24));
+    document.getElementById('election-data-box').innerHTML = `
+        <div><strong>${t.last}:</strong> ${getDiff(now, new Date('2023-10-15'))} ${t.days}</div>
+        <div><strong>${t.next}:</strong> ${getDiff(new Date('2027-10-17'), now)} ${t.days}</div>
+    `;
+
+    // 3. KURSY I WSKAŹNIKI
+    try {
+        const nbpRes = await fetch('https://api.nbp.pl/api/exchangerates/tables/A/?format=json').then(r => r.json());
+        const eur = nbpRes[0].rates.find(x => x.code === 'EUR').mid;
+        const usd = nbpRes[0].rates.find(x => x.code === 'USD').mid;
+        
+        document.getElementById('rates').innerHTML = `
+            <div style="margin-bottom: 2px;">EUR: <b>${eur}</b> | USD: <b>${usd}</b></div>
+            <div>${t.inflation}: <b>3.2%</b> | ${t.gdp}: <b>+2.8%</b></div>
+            <div style="color:var(--amarant); font-weight:bold;">${t.deficit}: 5.1%</div>
+        `;
+    } catch (e) { console.error("Market error"); }
+
+    // 4. PARTIE
+    try {
+        const res = await fetch('data.json');
+        const config = await res.json();
+        const { data: voteData } = await supabaseClient.from('votes').select('*');
+
+        app.innerHTML = '';
+        config.parties.forEach(p => {
+            const votes = voteData?.find(v => v.party_id === p.id)?.count || 0;
+            const partyName = p[`name_${currentLang}`] || p.name_pl;
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <button class="vote-btn" onclick="vote('${p.id}')" style="width:100%; display:flex; justify-content:space-between; padding:8px; font-family:var(--font-data); font-size:10px; cursor:pointer; background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; margin-bottom:15px;">
+                    <span>${t.sentiment}</span> <b id="v-${p.id}">${votes}</b>
+                </button>
+                <div style="height:60px; display:flex; align-items:center; justify-content:center; margin-bottom:10px;">
+                    <img src="${p.logo}" style="max-height:100%; max-width:100%; object-fit:contain;" onerror="this.onerror=null; this.outerHTML='<b style=\'font-family:var(--font-data); font-size:12px; color:#94a3b8;\'>${partyName}</b>';">
+                </div>
+                <h3 style="text-align:center; margin:0 0 15px 0; font-weight:900;">${partyName}</h3>
+                <ul style="list-style:none; padding:0; margin:0; flex-grow:1;">
+                    ${p.promises.map(pr => `
+                        <li class="${pr.status}" style="display:flex; align-items:center; gap:8px; padding:6px 0; border-bottom:1px solid #f8fafc;">
+                            <span style="font-weight:bold; width:15px; flex-shrink:0;">${pr.status==='done'?'✓':(pr.status==='failed'?'✕':'•')}</span>
+                            <a href="${pr.url}" target="_blank" style="text-decoration:none; color:inherit; flex-grow:1; font-size:11.5px;">${pr[`desc_${currentLang}`] || pr.desc_pl}</a>
+                            ${pr.cost ? `<span class="cost-tag">${pr.cost}</span>` : ''}
+                        </li>
+                    `).join('')}
+                </ul>
+            `;
+            app.appendChild(card);
+        });
+    } catch (e) { app.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:50px;">Błąd danych.</div>'; }
+}
+
+async function vote(id) {
+    const { error } = await supabaseClient.rpc('increment_vote', { row_id: id });
+    if (!error) {
+        const el = document.getElementById(`v-${id}`);
+        if (el) el.innerText = parseInt(el.innerText) + 1;
+    }
+}
+document.addEventListener('DOMContentLoaded', init);
