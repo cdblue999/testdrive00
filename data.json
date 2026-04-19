@@ -7,11 +7,12 @@
       "name_de": "Bürgerkoalition",
       "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Koalicja_Obywatelska_logo.svg/400px-Koalicja_Obywatelska_logo.svg.png",
       "promises": [
-        { "desc_pl": "Kwota wolna 60 tys. zł", "status": "pending", "url": "https://100konkretow.pl/konkret-nr-1/", "cost": "48 mld" }
+        { "desc_pl": "Kwota wolna 60 tys. zł", "status": "pending", "url": "https://100konkretow.pl/konkret-nr-1/", "cost": "48 mld PLN" },
+        { "desc_pl": "Babciowe (Aktywny Rodzic)", "status": "done", "url": "https://100konkretow.pl/konkret-nr-4/", "cost": "8.9 mld PLN" }
       ],
       "critical_links": [
-        { "label_pl": "Analiza kosztów (Money.pl)", "url": "https://www.money.pl" },
-        { "label_pl": "Krytyka tempa realizacji", "url": "https://www.rp.pl" }
+        { "label_pl": "Analiza kosztów obietnic", "url": "https://www.money.pl" },
+        { "label_pl": "Krytyka realizacji 100 konkretów", "url": "https://www.rp.pl" }
       ]
     },
     {
@@ -21,10 +22,11 @@
       "name_de": "Recht und Gerechtigkeit",
       "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Logo_Prawa_i_Sprawiedliwo%C5%9Bci.svg/400px-Logo_Prawa_i_Sprawiedliwo%C5%9Bci.svg.png",
       "promises": [
-        { "desc_pl": "Budowa CPK", "status": "pending", "url": "https://pis.org.pl", "cost": "155 mld" }
+        { "desc_pl": "Budowa CPK", "status": "pending", "url": "https://pis.org.pl", "cost": "155 mld PLN" },
+        { "desc_pl": "800 Plus", "status": "done", "url": "https://pis.org.pl", "cost": "65 mld PLN" }
       ],
       "critical_links": [
-        { "label_pl": "Raport o opóźnieniach", "url": "https://www.onet.pl" }
+        { "label_pl": "Raport NIK o CPK", "url": "https://www.nik.gov.pl" }
       ]
     }
   ]
