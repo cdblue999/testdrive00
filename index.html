@@ -12,12 +12,12 @@
 </head>
 <body>
     <div class="news-ticker">
-        <div class="ticker-wrapper" id="ticker-content">Inicjalizacja transmisji danych...</div>
+        <div class="ticker-wrapper" id="ticker-content">Pobieranie najnowszych depesz...</div>
     </div>
 
     <div id="currency-box" class="corner-box left-box">
         <div class="box-title" id="t-market-title">RYNEK I WSKAŹNIKI (LIVE)</div>
-        <div id="rates" class="data-block">Pobieranie danych NBP...</div>
+        <div id="rates" class="data-block">Ładowanie danych...</div>
     </div>
 
     <div class="corner-box right-box">
@@ -27,29 +27,21 @@
 
     <header class="main-header">
         <h1 id="t-main-title">terminal obywatelski</h1>
-        
         <div class="election-wrapper">
             <div class="election-title" id="t-election-title">WYBORY</div>
             <div id="election-data-box" class="data-block"></div>
         </div>
-
         <div class="lang-switch">
             <img src="https://flagcdn.com/w40/pl.png" class="lang-icon" onclick="setLanguage('pl')" alt="PL">
             <img src="https://flagcdn.com/w40/gb.png" class="lang-icon" onclick="setLanguage('en')" alt="EN">
             <img src="https://flagcdn.com/w40/de.png" class="lang-icon" onclick="setLanguage('de')" alt="DE">
         </div>
-
-        <div class="flag-container">
-            <div class="flag-white"></div>
-            <div class="flag-red"></div>
-        </div>
+        <div class="flag-container"><div class="flag-white"></div><div class="flag-red"></div></div>
     </header>
 
     <main id="app" class="party-grid"></main>
 
-    <footer class="site-footer">
-        <p id="t-footer"></p>
-    </footer>
+    <footer class="site-footer"><p id="t-footer"></p></footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
