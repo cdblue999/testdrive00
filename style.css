@@ -1,31 +1,44 @@
 :root {
     --bg-color: #f8fafc;
+    --border-color: #e2e8f0;
     --amarant: #E52B50;
+    --font-main: 'Inter', sans-serif;
     --font-data: 'Roboto Mono', monospace;
 }
 
-body { font-family: 'Inter', sans-serif; background: var(--bg-color); margin: 0; padding-top: 32px; }
+body { font-family: var(--font-main); background: var(--bg-color); margin: 0; padding-top: 32px; color: #0f172a; }
 
-/* NEWS TICKER */
-.news-ticker { background: #fde047; color: #000; position: fixed; top: 0; width: 100%; z-index: 3000; font-family: var(--font-data); font-size: 13px; font-weight: 700; padding: 6px 0; overflow: hidden; }
+.data-block { font-family: var(--font-data); font-size: 14px; color: #475569; line-height: 1.6; }
+
+.news-ticker {
+    background: #fde047; color: #000; overflow: hidden; white-space: nowrap;
+    padding: 6px 0; font-family: var(--font-data); font-size: 13px; font-weight: 700;
+    position: fixed; top: 0; width: 100%; z-index: 3000; border-bottom: 1px solid #eab308;
+}
 .ticker-wrapper { display: inline-block; padding-left: 100%; animation: ticker-move 45s linear infinite; }
 @keyframes ticker-move { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-/* GRID PARTII */
+.corner-box { 
+    position: absolute; top: 45px; background: white; padding: 12px 18px; 
+    border: 1px solid var(--border-color); border-radius: 8px; z-index: 1000; min-height: 85px;
+}
+.left-box { left: 10px; min-width: 340px; }
+.right-box { right: 10px; min-width: 220px; }
+.box-title { font-weight: 800; font-size: 10px; color: #94a3b8; text-transform: uppercase; margin-bottom: 8px; font-family: var(--font-main); }
+
 .party-grid { 
     display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; 
     padding: 30px; max-width: 1800px; margin: 0 auto; align-items: stretch; 
 }
 
-/* KARTA - STRUKTURA PIONOWA */
 .card { 
-    background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; 
-    display: flex; flex-direction: column; min-height: 500px;
+    background: white; border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; 
+    display: flex; flex-direction: column; transition: 0.3s; min-height: 550px;
 }
 
-/* SEKCJA KRYTYCZNA - PRZYPIĘTA DO DOŁU */
+/* SEKCJA ANALIZY KRYTYCZNEJ - WYRÓWNANIE DO DOŁU */
 .critical-section {
-    margin-top: auto; /* To wypycha sekcję na sam dół */
+    margin-top: auto;
     padding-top: 15px;
     border-top: 2px solid #fff1f2;
 }
@@ -38,4 +51,7 @@ body { font-family: 'Inter', sans-serif; background: var(--bg-color); margin: 0;
 }
 .critical-link:hover { color: var(--amarant); text-decoration: underline; }
 
-.cost-tag { font-family: var(--font-data); font-size: 9px; color: var(--amarant); background: #fff1f2; padding: 2px 4px; border-radius: 4px; margin-left: auto; }
+.cost-tag { font-family: var(--font-data); font-size: 9px; font-weight: 700; color: var(--amarant); background: #fff1f2; padding: 2px 4px; border-radius: 4px; margin-left: auto; }
+.failed { color: var(--amarant) !important; text-decoration: line-through !important; opacity: 0.7; }
+
+.site-footer { text-align: center; padding: 60px 20px; font-family: var(--font-data); font-size: 14px; color: #94a3b8; border-top: 1px solid var(--border-color); margin-top: 50px; }
