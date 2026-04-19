@@ -5,23 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src * data:;">
     <title>terminal obywatelski</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="news-ticker"><div class="ticker-wrapper" id="ticker-content"></div></div>
-    <div id="currency-box" class="corner-box left-box"><div class="box-title">RYNEK I WSKAŹNIKI (LIVE)</div><div id="rates" class="data-block"></div></div>
-    <div class="corner-box right-box"><div class="box-title">STATUSY RATINGOWE</div><div id="legend-content" class="data-block"></div></div>
+    <div class="news-ticker">
+        <div class="ticker-wrapper" id="ticker-content">Inicjalizacja transmisji...</div>
+    </div>
+
+    <div id="currency-box" class="corner-box left-box">
+        <div class="box-title">RYNEK I WSKAŹNIKI (LIVE)</div>
+        <div id="rates" class="data-block">Pobieranie danych...</div>
+    </div>
+
+    <div class="corner-box right-box">
+        <div class="box-title">STATUSY RATINGOWE</div>
+        <div id="legend-content" class="data-block"></div>
+    </div>
+
     <header class="main-header">
-        <h1 id="t-main-title">terminal obywatelski</h1>
-        <div class="election-wrapper"><div class="election-title">WYBORY</div><div id="election-data-box" class="data-block"></div></div>
+        <h1>terminal obywatelski</h1>
+        <div class="election-wrapper">
+            <div class="election-title">WYBORY</div>
+            <div id="election-data-box" class="data-block"></div>
+        </div>
         <div class="lang-switch">
             <img src="https://flagcdn.com/w40/pl.png" class="lang-icon" onclick="setLanguage('pl')" alt="PL">
             <img src="https://flagcdn.com/w40/gb.png" class="lang-icon" onclick="setLanguage('en')" alt="EN">
             <img src="https://flagcdn.com/w40/de.png" class="lang-icon" onclick="setLanguage('de')" alt="DE">
         </div>
+        <div class="flag-container"><div class="flag-white"></div><div class="flag-red"></div></div>
     </header>
+
     <main id="app" class="party-grid"></main>
+
     <footer class="site-footer"><p id="t-footer"></p></footer>
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
 </body>
