@@ -5,12 +5,13 @@
       "name_pl": "Koalicja Obywatelska",
       "name_en": "Civic Coalition",
       "name_de": "Bürgerkoalition",
-      "website": "https://platforma.org",
       "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Koalicja_Obywatelska_logo.svg/400px-Koalicja_Obywatelska_logo.svg.png",
       "promises": [
-        { "desc_pl": "Kwota wolna 60 tys. zł", "desc_en": "Tax-free allowance 60k PLN", "desc_de": "Steuerfreibetrag 60.000 PLN", "status": "pending", "url": "https://100konkretow.pl/konkret-nr-1/", "cost": "48 mld PLN" },
-        { "desc_pl": "Babciowe (Aktywny Rodzic)", "desc_en": "Active Parent Grant", "desc_de": "Elterngeld (Aktiver Elternteil)", "status": "done", "url": "https://100konkretow.pl/konkret-nr-4/", "cost": "8.9 mld PLN" },
-        { "desc_pl": "Paliwo po 5,19 zł", "desc_en": "Fuel at 5.19 PLN/L", "desc_de": "Benzin für 5,19 PLN/L", "status": "failed", "url": "https://100konkretow.pl/konkret-nr-3/", "cost": "12 mld PLN" }
+        { "desc_pl": "Kwota wolna 60 tys. zł", "status": "pending", "url": "https://100konkretow.pl/konkret-nr-1/", "cost": "48 mld" }
+      ],
+      "critical_links": [
+        { "label_pl": "Analiza kosztów (Money.pl)", "url": "https://www.money.pl" },
+        { "label_pl": "Krytyka tempa realizacji", "url": "https://www.rp.pl" }
       ]
     },
     {
@@ -18,11 +19,12 @@
       "name_pl": "Prawo i Sprawiedliwość",
       "name_en": "Law and Justice",
       "name_de": "Recht und Gerechtigkeit",
-      "website": "https://pis.org.pl",
       "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Logo_Prawa_i_Sprawiedliwo%C5%9Bci.svg/400px-Logo_Prawa_i_Sprawiedliwo%C5%9Bci.svg.png",
       "promises": [
-        { "desc_pl": "Budowa CPK", "desc_en": "Construction of CPK Airport", "desc_de": "Bau des Großflughafens CPK", "status": "pending", "url": "https://pis.org.pl/dokumenty", "cost": "155 mld PLN" },
-        { "desc_pl": "800 Plus", "desc_en": "800 Plus Benefit", "desc_de": "Kindergeld 800 Plus", "status": "done", "url": "https://pis.org.pl/aktualnosci/800-plus-od-1-stycznia", "cost": "65 mld PLN" }
+        { "desc_pl": "Budowa CPK", "status": "pending", "url": "https://pis.org.pl", "cost": "155 mld" }
+      ],
+      "critical_links": [
+        { "label_pl": "Raport o opóźnieniach", "url": "https://www.onet.pl" }
       ]
     }
   ]
