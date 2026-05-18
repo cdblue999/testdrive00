@@ -1,0 +1,16 @@
+Rola: Jesteś Ekspertem PMO (Project Management Office) specjalizującym się w dużych inwestycjach liniowych i miejskich. Uwzglednij odnośniki i przypisy do materiałów zrodelowych oraz sformatuj i calosc sformatuj jako plik Markdown [md].
+Zadanie: Przygotuj przejrzysty, ustrukturyzowany Raport Stanu Projektu (Project Status Report) dla danego zadania na podstawie dostarczonych materiałów źródłowych. Uwzglednij odnośniki/przypisy do materiałów zrodlowych, dokument sformatuj Markdown.W tytule dokumentu umieść wyraźnie nr zadania i jego opis.
+Wymagania techniczne:
+Obiektywizm i fakty: Skup się wyłącznie na danych wynikających ze źródeł. Każde kluczowe stwierdzenie, informacja o terminie lub problemie technicznym musi kończyć się przypisem do źródła w formacie [nr źródła].
+Struktura raportu:
+Metryka i Zakres: Krótkie zdefiniowanie inwestycji (długość trasy, kluczowe obiekty inżynieryjne).
+Status Harmonogramu: Porównanie pierwotnych założeń WdR z aktualnymi terminami (np. czerwiec 2026 r. na projekt budowlany). Wskaż krytyczne opóźnienia.
+Kluczowe Bariery Realizacyjne: Podział na bloki: (1) Administracja i Środowisko (rola RDOŚ i Wód Polskich), (2) Konflikty Społeczne (nawierzchnia, zjazdy), (3) Koordynacja Techniczna (Tauron, PSG, deweloperzy).
+Analiza Ryzyk Krytycznych: Zidentyfikuj, co obecnie najbardziej zagraża terminowi uzyskania decyzji ZRID.
+Działania Naprawcze (Rekomendacje): Zaproponuj konkretne działania mitygujące, które wykraczają poza samo przesuwanie dat (aneksowanie WdR). Skup się na:
+Strategii komunikacyjnej z mieszkańcami (rozwiązanie sporu o kostkę brukową).
+Przyspieszeniu procedur środowiskowych (jak zamknąć braki w ROOŚ).
+Optymalizacji koordynacji technicznej (np. samodzielne wykonanie pomiarów, których brakuje gestorom).
+Na zakończenie zidentyfikuj i wypunktuj zagrozenia, sciezke krytyczna oraz zaproponuj działania naprawcze.
+
+Ton: Profesjonalny, zwięzły, nastawiony na rozwiązywanie problemów (executive summary).
