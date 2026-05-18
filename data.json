@@ -1,0 +1,71 @@
+{
+  "parties": [
+    {
+      "id": "pis",
+      "name_pl": "Prawo i Sprawiedliwość",
+      "mandates": 189,
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Logo_Prawa_i_Sprawiedliwo%C5%9Bci.svg/400px-Logo_Prawa_i_Sprawiedliwo%C5%9Bci.svg.png",
+      "promises": [
+        { "desc_pl": "Budowa CPK", "status": "pending", "url": "https://pis.org.pl", "cost": "155 mld" },
+        { "desc_pl": "800 Plus", "status": "done", "url": "https://pis.org.pl", "cost": "65 mld" }
+      ],
+      "critical_links": [
+        { "label_pl": "Gazeta Polska - Analiza CPK", "url": "https://www.gazetapolska.pl" },
+        { "label_pl": "Do Rzeczy - Bilans rządów", "url": "https://dorzeczy.pl" }
+      ]
+    },
+    {
+      "id": "ko",
+      "name_pl": "Koalicja Obywatelska",
+      "mandates": 157,
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Koalicja_Obywatelska_logo.svg/400px-Koalicja_Obywatelska_logo.svg.png",
+      "promises": [
+        { "desc_pl": "Kwota wolna 60 tys. zł", "status": "pending", "url": "https://100konkretow.pl", "cost": "48 mld" },
+        { "desc_pl": "Babciowe (Aktywny Rodzic)", "status": "done", "url": "https://100konkretow.pl", "cost": "8.9 mld" }
+      ],
+      "critical_links": [
+        { "label_pl": "Money.pl - Raport o kosztach", "url": "https://www.money.pl" },
+        { "label_pl": "Wirtualna Polska - Obietnice", "url": "https://www.wp.pl" }
+      ]
+    },
+    {
+      "id": "td",
+      "name_pl": "Trzecia Droga",
+      "mandates": 64,
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Trzecia_Droga_logo.svg/400px-Trzecia_Droga_logo.svg.png",
+      "promises": [
+        { "desc_pl": "Dobrowolny ZUS", "status": "pending", "url": "https://trzeciadroga.pl", "cost": "12 mld" },
+        { "desc_pl": "Akademik za 1 zł", "status": "failed", "url": "https://trzeciadroga.pl", "cost": "2 mld" }
+      ],
+      "critical_links": [
+        { "label_pl": "Interia - Reforma składek", "url": "https://www.interia.pl" }
+      ]
+    },
+    {
+      "id": "lewica",
+      "name_pl": "Lewica",
+      "mandates": 26,
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Nowa_Lewica_Logo.svg/400px-Nowa_Lewica_Logo.svg.png",
+      "promises": [
+        { "desc_pl": "Renta wdowia", "status": "done", "url": "https://lewica.org", "cost": "13 mld" },
+        { "desc_pl": "35h tydzień pracy", "status": "pending", "url": "https://lewica.org", "cost": "n/d" }
+      ],
+      "critical_links": [
+        { "label_pl": "Money.pl - Koszt renty", "url": "https://www.money.pl" }
+      ]
+    },
+    {
+      "id": "konf",
+      "name_pl": "Konfederacja",
+      "mandates": 18,
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Konfederacja_Wolno%C5%9B%C4%87_i_Niepodleg%C5%82o%C5%9B%C4%87_logo.svg/400px-Konfederacja_Wolno%C5%9B%C4%87_i_Niepodleg%C5%82o%C5%9B%C4%87_logo.svg.png",
+      "promises": [
+        { "desc_pl": "Likwidacja podatku Belki", "status": "pending", "url": "https://konfederacja.pl", "cost": "4 mld" },
+        { "desc_pl": "Tanie paliwo", "status": "pending", "url": "https://konfederacja.pl", "cost": "15 mld" }
+      ],
+      "critical_links": [
+        { "label_pl": "Gazeta Polska - Analiza", "url": "https://www.gazetapolska.pl" }
+      ]
+    }
+  ]
+}
