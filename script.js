@@ -48,10 +48,16 @@ async function fetchNews() {
         const r = await fetch(`${RSS2JSON}?rss_url=${encodeURIComponent(NEWS_RSS)}`);
         const d = await r.json();
         if (d.status === 'ok' && d.items?.length) {
-            return d.items.slice(0, 10).map(i => i.title.replace(/\.\.\./g, '')).join(' • ') + ' • ';
+            return d.items.slice(0, 10).map(i => i.title.replace(/\.\.\./g, ''));
         }
     } catch (_) {}
     return null;
+}
+
+function buildTickerHtml(items, fallback) {
+    if (!items) return fallback + fallback;
+    const urgent = /pilne|rcb|alert|ostrzeżenie|komunikat/im;
+    return items.map(t => urgent.test(t) ? `<span class="urgent">${t}</span>` : t).join(' • ') + ' • ';
 }
 
 function setLanguage(lang) {
@@ -91,7 +97,7 @@ async function init() {
             fetchNews(),
             fetchFuelPrices()
         ]);
-        document.getElementById('ticker-content').innerText = (news || t.news) + (news || t.news);
+        document.getElementById('ticker-content').innerHTML = buildTickerHtml(news, t.news);
 
         const eur = nbpData[0].rates.find(x => x.code === 'EUR').mid;
         const usd = nbpData[0].rates.find(x => x.code === 'USD').mid;
@@ -152,7 +158,7 @@ async function init() {
             app.appendChild(card);
         });
     } catch (e) {
-        document.getElementById('ticker-content').innerText = t.news + t.news;
+        document.getElementById('ticker-content').innerHTML = buildTickerHtml(null, t.news);
         app.innerHTML = '<div style="text-align:center; padding:50px;">Błąd danych. Sprawdź plik data.json</div>';
     }
 }
