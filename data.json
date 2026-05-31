@@ -15,9 +15,9 @@
         { "desc_pl": "Bon energetyczny", "desc_en": "Energy voucher", "desc_de": "Energiegutschein", "status": "pending", "url": "https://www.gov.pl/web/klimat/bon-energetyczny", "cost": "8 mld" }
       ],
       "critical_links": [
-        { "label_pl": "Gazeta Polska - Analiza CPK", "label_en": "Gazeta Polska - CPK Analysis", "label_de": "Gazeta Polska - CPK Analyse", "url": "https://www.gazetapolska.pl/artykul/cpk-analiza-kosztow" },
-        { "label_pl": "Do Rzeczy - Bilans rządów", "label_en": "Do Rzeczy - Balance of power", "label_de": "Do Rzeczy - Regierungsbilanz", "url": "https://dorzeczy.pl/opinie/bilans-rzadow-pis" },
-        { "label_pl": "OKO.press - Fact-check PiS", "label_en": "OKO.press - PiS Fact-check", "label_de": "OKO.press - PiS Faktencheck", "url": "https://oko.press/tag/prawo-i-sprawiedliwosc" }
+        { "label_pl": "OKO.press - Fact-check PiS", "label_en": "OKO.press - PiS Fact-check", "label_de": "OKO.press - PiS Faktencheck", "url": "https://oko.press/tag/prawo-i-sprawiedliwosc" },
+        { "label_pl": "Polityka - Analiza rządów PiS", "label_en": "Polityka - Analysis of PiS rule", "label_de": "Polityka - Analyse der PiS-Herrschaft", "url": "https://www.polityka.pl/tag/prawo-i-sprawiedliwosc" },
+        { "label_pl": "Krytyka Polityczna - PiS", "label_en": "Krytyka Polityczna - PiS", "label_de": "Krytyka Polityczna - PiS", "url": "https://krytykapolityczna.pl/tag/pis" }
       ]
     },
     {
@@ -35,9 +35,9 @@
         { "desc_pl": "Likwidacja prac domowych", "desc_en": "Abolition of compulsory homework", "desc_de": "Abschaffung der Hausaufgabenpflicht", "status": "done", "url": "https://dziennikustaw.gov.pl/D2024000085501.pdf", "cost": "0.5 mld" }
       ],
       "critical_links": [
-        { "label_pl": "Money.pl - Raport o kosztach", "label_en": "Money.pl - Cost report", "label_de": "Money.pl - Kostenbericht", "url": "https://www.money.pl/gospodarka/koszty-obietnic-ko-2023" },
-        { "label_pl": "Demagog - Analiza 100 konkretów", "label_en": "Demagog - 100 specifics analysis", "label_de": "Demagog - Analyse der 100 Punkte", "url": "https://demagog.org.pl/analizy/100-konkretow-ko" },
-        { "label_pl": "Do Rzeczy - Krytyka programu KO", "label_en": "Do Rzeczy - Criticism of KO program", "label_de": "Do Rzeczy - Kritik am KO-Programm", "url": "https://dorzeczy.pl/opinie/krytyka-100-konkretow-ko" }
+        { "label_pl": "Do Rzeczy - Krytyka programu KO", "label_en": "Do Rzeczy - Criticism of KO program", "label_de": "Do Rzeczy - Kritik am KO-Programm", "url": "https://dorzeczy.pl/opinie/krytyka-100-konkretow-ko" },
+        { "label_pl": "wPolityce - Rządy KO", "label_en": "wPolityce - KO government", "label_de": "wPolityce - KO-Regierung", "url": "https://wpolityce.pl/koalicja-obywatelska" },
+        { "label_pl": "Gazeta Polska - Obietnice KO", "label_en": "Gazeta Polska - KO promises", "label_de": "Gazeta Polska - KO-Versprechen", "url": "https://www.gazetapolska.pl/artykul/obietnice-koalicji-obywatelskiej" }
       ]
     },
     {
@@ -55,9 +55,9 @@
         { "desc_pl": "Podwyższenie kwoty wolnej do 30 tys. zł", "desc_en": "Raise tax-free allowance to 30k PLN", "desc_de": "Erhöhung des Steuerfreibetrags auf 30.000 PLN", "status": "pending", "url": "https://trzeciadroga.pl/program/podatki", "cost": "20 mld" }
       ],
       "critical_links": [
-        { "label_pl": "Interia - Reforma składek", "label_en": "Interia - Contribution reform", "label_de": "Interia - Beitragsreform", "url": "https://www.interia.pl/biznes/reforma-skladek-zus" },
-        { "label_pl": "Demagog - Obietnice TD", "label_en": "Demagog - TD Promises", "label_de": "Demagog - TD Versprechen", "url": "https://demagog.org.pl/tag/trzecia-droga" },
-        { "label_pl": "Sejm RP - Głosowania", "label_en": "Sejm RP - Voting records", "label_de": "Sejm RP - Abstimmungen", "url": "https://www.sejm.gov.pl/Sejm10.nsf/glosowania.xsp" }
+        { "label_pl": "wPolityce - Program TD", "label_en": "wPolityce - TD program", "label_de": "wPolityce - TD-Programm", "url": "https://wpolityce.pl/trzecia-droga" },
+        { "label_pl": "Do Rzeczy - Rządy TD", "label_en": "Do Rzeczy - TD government", "label_de": "Do Rzeczy - TD-Regierung", "url": "https://dorzeczy.pl/opinie/trzecia-droga-wladza" },
+        { "label_pl": "OKO.press - Trzecia Droga", "label_en": "OKO.press - Third Way", "label_de": "OKO.press - Dritter Weg", "url": "https://oko.press/tag/trzecia-droga" }
       ]
     },
     {
@@ -75,9 +75,9 @@
         { "desc_pl": "Mieszkania na tani wynajem", "desc_en": "Affordable rental housing", "desc_de": "Bezahlbarer Wohnraum zur Miete", "status": "pending", "url": "https://lewica.org/program/mieszkania-wynajem", "cost": "7 mld" }
       ],
       "critical_links": [
-        { "label_pl": "Money.pl - Koszt renty wdowiej", "label_en": "Money.pl - Cost of widow's pension", "label_de": "Money.pl - Kosten der Witwenrente", "url": "https://www.money.pl/emerytury/renta-wdowia-koszt-dla-budzetu" },
-        { "label_pl": "OKO.press - Analiza programu Lewicy", "label_en": "OKO.press - Left program analysis", "label_de": "OKO.press - Analyse des Linksprogramms", "url": "https://oko.press/tag/lewica" },
-        { "label_pl": "wPolityce - Krytyka postulatów Lewicy", "label_en": "wPolityce - Criticism of Left's demands", "label_de": "wPolityce - Kritik der Forderungen der Linken", "url": "https://wpolityce.pl/lewica-postulaty-gospodarcze" }
+        { "label_pl": "wPolityce - Krytyka postulatów Lewicy", "label_en": "wPolityce - Criticism of Left's demands", "label_de": "wPolityce - Kritik der Forderungen der Linken", "url": "https://wpolityce.pl/lewica-postulaty-gospodarcze" },
+        { "label_pl": "Do Rzeczy - Program Lewicy", "label_en": "Do Rzeczy - Left program", "label_de": "Do Rzeczy - Linksprogramm", "url": "https://dorzeczy.pl/opinie/program-lewicy-2023" },
+        { "label_pl": "Gazeta Polska - Postulaty Lewicy", "label_en": "Gazeta Polska - Left's demands", "label_de": "Gazeta Polska - Forderungen der Linken", "url": "https://www.gazetapolska.pl/artykul/postulaty-lewicy" }
       ]
     },
     {
@@ -95,9 +95,9 @@
         { "desc_pl": "Likwidacja CBA i CBŚP", "desc_en": "Abolish CBA and CBŚP", "desc_de": "Abschaffung von CBA und CBŚP", "status": "pending", "url": "https://konfederacja.pl/program/cbsp", "cost": "~0,3 mld oszcz." }
       ],
       "critical_links": [
-        { "label_pl": "Gazeta Polska - Analiza programu", "label_en": "Gazeta Polska - Program analysis", "label_de": "Gazeta Polska - Programmanalyse", "url": "https://www.gazetapolska.pl/artykul/konfederacja-program-gospodarczy" },
-        { "label_pl": "Demagog - Obietnice Konfederacji", "label_en": "Demagog - Confederation promises", "label_de": "Demagog - Versprechen der Konföderation", "url": "https://demagog.org.pl/tag/konfederacja" },
-        { "label_pl": "Krytyka Polityczna - Analiza programu", "label_en": "Krytyka Polityczna - Program analysis", "label_de": "Krytyka Polityczna - Programmanalyse", "url": "https://krytykapolityczna.pl/tag/konfederacja" }
+        { "label_pl": "Krytyka Polityczna - Analiza programu", "label_en": "Krytyka Polityczna - Program analysis", "label_de": "Krytyka Polityczna - Programmanalyse", "url": "https://krytykapolityczna.pl/tag/konfederacja" },
+        { "label_pl": "OKO.press - Konfederacja", "label_en": "OKO.press - Confederation", "label_de": "OKO.press - Konföderation", "url": "https://oko.press/tag/konfederacja" },
+        { "label_pl": "Polityka - Konfederacja", "label_en": "Polityka - Confederation", "label_de": "Polityka - Konföderation", "url": "https://www.polityka.pl/tag/konfederacja" }
       ]
     }
   ]
