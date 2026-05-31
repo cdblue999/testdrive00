@@ -123,6 +123,8 @@ async function init() {
             const totalPromises = p.promises.length;
             const pct = Math.round(donePromises / totalPromises * 100);
 
+            const notes = p.promises.filter(pr => pr[`note_${currentLang}`] || pr.note_pl);
+
             card.innerHTML = `
                 <div style="height:60px; display:flex; align-items:center; justify-content:center; margin-bottom:10px;">
                     <img src="${p.logo}" style="max-height:100%; max-width:100%; object-fit:contain;" onerror="this.style.display='none'" alt="">
@@ -145,7 +147,7 @@ async function init() {
                     ${p.promises.map(pr => `
                         <li class="${pr.status}" style="display:flex; align-items:center; gap:8px; padding:8px 0; border-bottom:1px solid #f1f5f9; line-height:1.4;">
                             <span style="font-weight:700; width:16px; flex-shrink:0; text-align:center;">${pr.status==='done'?'✓':(pr.status==='failed'?'✕':'•')}</span>
-                            <a href="${pr.url}" target="_blank" style="text-decoration:none; color:inherit; flex-grow:1; font-size:12.5px;">${pr[`desc_${currentLang}`] || pr.desc_pl}</a>
+                            <a href="${pr.url}" target="_blank" style="text-decoration:none; color:inherit; flex-grow:1; font-size:12.5px;">${pr[`desc_${currentLang}`] || pr.desc_pl}${(pr[`note_${currentLang}`] || pr.note_pl) ? '<b style="color:var(--amarant);">*</b>' : ''}</a>
                             ${pr.cost ? `<span class="cost-tag">${pr.cost}</span>` : ''}
                         </li>`).join('')}
                 </ul>
@@ -154,7 +156,8 @@ async function init() {
                     ${p.critical_links ? p.critical_links.map(cl => `
                         <a href="${cl.url}" target="_blank" class="critical-link">→ ${cl[`label_${currentLang}`] || cl.label_pl}</a>
                     `).join('') : '<span style="font-size:11px; color:var(--text-muted);">Brak danych</span>'}
-                </div>`;
+                </div>
+                ${notes.length ? `<div style="margin-top:12px;padding-top:12px;border-top:1px dashed #e2e8f0;font-size:10px;color:var(--text-muted);font-family:var(--font-data);line-height:1.5;"><b style="color:var(--amarant);">*Uwagi:</b><br>${notes.map(n => '• ' + (n[`note_${currentLang}`] || n.note_pl)).join('<br>')}</div>` : ''}`;
             app.appendChild(card);
         });
     } catch (e) {

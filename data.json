@@ -31,7 +31,7 @@
         { "desc_pl": "Kwota wolna 60 tys. zł", "desc_en": "Tax-free allowance of 60k PLN", "desc_de": "Steuerfreibetrag von 60.000 PLN", "status": "pending", "url": "https://100konkretow.pl/konkret/kwota-wolna-60-tys-zl", "cost": "48 mld" },
         { "desc_pl": "Babciowe (Aktywny Rodzic)", "desc_en": "Active Parent benefit", "desc_de": "Aktiver-Eltern-Beitrag", "status": "done", "url": "https://dziennikustaw.gov.pl/D2023000075501.pdf", "cost": "8.9 mld" },
         { "desc_pl": "Kredyt 0%", "desc_en": "Zero-interest mortgage", "desc_de": "Null-Prozent-Hypothek", "status": "pending", "url": "https://100konkretow.pl/konkret/kredyt-0-proc", "cost": "12 mld" },
-        { "desc_pl": "In vitro z budżetu państwa", "desc_en": "State-funded IVF", "desc_de": "Staatlich finanzierte IVF", "status": "done", "url": "https://www.gov.pl/web/zdrowie/program-in-vitro", "cost": "2.5 mld" },
+        { "desc_pl": "In vitro z budżetu państwa", "desc_en": "State-funded IVF", "desc_de": "Staatlich finanzierte IVF", "status": "done", "url": "https://www.gov.pl/web/zdrowie/program-in-vitro", "cost": "2.5 mld", "note_pl": "Postulat historycznie obecny w programach Lewicy", "note_en": "Historically present in Lewica (The Left) programs", "note_de": "Historisch in Programmen der Linken (Lewica) vorhanden" },
         { "desc_pl": "Likwidacja prac domowych", "desc_en": "Abolition of compulsory homework", "desc_de": "Abschaffung der Hausaufgabenpflicht", "status": "done", "url": "https://dziennikustaw.gov.pl/D2024000085501.pdf", "cost": "0.5 mld" }
       ],
       "critical_links": [
@@ -50,9 +50,9 @@
       "promises": [
         { "desc_pl": "Dobrowolny ZUS dla firm", "desc_en": "Voluntary ZUS for businesses", "desc_de": "Freiwillige ZUS für Unternehmen", "status": "pending", "url": "https://www.pap.pl/aktualnosci/dobrowolny-zus-dla-przedsiebiorcow", "cost": "12 mld" },
         { "desc_pl": "Akademik za 1 zł", "desc_en": "Student dorm for 1 PLN", "desc_de": "Studentenheim für 1 PLN", "status": "failed", "url": "https://www.portalsamorzadowy.pl/edukacja/akademik-za-1-zl-projekt-upada,456789.html", "cost": "2 mld" },
-        { "desc_pl": "Kredyt mieszkaniowy 0%", "desc_en": "Zero-interest housing loan", "desc_de": "Wohnungsbaudarlehen zu 0%", "status": "pending", "url": "https://trzeciadroga.pl/program/kredyt-0", "cost": "8 mld" },
+        { "desc_pl": "Kredyt mieszkaniowy 0%", "desc_en": "Zero-interest housing loan", "desc_de": "Wohnungsbaudarlehen zu 0%", "status": "pending", "url": "https://trzeciadroga.pl/program/kredyt-0", "cost": "8 mld", "note_pl": "Obietnica tożsama z 'Kredyt 0%' z programu KO (100 konkretów, 2023)", "note_en": "Same promise as KO's 'Kredyt 0%' (100 specifics, 2023)", "note_de": "Gleiches Versprechen wie KO 'Kredit 0%' (100 konkrete, 2023)" },
         { "desc_pl": "Obniżenie składki zdrowotnej dla firm", "desc_en": "Reduction of health insurance contribution for businesses", "desc_de": "Senkung des Krankenversicherungsbeitrags für Unternehmen", "status": "done", "url": "https://dziennikustaw.gov.pl/D2024000085501.pdf", "cost": "3 mld" },
-        { "desc_pl": "Podwyższenie kwoty wolnej do 30 tys. zł", "desc_en": "Raise tax-free allowance to 30k PLN", "desc_de": "Erhöhung des Steuerfreibetrags auf 30.000 PLN", "status": "pending", "url": "https://trzeciadroga.pl/program/podatki", "cost": "20 mld" }
+        { "desc_pl": "Podwyższenie kwoty wolnej do 30 tys. zł", "desc_en": "Raise tax-free allowance to 30k PLN", "desc_de": "Erhöhung des Steuerfreibetrags auf 30.000 PLN", "status": "pending", "url": "https://trzeciadroga.pl/program/podatki", "cost": "20 mld", "note_pl": "Podobna obietnica w programie KO (60 tys.) i PiS (podwyżka do 30 tys. w 2022)", "note_en": "Similar promise in KO (60k) and PiS (raise to 30k in 2022) programs", "note_de": "Ähnliches Versprechen bei KO (60k) und PiS (Erhöhung auf 30k 2022)" }
       ],
       "critical_links": [
         { "label_pl": "wPolityce - Program TD", "label_en": "wPolityce - TD program", "label_de": "wPolityce - TD-Programm", "url": "https://wpolityce.pl/trzecia-droga" },
