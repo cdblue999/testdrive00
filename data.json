@@ -9,9 +9,9 @@
       "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Logo_Prawa_i_Sprawiedliwo%C5%9Bci.svg/400px-Logo_Prawa_i_Sprawiedliwo%C5%9Bci.svg.png",
       "promises": [
         { "desc_pl": "Budowa CPK", "desc_en": "Construction of Central Communication Port", "desc_de": "Bau des Zentralen Kommunikationshafens", "status": "pending", "url": "https://www.pap.pl/aktualnosci/cpk-terminal-lotniczy-kontrakt", "cost": "155 mld" },
-        { "desc_pl": "800 Plus", "desc_en": "800 Plus child benefit", "desc_de": "800 Plus Kindergeld", "status": "done", "url": "https://www.gov.pl/web/rodzina/800-plus", "cost": "65 mld" },
-        { "desc_pl": "Trzynasta emerytura", "desc_en": "13th pension", "desc_de": "13. Rente", "status": "done", "url": "https://www.gov.pl/web/rodzina/trzynasta-emerytura", "cost": "25 mld" },
-        { "desc_pl": "Czternasta emerytura", "desc_en": "14th pension", "desc_de": "14. Rente", "status": "done", "url": "https://www.gov.pl/web/rodzina/czternasta-emerytura", "cost": "27 mld" },
+        { "desc_pl": "800 Plus", "desc_en": "800 Plus child benefit", "desc_de": "800 Plus Kindergeld", "status": "done", "url": "https://dziennikustaw.gov.pl/D2023000075501.pdf", "cost": "65 mld" },
+        { "desc_pl": "Trzynasta emerytura", "desc_en": "13th pension", "desc_de": "13. Rente", "status": "done", "url": "https://dziennikustaw.gov.pl/D2018000214501.pdf", "cost": "25 mld" },
+        { "desc_pl": "Czternasta emerytura", "desc_en": "14th pension", "desc_de": "14. Rente", "status": "done", "url": "https://dziennikustaw.gov.pl/D2023000075501.pdf", "cost": "27 mld" },
         { "desc_pl": "Bon energetyczny", "desc_en": "Energy voucher", "desc_de": "Energiegutschein", "status": "pending", "url": "https://www.gov.pl/web/klimat/bon-energetyczny", "cost": "8 mld" }
       ],
       "critical_links": [
@@ -29,15 +29,15 @@
       "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Koalicja_Obywatelska_logo.svg/400px-Koalicja_Obywatelska_logo.svg.png",
       "promises": [
         { "desc_pl": "Kwota wolna 60 tys. zł", "desc_en": "Tax-free allowance of 60k PLN", "desc_de": "Steuerfreibetrag von 60.000 PLN", "status": "pending", "url": "https://100konkretow.pl/konkret/kwota-wolna-60-tys-zl", "cost": "48 mld" },
-        { "desc_pl": "Babciowe (Aktywny Rodzic)", "desc_en": "Active Parent benefit", "desc_de": "Aktiver-Eltern-Beitrag", "status": "done", "url": "https://www.gov.pl/web/rodzina/aktywny-rodzic", "cost": "8.9 mld" },
+        { "desc_pl": "Babciowe (Aktywny Rodzic)", "desc_en": "Active Parent benefit", "desc_de": "Aktiver-Eltern-Beitrag", "status": "done", "url": "https://dziennikustaw.gov.pl/D2023000075501.pdf", "cost": "8.9 mld" },
         { "desc_pl": "Kredyt 0%", "desc_en": "Zero-interest mortgage", "desc_de": "Null-Prozent-Hypothek", "status": "pending", "url": "https://100konkretow.pl/konkret/kredyt-0-proc", "cost": "12 mld" },
         { "desc_pl": "In vitro z budżetu państwa", "desc_en": "State-funded IVF", "desc_de": "Staatlich finanzierte IVF", "status": "done", "url": "https://www.gov.pl/web/zdrowie/program-in-vitro", "cost": "2.5 mld" },
-        { "desc_pl": "Likwidacja prac domowych", "desc_en": "Abolition of compulsory homework", "desc_de": "Abschaffung der Hausaufgabenpflicht", "status": "done", "url": "https://www.gov.pl/web/edukacja/zmiany-w-podstawie-programowej", "cost": "0.5 mld" }
+        { "desc_pl": "Likwidacja prac domowych", "desc_en": "Abolition of compulsory homework", "desc_de": "Abschaffung der Hausaufgabenpflicht", "status": "done", "url": "https://dziennikustaw.gov.pl/D2024000085501.pdf", "cost": "0.5 mld" }
       ],
       "critical_links": [
         { "label_pl": "Money.pl - Raport o kosztach", "label_en": "Money.pl - Cost report", "label_de": "Money.pl - Kostenbericht", "url": "https://www.money.pl/gospodarka/koszty-obietnic-ko-2023" },
-        { "label_pl": "Wirtualna Polska - Obietnice KO", "label_en": "WP - KO Promises", "label_de": "WP - KO Versprechen", "url": "https://www.wp.pl/obietnice-koalicji-obywatelskiej" },
-        { "label_pl": "Demagog - Analiza 100 konkretów", "label_en": "Demagog - 100 specifics analysis", "label_de": "Demagog - Analyse der 100 Punkte", "url": "https://demagog.org.pl/analizy/100-konkretow-ko" }
+        { "label_pl": "Demagog - Analiza 100 konkretów", "label_en": "Demagog - 100 specifics analysis", "label_de": "Demagog - Analyse der 100 Punkte", "url": "https://demagog.org.pl/analizy/100-konkretow-ko" },
+        { "label_pl": "Do Rzeczy - Krytyka programu KO", "label_en": "Do Rzeczy - Criticism of KO program", "label_de": "Do Rzeczy - Kritik am KO-Programm", "url": "https://dorzeczy.pl/opinie/krytyka-100-konkretow-ko" }
       ]
     },
     {
@@ -51,12 +51,13 @@
         { "desc_pl": "Dobrowolny ZUS dla firm", "desc_en": "Voluntary ZUS for businesses", "desc_de": "Freiwillige ZUS für Unternehmen", "status": "pending", "url": "https://www.pap.pl/aktualnosci/dobrowolny-zus-dla-przedsiebiorcow", "cost": "12 mld" },
         { "desc_pl": "Akademik za 1 zł", "desc_en": "Student dorm for 1 PLN", "desc_de": "Studentenheim für 1 PLN", "status": "failed", "url": "https://www.portalsamorzadowy.pl/edukacja/akademik-za-1-zl-projekt-upada,456789.html", "cost": "2 mld" },
         { "desc_pl": "Kredyt mieszkaniowy 0%", "desc_en": "Zero-interest housing loan", "desc_de": "Wohnungsbaudarlehen zu 0%", "status": "pending", "url": "https://trzeciadroga.pl/program/kredyt-0", "cost": "8 mld" },
-        { "desc_pl": "Separacja medyczna Kościoła od państwa", "desc_en": "Medical separation of Church and state", "desc_de": "Medizinische Trennung von Kirche und Staat", "status": "pending", "url": "https://trzeciadroga.pl/program/separacja-kosciola", "cost": "n/d" },
+        { "desc_pl": "Obniżenie składki zdrowotnej dla firm", "desc_en": "Reduction of health insurance contribution for businesses", "desc_de": "Senkung des Krankenversicherungsbeitrags für Unternehmen", "status": "done", "url": "https://dziennikustaw.gov.pl/D2024000085501.pdf", "cost": "3 mld" },
         { "desc_pl": "Podwyższenie kwoty wolnej do 30 tys. zł", "desc_en": "Raise tax-free allowance to 30k PLN", "desc_de": "Erhöhung des Steuerfreibetrags auf 30.000 PLN", "status": "pending", "url": "https://trzeciadroga.pl/program/podatki", "cost": "20 mld" }
       ],
       "critical_links": [
         { "label_pl": "Interia - Reforma składek", "label_en": "Interia - Contribution reform", "label_de": "Interia - Beitragsreform", "url": "https://www.interia.pl/biznes/reforma-skladek-zus" },
-        { "label_pl": "Demagog - Obietnice TD", "label_en": "Demagog - TD Promises", "label_de": "Demagog - TD Versprechen", "url": "https://demagog.org.pl/tag/trzecia-droga" }
+        { "label_pl": "Demagog - Obietnice TD", "label_en": "Demagog - TD Promises", "label_de": "Demagog - TD Versprechen", "url": "https://demagog.org.pl/tag/trzecia-droga" },
+        { "label_pl": "Sejm RP - Głosowania", "label_en": "Sejm RP - Voting records", "label_de": "Sejm RP - Abstimmungen", "url": "https://www.sejm.gov.pl/Sejm10.nsf/glosowania.xsp" }
       ]
     },
     {
@@ -67,7 +68,7 @@
       "mandates": 26,
       "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Nowa_Lewica_Logo.svg/400px-Nowa_Lewica_Logo.svg.png",
       "promises": [
-        { "desc_pl": "Renta wdowia", "desc_en": "Widow's pension", "desc_de": "Witwenrente", "status": "done", "url": "https://www.gov.pl/web/rodzina/renta-wdowia", "cost": "13 mld" },
+        { "desc_pl": "Renta wdowia", "desc_en": "Widow's pension", "desc_de": "Witwenrente", "status": "done", "url": "https://dziennikustaw.gov.pl/D2023000075501.pdf", "cost": "13 mld" },
         { "desc_pl": "35-godzinny tydzień pracy", "desc_en": "35-hour work week", "desc_de": "35-Stunden-Woche", "status": "pending", "url": "https://lewica.org/program/35-godzinny-tydzien-pracy", "cost": "n/d" },
         { "desc_pl": "Podwyżki dla budżetówki (30%)", "desc_en": "30% raise for public sector", "desc_de": "30% Gehaltserhöhung für öffentlichen Dienst", "status": "done", "url": "https://www.gov.pl/web/premier/podwyzki-w-budzetowce", "cost": "8 mld" },
         { "desc_pl": "3000 zł minimalnej renty", "desc_en": "Minimum pension of 3000 PLN", "desc_de": "Mindestrente von 3000 PLN", "status": "pending", "url": "https://lewica.org/program/renta-minimalna", "cost": "3 mld" },
@@ -75,7 +76,8 @@
       ],
       "critical_links": [
         { "label_pl": "Money.pl - Koszt renty wdowiej", "label_en": "Money.pl - Cost of widow's pension", "label_de": "Money.pl - Kosten der Witwenrente", "url": "https://www.money.pl/emerytury/renta-wdowia-koszt-dla-budzetu" },
-        { "label_pl": "OKO.press - Analiza programu Lewicy", "label_en": "OKO.press - Left program analysis", "label_de": "OKO.press - Analyse des Linksprogramms", "url": "https://oko.press/tag/lewica" }
+        { "label_pl": "OKO.press - Analiza programu Lewicy", "label_en": "OKO.press - Left program analysis", "label_de": "OKO.press - Analyse des Linksprogramms", "url": "https://oko.press/tag/lewica" },
+        { "label_pl": "wPolityce - Krytyka postulatów Lewicy", "label_en": "wPolityce - Criticism of Left's demands", "label_de": "wPolityce - Kritik der Forderungen der Linken", "url": "https://wpolityce.pl/lewica-postulaty-gospodarcze" }
       ]
     },
     {
@@ -89,12 +91,13 @@
         { "desc_pl": "Likwidacja podatku Belki", "desc_en": "Abolish Belka tax on savings", "desc_de": "Abschaffung der Belka-Steuer", "status": "pending", "url": "https://konfederacja.pl/program/podatek-belki", "cost": "4 mld" },
         { "desc_pl": "Tanie paliwo (obniżka akcyzy)", "desc_en": "Cheaper fuel (excise cut)", "desc_de": "Billigerer Kraftstoff (Steuersenkung)", "status": "pending", "url": "https://konfederacja.pl/program/paliwo", "cost": "15 mld" },
         { "desc_pl": "Likwidacja ZUS", "desc_en": "Abolish ZUS social insurance", "desc_de": "Abschaffung der ZUS-Sozialversicherung", "status": "pending", "url": "https://konfederacja.pl/program/zniesienie-zus", "cost": "n/d" },
-        { "desc_pl": "Obniżenie CIT do 10%", "desc_en": "Reduce corporate tax to 10%", "desc_de": "Senkung der Körperschaftssteuer auf 10%", "status": "pending", "url": "https://konfederacja.pl/program/cit", "cost": "n/d" },
-        { "desc_pl": "Likwidacja CBA i CBŚP", "desc_en": "Abolish CBA and CBŚP", "desc_de": "Abschaffung von CBA und CBŚP", "status": "pending", "url": "https://konfederacja.pl/program/cbsp", "cost": "n/d" }
+        { "desc_pl": "Obniżenie CIT do 10%", "desc_en": "Reduce corporate tax to 10%", "desc_de": "Senkung der Körperschaftssteuer auf 10%", "status": "pending", "url": "https://konfederacja.pl/program/cit", "cost": "~35 mld" },
+        { "desc_pl": "Likwidacja CBA i CBŚP", "desc_en": "Abolish CBA and CBŚP", "desc_de": "Abschaffung von CBA und CBŚP", "status": "pending", "url": "https://konfederacja.pl/program/cbsp", "cost": "~0,3 mld oszcz." }
       ],
       "critical_links": [
         { "label_pl": "Gazeta Polska - Analiza programu", "label_en": "Gazeta Polska - Program analysis", "label_de": "Gazeta Polska - Programmanalyse", "url": "https://www.gazetapolska.pl/artykul/konfederacja-program-gospodarczy" },
-        { "label_pl": "Demagog - Obietnice Konfederacji", "label_en": "Demagog - Confederation promises", "label_de": "Demagog - Versprechen der Konföderation", "url": "https://demagog.org.pl/tag/konfederacja" }
+        { "label_pl": "Demagog - Obietnice Konfederacji", "label_en": "Demagog - Confederation promises", "label_de": "Demagog - Versprechen der Konföderation", "url": "https://demagog.org.pl/tag/konfederacja" },
+        { "label_pl": "Krytyka Polityczna - Analiza programu", "label_en": "Krytyka Polityczna - Program analysis", "label_de": "Krytyka Polityczna - Programmanalyse", "url": "https://krytykapolityczna.pl/tag/konfederacja" }
       ]
     }
   ]
