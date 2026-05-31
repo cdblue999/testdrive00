@@ -113,12 +113,25 @@ async function init() {
             const partyName = p[`name_${currentLang}`] || p.name_pl;
             const card = document.createElement('div');
             card.className = 'card';
+            const donePromises = p.promises.filter(pr => pr.status === 'done').length;
+            const totalPromises = p.promises.length;
+            const pct = Math.round(donePromises / totalPromises * 100);
+
             card.innerHTML = `
                 <div style="height:60px; display:flex; align-items:center; justify-content:center; margin-bottom:10px;">
                     <img src="${p.logo}" style="max-height:100%; max-width:100%; object-fit:contain;" onerror="this.style.display='none'" alt="">
                 </div>
                 <h3 style="text-align:center; margin:0 0 5px 0; font-weight:900;">${partyName}</h3>
                 <div class="mandates-label">${t.mandates}: ${p.mandates}</div>
+                <div style="margin-bottom:12px;">
+                    <div style="display:flex;justify-content:space-between;font-family:var(--font-data);font-size:10px;color:var(--text-muted);margin-bottom:3px;">
+                        <span>Realizacja: ${donePromises}/${totalPromises}</span>
+                        <span>${pct}%</span>
+                    </div>
+                    <div style="height:6px;background:#e2e8f0;border-radius:3px;overflow:hidden;">
+                        <div style="height:100%;width:${pct}%;background:${pct === 100 ? '#16a34a' : pct > 50 ? '#eab308' : '#E52B50'};border-radius:3px;transition:width 0.3s;"></div>
+                    </div>
+                </div>
                 <button class="vote-btn" onclick="vote('${p.id}')" style="display:flex; justify-content:space-between; align-items:center; width:100%; padding:6px 10px; font-family:var(--font-data); font-size:11px; cursor:pointer; background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; margin-bottom:15px; transition:background 0.15s;" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='#f8fafc'">
                     <span>${t.sentiment}</span> <b id="v-${p.id}">${votes}</b>
                 </button>
