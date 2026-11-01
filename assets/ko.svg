@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <rect width="120" height="120" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <g transform="translate(15, 12) scale(0.75)">
+    <path d="M60 110 C20 70 0 45 0 25 C0 10 12 0 28 0 C42 0 54 10 60 22 C66 10 78 0 92 0 C108 0 120 10 120 25 C120 45 100 70 60 110 Z" fill="#e11d48"/>
+    <path d="M60 22 C54 10 42 0 28 0 C12 0 0 10 0 25 C0 35 6 47 16 58 C26 48 42 40 60 40 C78 40 94 48 104 58 C114 47 120 35 120 25 C120 10 108 0 92 0 C78 0 66 10 60 22 Z" fill="#ffffff"/>
+  </g>
+  <text x="60" y="108" font-family="'Inter', sans-serif" font-size="22" font-weight="900" fill="#003399" text-anchor="middle" letter-spacing="1">KO</text>
+</svg>

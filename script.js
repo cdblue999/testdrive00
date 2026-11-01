@@ -19,7 +19,6 @@
 
 // === CONFIGURATION & STATE ===
 const CONFIG = {
-    // Optional Supabase REST endpoint (if configured). If unreachable, falls back seamlessly to LocalStorage.
     supabaseUrl: 'https://amixcppknszjfscnepnx.supabase.co',
     supabaseKey: 'sb_publishable_8pZgzv2BXthAUoBppO8U3A_edhabo2J',
     rssUrl: 'https://news.google.com/rss/search?q=Polska+gospodarka+sejm&hl=pl&gl=PL&ceid=PL:pl',
@@ -37,6 +36,8 @@ const I18N = {
         sejmTitle: "UKŁAD SIŁ W SEJMIE (WIĘKSZOŚĆ: 231)",
         coalitionGov: "Koalicja rządowa",
         opposition: "Opozycja",
+        coalitionPartiesDetail: "KO (157) + TD (65) + Lewica (26)",
+        oppositionPartiesDetail: "PiS (194) + Konf (18)",
         mandates: "Mandatów",
         sentiment: "Popierasz?",
         votedSentiment: "Poparto",
@@ -49,6 +50,8 @@ const I18N = {
         statusPending: "W realizacji",
         statusFailed: "Niezrealizowane / Zarzucone",
         allFilter: "Wszystkie",
+        govFilter: "🏛️ Koalicja",
+        oppFilter: "🏛️ Opozycja",
         searchPlaceholder: "Szukaj obietnicy (np. ZUS, podatki)...",
         totalCost: "Szacowany koszt:",
         realizationRate: "Realizacja:",
@@ -58,6 +61,8 @@ const I18N = {
         inflation: "Inflacja",
         gdp: "Wzrost PKB",
         deficit: "Deficyt budżetowy",
+        coalitionRulesText: "🏛️ Jak powstaje rząd i koalicja? Zasady (Art. 154-155 Konstytucji RP)",
+        isapText: "📜 Oficjalna Baza Ustaw i Tekstów Jednolitych (ISAP Sejm RP)",
         newsFallback: " PILNE: Polska gospodarka w fazie stabilizacji • GUS publikuje nowe dane makroekonomiczne • ",
         footer: "© 2026 terminal obywatelski. Niezależny agregator danych publicznych (NBP, GUS, MF, Sejm RP).<br>Oprogramowanie open-source na licencji GPLv3. Copyright by ZMS."
     },
@@ -70,6 +75,8 @@ const I18N = {
         sejmTitle: "PARLIAMENTARY BALANCE (MAJORITY: 231)",
         coalitionGov: "Government Coalition",
         opposition: "Opposition",
+        coalitionPartiesDetail: "KO (157) + TD (65) + Lewica (26)",
+        oppositionPartiesDetail: "PiS (194) + Konf (18)",
         mandates: "Seats",
         sentiment: "Support?",
         votedSentiment: "Supported",
@@ -82,6 +89,8 @@ const I18N = {
         statusPending: "In progress",
         statusFailed: "Unfulfilled / Abandoned",
         allFilter: "All",
+        govFilter: "🏛️ Coalition",
+        oppFilter: "🏛️ Opposition",
         searchPlaceholder: "Search promises (e.g. taxes, health)...",
         totalCost: "Estimated cost:",
         realizationRate: "Progress:",
@@ -91,6 +100,8 @@ const I18N = {
         inflation: "Inflation",
         gdp: "GDP Growth",
         deficit: "Budget deficit",
+        coalitionRulesText: "🏛️ Government formation & coalition rules (Art. 154-155 Constitution)",
+        isapText: "📜 Official Database of Polish Laws (ISAP Sejm RP)",
         newsFallback: " BREAKING: Polish economy stabilizes • Statistical office publishes macro data • ",
         footer: "© 2026 Citizen Terminal. Independent public data aggregator (NBP, GUS, MF, Sejm).<br>Open-source software licensed under GPLv3. Copyright by ZMS."
     },
@@ -103,6 +114,8 @@ const I18N = {
         sejmTitle: "MEHRHEITSVERHÄLTNISSE (MEHRHEIT: 231)",
         coalitionGov: "Regierungskoalition",
         opposition: "Opposition",
+        coalitionPartiesDetail: "KO (157) + TD (65) + Lewica (26)",
+        oppositionPartiesDetail: "PiS (194) + Konf (18)",
         mandates: "Mandate",
         sentiment: "Zustimmung?",
         votedSentiment: "Zugestimmt",
@@ -115,6 +128,8 @@ const I18N = {
         statusPending: "In Bearbeitung",
         statusFailed: "Nicht erfüllt / Verworfen",
         allFilter: "Alle",
+        govFilter: "🏛️ Koalition",
+        oppFilter: "🏛️ Opposition",
         searchPlaceholder: "Versprechen suchen...",
         totalCost: "Geschätzte Kosten:",
         realizationRate: "Realisierung:",
@@ -124,6 +139,8 @@ const I18N = {
         inflation: "Inflation",
         gdp: "BIP-Wachstum",
         deficit: "Haushaltsdefizit",
+        coalitionRulesText: "🏛️ Regierungsbildung & Koalitionsregeln (Art. 154-155 Verfassung)",
+        isapText: "📜 Gesetzessammlung des polnischen Parlaments (ISAP)",
         newsFallback: " EILMELDUNG: Wirtschaftswachstum stabil • Statistische Kennzahlen aktualisiert • ",
         footer: "© 2026 Bürgerterminal. Unabhängiger Datenaggregator.<br>Open-Source unter GPLv3. Copyright by ZMS."
     }
@@ -194,7 +211,7 @@ async function fetchNbpRates() {
         setStoredCache('nbp', result);
         return result;
     } catch (_) {
-        return { eur: '4,40', usd: '3,93' }; // Resilient fallback
+        return { eur: '4,40', usd: '3,93' };
     }
 }
 
@@ -226,11 +243,10 @@ async function fetchMainData() {
     return await res.json();
 }
 
-// === VOTING LOGIC (Offline-First + Optional REST Sync) ===
+// === VOTING LOGIC ===
 async function vote(partyId) {
     if (state.userVoted[partyId]) return;
 
-    // 1. Optimistic local update
     state.votes[partyId] = (state.votes[partyId] || 0) + 1;
     state.userVoted[partyId] = true;
     localStorage.setItem('to_local_votes', JSON.stringify(state.votes));
@@ -246,7 +262,6 @@ async function vote(partyId) {
         if (label) label.innerText = getT().votedSentiment;
     }
 
-    // 2. Background sync with backend if online
     try {
         await fetch(`${CONFIG.supabaseUrl}/rest/v1/rpc/increment_vote`, {
             method: 'POST',
@@ -258,9 +273,7 @@ async function vote(partyId) {
             body: JSON.stringify({ row_id: partyId }),
             signal: AbortSignal.timeout(2000)
         });
-    } catch (_) {
-        // Silently keep local vote - resilience first
-    }
+    } catch (_) {}
 }
 
 // === COMPUTED METRICS ===
@@ -369,7 +382,7 @@ function renderMetrics() {
         `;
     }
 
-    // 4. Sejm Majority Breakdown Panel
+    // 4. Sejm Majority Breakdown Panel & Coalition Link
     const sejmEl = document.getElementById('sejm-content');
     if (sejmEl && state.data?.parties) {
         let govMandates = 0;
@@ -384,18 +397,23 @@ function renderMetrics() {
 
         sejmEl.innerHTML = `
             <div class="data-row" style="font-size:11.5px;">
-                <span style="color:#2563eb;font-weight:700;">${t.coalitionGov}: ${govMandates}</span>
-                <span style="color:#dc2626;font-weight:700;">${t.opposition}: ${oppMandates}</span>
+                <span style="color:#2563eb;font-weight:700;" title="${t.coalitionPartiesDetail}">🏛️ ${t.coalitionGov}: ${govMandates}</span>
+                <span style="color:#dc2626;font-weight:700;" title="${t.oppositionPartiesDetail}">🏛️ ${t.opposition}: ${oppMandates}</span>
             </div>
-            <div class="majority-bar-container" title="Próg większości 231 mandatów">
+            <div class="majority-bar-container" title="Większość bezwzględna w Sejmie: 231 głosów">
                 <div class="majority-threshold-line" title="Większość 231"></div>
                 <div class="maj-seg" style="width:${govPct}%;background:#2563eb;"></div>
                 <div class="maj-seg" style="width:${oppPct}%;background:#dc2626;"></div>
             </div>
-            <div style="display:flex;justify-content:space-between;font-size:9.5px;color:var(--text-muted);">
+            <div style="display:flex;justify-content:space-between;font-size:9.5px;color:var(--text-muted);margin-bottom:8px;">
                 <span>0</span>
                 <span>Większość: 231</span>
                 <span>460</span>
+            </div>
+            <div style="border-top:1px dashed var(--card-border);padding-top:6px;">
+                <a href="https://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=WDU19970780483" target="_blank" rel="noopener noreferrer" style="font-size:10.5px;color:var(--text-secondary);text-decoration:none;display:block;" onmouseover="this.style.color='var(--amarant)'" onmouseout="this.style.color='var(--text-secondary)'">
+                    ${t.coalitionRulesText} ↗
+                </a>
             </div>
         `;
     }
@@ -412,23 +430,28 @@ function renderCards() {
 
     state.data.parties.forEach(party => {
         const partyName = party[`name_${state.lang}`] || party.name_pl;
+        const coalitionRole = party[`coalition_label_${state.lang}`] || (party.coalition === 'government' ? t.coalitionGov : t.opposition);
         const votes = state.votes[party.id] || 0;
         const isVoted = !!state.userVoted[party.id];
 
-        // Filter promises
+        // Filter by coalition or status
+        if (state.filter === 'coalition' && party.coalition !== 'government') return;
+        if (state.filter === 'opposition' && party.coalition !== 'opposition') return;
+
         let filteredPromises = party.promises;
-        if (state.filter !== 'all') {
+        if (state.filter === 'done' || state.filter === 'pending' || state.filter === 'failed') {
             filteredPromises = filteredPromises.filter(pr => pr.status === state.filter);
         }
+
         if (query) {
             filteredPromises = filteredPromises.filter(pr => {
                 const desc = (pr[`desc_${state.lang}`] || pr.desc_pl || '').toLowerCase();
                 const note = (pr[`note_${state.lang}`] || pr.note_pl || '').toLowerCase();
                 return desc.includes(query) || note.includes(query) || partyName.toLowerCase().includes(query);
             });
+            if (!filteredPromises.length && !partyName.toLowerCase().includes(query)) return;
         }
 
-        // Stats calculation
         const totalPromises = party.promises.length;
         const doneCount = party.promises.filter(pr => pr.status === 'done').length;
         const pendingCount = party.promises.filter(pr => pr.status === 'pending').length;
@@ -442,16 +465,23 @@ function renderCards() {
         const notes = party.promises.filter(pr => pr[`note_${state.lang}`] || pr.note_pl);
 
         const card = document.createElement('div');
-        card.className = 'card';
+        card.className = `card party-card-${party.coalition}`;
+
+        const fallbackHtml = `<div class="party-logo-fallback" style="background:${party.brand_color || '#334155'};">${escapeHtml(party.short_name || 'PL')}</div>`;
 
         card.innerHTML = `
             <div class="card-header">
                 <div class="party-logo-wrapper">
-                    <img src="${escapeHtml(party.logo)}" alt="${escapeHtml(partyName)}" onerror="this.style.display='none'">
+                    <img src="${escapeHtml(party.logo)}" alt="${escapeHtml(partyName)}" onerror="this.onerror=null; this.parentElement.innerHTML='${fallbackHtml}';">
                 </div>
                 <div class="party-info">
-                    <h3 class="party-title">${escapeHtml(partyName)}</h3>
-                    <div class="mandates-label">${t.mandates}: ${party.mandates}</div>
+                    <div class="party-title-row">
+                        <h3 class="party-title">${escapeHtml(partyName)}</h3>
+                        <span class="coalition-badge coalition-${party.coalition}">
+                            🏛️ ${escapeHtml(coalitionRole)}
+                        </span>
+                    </div>
+                    <div class="mandates-label">${t.mandates}: ${party.mandates} / 460</div>
                 </div>
             </div>
 
@@ -514,7 +544,6 @@ function renderCards() {
 function updateStaticText() {
     const t = getT();
 
-    // Date display
     const dateLocales = { pl: 'pl-PL', en: 'en-GB', de: 'de-DE' };
     const formattedDate = new Intl.DateTimeFormat(dateLocales[state.lang] || 'pl-PL', {
         day: 'numeric',
@@ -525,13 +554,11 @@ function updateStaticText() {
     const dateEl = document.getElementById('current-date');
     if (dateEl) dateEl.innerText = formattedDate;
 
-    // Header labels
     const titleEl = document.getElementById('t-app-title');
     if (titleEl) titleEl.innerText = t.appTitle;
     const asOfEl = document.getElementById('t-as-of');
     if (asOfEl) asOfEl.innerText = t.asOf;
 
-    // Section Titles
     const tMarkets = document.getElementById('t-markets-title');
     if (tMarkets) tMarkets.innerText = t.marketTitle;
     const tElections = document.getElementById('t-elections-title');
@@ -541,26 +568,27 @@ function updateStaticText() {
     const tSejm = document.getElementById('t-sejm-title');
     if (tSejm) tSejm.innerText = t.sejmTitle;
 
-    // Footer
+    const isapLinkEl = document.getElementById('t-isap-link');
+    if (isapLinkEl) isapLinkEl.innerText = t.isapText;
+
     const footerEl = document.getElementById('t-footer');
     if (footerEl) footerEl.innerHTML = t.footer;
 
-    // Filter Chips
     const chipsContainer = document.getElementById('filter-chips-container');
     if (chipsContainer) {
         chipsContainer.innerHTML = `
             <button class="chip-btn ${state.filter === 'all' ? 'active' : ''}" onclick="setFilter('all')">${t.allFilter}</button>
+            <button class="chip-btn ${state.filter === 'coalition' ? 'active' : ''}" onclick="setFilter('coalition')">${t.govFilter}</button>
+            <button class="chip-btn ${state.filter === 'opposition' ? 'active' : ''}" onclick="setFilter('opposition')">${t.oppFilter}</button>
             <button class="chip-btn ${state.filter === 'done' ? 'active' : ''}" onclick="setFilter('done')">✓ ${t.statusDone}</button>
             <button class="chip-btn ${state.filter === 'pending' ? 'active' : ''}" onclick="setFilter('pending')">• ${t.statusPending}</button>
             <button class="chip-btn ${state.filter === 'failed' ? 'active' : ''}" onclick="setFilter('failed')">✕ ${t.statusFailed}</button>
         `;
     }
 
-    // Search Input Placeholder
     const searchInput = document.getElementById('search-input');
     if (searchInput) searchInput.placeholder = t.searchPlaceholder;
 
-    // Language buttons active state
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.lang === state.lang);
     });
@@ -607,7 +635,6 @@ function applyTheme() {
 async function init() {
     applyTheme();
 
-    // Setup search listener
     const searchInput = document.getElementById('search-input');
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
@@ -616,7 +643,6 @@ async function init() {
         });
     }
 
-    // Parallel resilient data fetching
     const [mainDataRes, nbpRes, newsRes] = await Promise.allSettled([
         fetchMainData(),
         fetchNbpRates(),

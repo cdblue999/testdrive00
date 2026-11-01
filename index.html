@@ -18,24 +18,24 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src * data:;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:;">
     <title>terminal obywatelski - monitorowanie obietnic wyborczych i wskaźników gospodarczych</title>
-    <meta name="description" content="Terminal obywatelski - niezależny monitoring realizacji obietnic wyborczych partii politycznych w Polsce. Śledź wskaźniki gospodarcze, kursy walut NBP, ceny paliw i terminy wyborów w jednym miejscu.">
-    <meta name="keywords" content="obietnice wyborcze, monitoring, partie polityczne, PiS, KO, Trzecia Droga, Lewica, Konfederacja, wskaźniki gospodarcze, NBP, kurs walut, Polska, demokracja, wybory">
+    <meta name="description" content="Terminal obywatelski - niezależny monitoring realizacji obietnic wyborczych partii politycznych w Polsce. Śledź wskaźniki gospodarcze, kursy walut NBP, układ sił w Sejmie i terminy wyborów w jednym miejscu.">
+    <meta name="keywords" content="obietnice wyborcze, monitoring, partie polityczne, PiS, KO, Trzecia Droga, Lewica, Konfederacja, wskaźniki gospodarcze, NBP, kurs walut, Sejm, ISAP, demokracja, wybory">
     <meta name="robots" content="index, follow">
     <meta name="author" content="ZMS">
-    <meta name="language" content="pl">
+    <meta name="theme-color" content="#080c14" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
     
     <!-- Open Graph & Social Cards -->
     <meta property="og:title" content="terminal obywatelski - monitoring obietnic wyborczych">
-    <meta property="og:description" content="Niezależny monitoring realizacji obietnic wyborczych partii politycznych w Polsce. Dane: NBP, MF, GUS.">
+    <meta property="og:description" content="Niezależny monitoring realizacji obietnic wyborczych partii politycznych w Polsce. Dane: NBP, MF, GUS, Sejm RP.">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pl_PL">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="terminal obywatelski - monitoring obietnic wyborczych">
     <meta name="twitter:description" content="Śledź realizację obietnic wyborczych partii politycznych, kursy walut i wskaźniki gospodarcze.">
-    <link rel="canonical" href="https://licznik-obietnic.pages.dev/">
 
     <!-- Inline SVG Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='16' fill='%23ffffff'/><rect y='16' width='32' height='16' fill='%23dc2626'/><text x='16' y='21' font-size='11' font-family='monospace' font-weight='bold' fill='%23000' text-anchor='middle'>TO</text></svg>">
@@ -43,7 +43,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -78,6 +78,16 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                         <button class="lang-btn" data-lang="de" onclick="setLanguage('de')">DE</button>
                     </div>
                 </div>
+            </div>
+
+            <!-- Civic Quick Links Bar -->
+            <div class="civic-links-bar" role="navigation" aria-label="Oficjalne źródła prawne">
+                <a href="https://isap.sejm.gov.pl/" target="_blank" rel="noopener noreferrer" class="civic-doc-link" id="t-isap-link">
+                    📜 Oficjalna Baza Ustaw i Tekstów Jednolitych (ISAP Sejm RP) ↗
+                </a>
+                <a href="https://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=WDU19970780483" target="_blank" rel="noopener noreferrer" class="civic-doc-link">
+                    🏛️ Zasady powoływania rządu i większości (Art. 154-155 Konstytucji RP) ↗
+                </a>
             </div>
 
             <!-- Top Metrics Dashboard Grid -->

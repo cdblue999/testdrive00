@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <rect width="120" height="120" rx="16" fill="#0f172a"/>
+  <path d="M26 36 L62 36 L48 58 L84 58 L70 82 L34 82 L48 58 L26 58 Z" fill="#eab308"/>
+  <path d="M50 36 L86 36 L72 58 L98 58 L84 82 L58 82 L72 58 L50 58 Z" fill="#10b981" opacity="0.9"/>
+  <text x="60" y="106" font-family="'Inter', sans-serif" font-size="14" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">TRZECIA DROGA</text>
+</svg>

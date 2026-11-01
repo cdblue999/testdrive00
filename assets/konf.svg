@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <rect width="120" height="120" rx="16" fill="#0a192f"/>
+  <path d="M60 18 L92 32 L92 64 C92 82 78 98 60 106 C42 98 28 82 28 64 L28 32 Z" fill="#1e293b" stroke="#f59e0b" stroke-width="3"/>
+  <path d="M60 26 L84 37 L84 62 C84 76 73 89 60 96 C47 89 36 76 36 62 L36 37 Z" fill="#0f172a"/>
+  <path d="M48 44 L48 80 M48 62 L70 44 M56 56 L72 80" stroke="#f59e0b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="60" y="112" font-family="'Inter', sans-serif" font-size="9" font-weight="800" fill="#cbd5e1" text-anchor="middle" letter-spacing="1">KONFEDERACJA</text>
+</svg>
