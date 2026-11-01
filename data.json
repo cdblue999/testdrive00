@@ -27,6 +27,7 @@
       "coalition_label_en": "Opposition",
       "coalition_label_de": "Opposition",
       "brand_color": "#002b66",
+      "website": "https://pis.org.pl/",
       "logo": "assets/pis.svg",
       "promises": [
         { "desc_pl": "Budowa CPK", "desc_en": "Construction of Central Communication Port", "desc_de": "Bau des Zentralen Kommunikationshafens", "status": "pending", "url": "https://www.pap.pl/aktualnosci/cpk-terminal-lotniczy-kontrakt", "cost": "155 mld" },
@@ -53,6 +54,7 @@
       "coalition_label_en": "Government Coalition",
       "coalition_label_de": "Regierungskoalition",
       "brand_color": "#003399",
+      "website": "https://koalicjaobywatelska.pl/",
       "logo": "assets/ko.svg",
       "promises": [
         { "desc_pl": "Kwota wolna 60 tys. zł", "desc_en": "Tax-free allowance of 60k PLN", "desc_de": "Steuerfreibetrag von 60.000 PLN", "status": "pending", "url": "https://100konkretow.pl/konkret/kwota-wolna-60-tys-zl", "cost": "48 mld" },
@@ -79,6 +81,7 @@
       "coalition_label_en": "Government Coalition",
       "coalition_label_de": "Regierungskoalition",
       "brand_color": "#10b981",
+      "website": "https://trzeciadroga.pl/",
       "logo": "assets/td.svg",
       "promises": [
         { "desc_pl": "Dobrowolny ZUS dla firm", "desc_en": "Voluntary ZUS for businesses", "desc_de": "Freiwillige ZUS für Unternehmen", "status": "pending", "url": "https://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=WDU20240000863", "cost": "12 mld" },
@@ -105,6 +108,7 @@
       "coalition_label_en": "Government Coalition",
       "coalition_label_de": "Regierungskoalition",
       "brand_color": "#be123c",
+      "website": "https://lewica.org/",
       "logo": "assets/lewica.svg",
       "promises": [
         { "desc_pl": "Renta wdowia", "desc_en": "Widow's pension", "desc_de": "Witwenrente", "status": "done", "url": "https://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=WDU20240001243", "cost": "13 mld" },
@@ -131,6 +135,7 @@
       "coalition_label_en": "Opposition",
       "coalition_label_de": "Opposition",
       "brand_color": "#0a192f",
+      "website": "https://konfederacja.pl/",
       "logo": "assets/konf.svg",
       "promises": [
         { "desc_pl": "Likwidacja podatku Belki", "desc_en": "Abolish Belka tax on savings", "desc_de": "Abschaffung der Belka-Steuer", "status": "pending", "url": "https://konfederacja.pl/program/podatek-belki", "cost": "4 mld" },

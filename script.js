@@ -469,12 +469,14 @@ function renderCards() {
 
         card.innerHTML = `
             <div class="card-header">
-                <div class="party-logo-wrapper">
+                <a href="${escapeHtml(party.website || '#')}" target="_blank" rel="noopener noreferrer" class="party-logo-wrapper" title="${escapeHtml(partyName)} - Oficjalna strona ↗">
                     <img src="${escapeHtml(party.logo)}" alt="${escapeHtml(partyName)}" class="party-logo-img">
-                </div>
+                </a>
                 <div class="party-info">
                     <div class="party-title-row">
-                        <h3 class="party-title">${escapeHtml(partyName)}</h3>
+                        <a href="${escapeHtml(party.website || '#')}" target="_blank" rel="noopener noreferrer" class="party-title-link" title="${escapeHtml(partyName)} - Oficjalna strona ↗">
+                            <h3 class="party-title">${escapeHtml(partyName)}</h3>
+                        </a>
                         <span class="coalition-badge coalition-${party.coalition}">
                             🏛️ ${escapeHtml(coalitionRole)}
                         </span>
