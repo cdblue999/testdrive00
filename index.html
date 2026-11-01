@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 Copyright (C) 2026 ZMS
 
 This program is free software: you can redistribute it and/or modify
@@ -19,13 +19,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src * data:;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src * data:;">
     <title>terminal obywatelski - monitorowanie obietnic wyborczych i wskaźników gospodarczych</title>
     <meta name="description" content="Terminal obywatelski - niezależny monitoring realizacji obietnic wyborczych partii politycznych w Polsce. Śledź wskaźniki gospodarcze, kursy walut NBP, ceny paliw i terminy wyborów w jednym miejscu.">
     <meta name="keywords" content="obietnice wyborcze, monitoring, partie polityczne, PiS, KO, Trzecia Droga, Lewica, Konfederacja, wskaźniki gospodarcze, NBP, kurs walut, Polska, demokracja, wybory">
     <meta name="robots" content="index, follow">
     <meta name="author" content="ZMS">
     <meta name="language" content="pl">
+    
+    <!-- Open Graph & Social Cards -->
     <meta property="og:title" content="terminal obywatelski - monitoring obietnic wyborczych">
     <meta property="og:description" content="Niezależny monitoring realizacji obietnic wyborczych partii politycznych w Polsce. Dane: NBP, MF, GUS.">
     <meta property="og:type" content="website">
@@ -33,46 +35,94 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="terminal obywatelski - monitoring obietnic wyborczych">
     <meta name="twitter:description" content="Śledź realizację obietnic wyborczych partii politycznych, kursy walut i wskaźniki gospodarcze.">
-    <link rel="canonical" href="https://github.com/cdblue999/testdrive00">
+    <link rel="canonical" href="https://licznik-obietnic.pages.dev/">
+
+    <!-- Inline SVG Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='16' fill='%23ffffff'/><rect y='16' width='32' height='16' fill='%23dc2626'/><text x='16' y='21' font-size='11' font-family='monospace' font-weight='bold' fill='%23000' text-anchor='middle'>TO</text></svg>">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="news-ticker">
+    <!-- Real-time News Ticker -->
+    <div class="news-ticker" role="region" aria-label="Wiadomości na żywo">
         <div class="ticker-wrapper" id="ticker-content">Inicjalizacja transmisji...</div>
     </div>
 
-    <div id="currency-box" class="corner-box left-box">
-        <div class="box-title">RYNEK I WSKAŹNIKI (LIVE)</div>
-        <div id="rates" class="data-block">Pobieranie danych...</div>
+    <div class="dashboard-container">
+        <!-- Main Header -->
+        <header class="main-header">
+            <div class="top-bar">
+                <div class="brand-area">
+                    <div class="flag-badge" aria-hidden="true">
+                        <div class="flag-white"></div>
+                        <div class="flag-red"></div>
+                    </div>
+                    <h1 class="main-title">
+                        <span class="live-indicator"></span>
+                        <span id="t-app-title">terminal obywatelski</span>
+                        — <span id="t-as-of">stan na dziś:</span> <span id="current-date" class="current-date-span"></span>
+                    </h1>
+                </div>
+
+                <div class="header-controls">
+                    <button id="theme-btn" class="theme-btn" onclick="toggleTheme()" aria-label="Przełącz tryb ciemny/jasny">
+                        🌙 Tryb ciemny
+                    </button>
+                    <div class="lang-switch" role="group" aria-label="Wybór języka">
+                        <button class="lang-btn active" data-lang="pl" onclick="setLanguage('pl')">PL</button>
+                        <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+                        <button class="lang-btn" data-lang="de" onclick="setLanguage('de')">DE</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top Metrics Dashboard Grid -->
+            <div class="metrics-grid">
+                <div class="metric-panel">
+                    <div class="metric-title" id="t-markets-title">RYNEK I WSKAŹNIKI (LIVE)</div>
+                    <div id="rates-content" class="data-block">Pobieranie danych...</div>
+                </div>
+                <div class="metric-panel">
+                    <div class="metric-title" id="t-elections-title">KADENCJA SEJMU I WYBORY</div>
+                    <div id="elections-content" class="data-block">Obliczanie...</div>
+                </div>
+                <div class="metric-panel">
+                    <div class="metric-title" id="t-legend-title">STATUS REALIZACJI</div>
+                    <div id="legend-content" class="data-block"></div>
+                </div>
+                <div class="metric-panel">
+                    <div class="metric-title" id="t-sejm-title">UKŁAD SIŁ W SEJMIE (WIĘKSZOŚĆ: 231)</div>
+                    <div id="sejm-content" class="data-block"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Interactive Toolbar (Search & Filters) -->
+        <div class="toolbar-bar">
+            <div id="filter-chips-container" class="filter-chips"></div>
+            <div class="search-box">
+                <input type="text" id="search-input" class="search-input" placeholder="Szukaj obietnicy (np. ZUS, podatki)..." aria-label="Wyszukaj obietnicę">
+            </div>
+        </div>
+
+        <!-- Main Party Promises Grid -->
+        <main id="app" class="party-grid" aria-live="polite">
+            <div style="grid-column:1/-1; text-align:center; padding:60px; font-family:var(--font-data); color:var(--text-muted);">
+                Ładowanie danych...
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <p id="t-footer"></p>
+        </footer>
     </div>
 
-    <div class="corner-box right-box">
-        <div class="box-title">Legenda wyborcza</div>
-        <div id="legend-content" class="data-block"></div>
-    </div>
-
-    <header class="main-header">
-        <h1>terminal obywatelski - stan na dziś: <span id="current-date"></span></h1>
-        <div class="election-wrapper">
-            <div class="election-title">WYBORY</div>
-            <div id="election-data-box" class="data-block"></div>
-        </div>
-        <div class="lang-switch">
-            <img src="https://flagcdn.com/w40/pl.png" class="lang-icon" onclick="setLanguage('pl')" alt="PL">
-            <img src="https://flagcdn.com/w40/gb.png" class="lang-icon" onclick="setLanguage('en')" alt="EN">
-            <img src="https://flagcdn.com/w40/de.png" class="lang-icon" onclick="setLanguage('de')" alt="DE">
-        </div>
-        <div class="flag-container"><div class="flag-white"></div><div class="flag-red"></div></div>
-    </header>
-
-    <main id="app" class="party-grid"><div style="grid-column:1/-1; text-align:center; padding:60px; font-family:var(--font-data); color:var(--text-muted);">Ładowanie danych...</div></main>
-
-    <footer class="site-footer"><p id="t-footer"></p></footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Pure Vanilla Script (Zero external dependencies) -->
     <script src="script.js"></script>
 </body>
 </html>
