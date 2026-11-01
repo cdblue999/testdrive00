@@ -467,12 +467,10 @@ function renderCards() {
         const card = document.createElement('div');
         card.className = `card party-card-${party.coalition}`;
 
-        const fallbackHtml = `<div class="party-logo-fallback" style="background:${party.brand_color || '#334155'};">${escapeHtml(party.short_name || 'PL')}</div>`;
-
         card.innerHTML = `
             <div class="card-header">
                 <div class="party-logo-wrapper">
-                    <img src="${escapeHtml(party.logo)}" alt="${escapeHtml(partyName)}" onerror="this.onerror=null; this.parentElement.innerHTML='${fallbackHtml}';">
+                    <img src="${escapeHtml(party.logo)}" alt="${escapeHtml(partyName)}" class="party-logo-img">
                 </div>
                 <div class="party-info">
                     <div class="party-title-row">

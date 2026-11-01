@@ -508,23 +508,28 @@ body {
 }
 
 .party-logo-wrapper {
-    width: 52px;
-    height: 52px;
+    width: 68px;
+    height: 48px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     background: #ffffff;
-    border-radius: 10px;
-    padding: 3px;
+    border-radius: 8px;
+    padding: 4px 6px;
     border: 1px solid var(--card-border);
     overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
 }
 
-.party-logo-wrapper img {
+.party-logo-wrapper img,
+.party-logo-img {
     max-height: 100%;
     max-width: 100%;
+    width: auto;
+    height: auto;
     object-fit: contain;
+    display: block;
 }
 
 .party-logo-fallback {
@@ -839,8 +844,9 @@ body {
     }
 
     .party-logo-wrapper {
-        width: 46px;
-        height: 46px;
+        width: 60px;
+        height: 44px;
+        padding: 3px 5px;
     }
 
     .party-title {
