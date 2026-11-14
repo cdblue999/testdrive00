@@ -1,4 +1,47 @@
+# =========================================================================
+# Terminal Obywatelski - Robots Exclusion Standard & Anti-Bot Directives
+# =========================================================================
+
+# Legitimate search engine crawlers are welcome
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: DuckDuckBot
+User-agent: Slurp
+User-agent: Baiduspider
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 2
+
+# Disallow scraper trap honeypot and internal cdn directories
 User-agent: *
 Allow: /
+Disallow: /civic-api/trap/
+Disallow: /admin-honeypot/
+Disallow: /cdn-cgi/
+
+# Block aggressive commercial scrapers, data-mining botnets and AI bulk crawlers
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+User-agent: DataForSeoBot
+Disallow: /
+
+User-agent: Scrapy
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
 
 Sitemap: https://licznik-obietnic.pages.dev/sitemap.xml

@@ -93,6 +93,9 @@ const I18N = {
             panstwo: "⚖️ Państwo"
         },
         newsFallback: " PILNE: Polska gospodarka w fazie stabilizacji • GUS publikuje nowe dane makroekonomiczne • ",
+        securityBadge: "🛡️ Ochrona antybotowa: aktywna (BotShield + Micro-PoW)",
+        botToastRateLimit: "Zbyt wiele akcji w krótkim czasie. Poczekaj chwilę.",
+        botToastBlocked: "Akcja zablokowana przez system bezpieczeństwa BotShield.",
         footer: "© 2026 terminal obywatelski. Niezależny agregator danych publicznych (NBP, GUS, MF, Sejm RP).<br>Oprogramowanie open-source na licencji GPLv3. Copyright by ZMS."
     },
     en: {
@@ -161,6 +164,9 @@ const I18N = {
             panstwo: "⚖️ Governance"
         },
         newsFallback: " BREAKING: Polish economy stabilizes • Statistical office publishes macro data • ",
+        securityBadge: "🛡️ Anti-bot protection: active (BotShield + Micro-PoW)",
+        botToastRateLimit: "Too many actions in a short period. Please wait a moment.",
+        botToastBlocked: "Action blocked by BotShield security defense.",
         footer: "© 2026 Citizen Terminal. Independent public data aggregator (NBP, GUS, MF, Sejm).<br>Open-source software licensed under GPLv3. Copyright by ZMS."
     },
     de: {
@@ -229,6 +235,9 @@ const I18N = {
             panstwo: "⚖️ Staat"
         },
         newsFallback: " EILMELDUNG: Wirtschaftswachstum stabil • Statistische Kennzahlen aktualisiert • ",
+        securityBadge: "🛡️ Bot-Schutz: aktiv (BotShield + Micro-PoW)",
+        botToastRateLimit: "Zu viele Aktionen in kurzer Zeit. Bitte warten.",
+        botToastBlocked: "Aktion durch das BotShield-Sicherheitssystem blockiert.",
         footer: "© 2026 Bürgerterminal. Unabhängiger Datenaggregator.<br>Open-Source unter GPLv3. Copyright by ZMS."
     }
 };
@@ -296,6 +305,175 @@ function showToast(msg) {
     }, 2400);
 }
 
+// =========================================================================
+// BOTSHIELD: CLIENT-SIDE ANTI-BOT, INTEGRITY & ANTI-MANIPULATION DEFENSE
+// =========================================================================
+const BotShield = (() => {
+    const pageLoadTime = Date.now();
+    let mouseMoves = 0;
+    let keyPresses = 0;
+    let touchEvents = 0;
+    let scrollEvents = 0;
+    let botFlagged = false;
+    const botReasons = [];
+    const actionTimestamps = [];
+
+    // Track genuine human micro-interactions without performance overhead
+    if (typeof window !== 'undefined') {
+        window.addEventListener('mousemove', () => { mouseMoves++; }, { passive: true });
+        window.addEventListener('keydown', () => { keyPresses++; }, { passive: true });
+        window.addEventListener('touchstart', () => { touchEvents++; }, { passive: true });
+        window.addEventListener('scroll', () => { scrollEvents++; }, { passive: true });
+    }
+
+    // Automated driver / headless environment detection
+    function detectAutomation() {
+        if (typeof navigator !== 'undefined') {
+            // Standard W3C automation flag (Selenium, Puppeteer, Playwright)
+            if (navigator.webdriver === true) {
+                return { bot: true, reason: 'webdriver_active' };
+            }
+            // Empty languages anomaly in rudimentary headless browsers
+            if (navigator.languages && navigator.languages.length === 0) {
+                return { bot: true, reason: 'empty_languages_array' };
+            }
+        }
+        if (typeof window !== 'undefined') {
+            // Known driver global footprints
+            const suspiciousGlobals = [
+                '__nightmare', '_phantom', 'callPhantom',
+                '__selenium_unwrapped', 'cdc_adoQpoasnfa76pfcZLmcfl_Array'
+            ];
+            for (const g of suspiciousGlobals) {
+                if (window[g] !== undefined) {
+                    return { bot: true, reason: `global_${g}` };
+                }
+            }
+            // Screen dimension anomalies typical of headless zero-display scripts
+            if (window.outerWidth === 0 && window.outerHeight === 0 && window.innerWidth > 0) {
+                return { bot: true, reason: 'zero_outer_dimensions' };
+            }
+        }
+        return { bot: false };
+    }
+
+    // Micro Proof-of-Work (PoW / WebCrypto SHA-256 Hashcash)
+    // Requires client CPU work (~8-20ms) before confirming stateful user actions.
+    // Trivial for a human (<0.02s), but computationally prohibitive for mass bot spamming.
+    async function solvePoW(seed) {
+        if (typeof window === 'undefined' || !window.crypto || !window.crypto.subtle) {
+            return { nonce: 0, timeMs: 0, hash: 'fallback' };
+        }
+        const t0 = performance.now();
+        const enc = new TextEncoder();
+        let nonce = 0;
+        const maxIterations = 3000;
+
+        while (nonce < maxIterations) {
+            const buf = await window.crypto.subtle.digest(
+                'SHA-256',
+                enc.encode(`${seed}:${nonce}`)
+            );
+            const bytes = new Uint8Array(buf);
+            // Require first byte to be 0 (8 leading zero bits = ~256 avg iterations)
+            if (bytes[0] === 0) {
+                return {
+                    nonce,
+                    timeMs: Math.round(performance.now() - t0),
+                    hash: Array.from(bytes.slice(0, 4)).map(b => b.toString(16).padStart(2, '0')).join('')
+                };
+            }
+            nonce++;
+        }
+        return { nonce, timeMs: Math.round(performance.now() - t0), hash: 'timeout' };
+    }
+
+    return {
+        flagBot(reason) {
+            botFlagged = true;
+            if (!botReasons.includes(reason)) botReasons.push(reason);
+            console.warn(`[BotShield] Anti-bot flag tripped: ${reason}`);
+        },
+
+        isBot() {
+            if (botFlagged) return true;
+            const auto = detectAutomation();
+            if (auto.bot) {
+                botFlagged = true;
+                botReasons.push(auto.reason);
+                return true;
+            }
+            return false;
+        },
+
+        getReasons() {
+            return [...botReasons];
+        },
+
+        // Rate limiter: sliding window (e.g. max 4 actions per 6 seconds)
+        checkRateLimit(maxActions = 4, windowMs = 6000) {
+            const now = Date.now();
+            while (actionTimestamps.length && actionTimestamps[0] <= now - windowMs) {
+                actionTimestamps.shift();
+            }
+            if (actionTimestamps.length >= maxActions) {
+                return false;
+            }
+            actionTimestamps.push(now);
+            return true;
+        },
+
+        // Comprehensive validator for user interactions (voting, exporting, sharing)
+        async validateHumanAction(event, minDwellMs = 500) {
+            // 1. Check if session was already flagged as a bot or headless runner
+            if (this.isBot()) {
+                return { valid: false, reason: 'bot_environment_detected' };
+            }
+
+            // 2. Verify event trust (browser-enforced isTrusted property)
+            if (event) {
+                if (event.isTrusted === false) {
+                    this.flagBot('synthetic_untrusted_event');
+                    return { valid: false, reason: 'synthetic_event' };
+                }
+                // Check for artificial clicks without coordinate activity or interaction
+                if (event.type === 'click' && event.clientX === 0 && event.clientY === 0 &&
+                    event.screenX === 0 && event.screenY === 0 &&
+                    mouseMoves === 0 && touchEvents === 0 && keyPresses === 0) {
+                    this.flagBot('coordinate_anomaly');
+                    return { valid: false, reason: 'coordinate_anomaly' };
+                }
+            }
+
+            // 3. Minimum human reaction dwell time check (bots click within < 500ms of page load)
+            const dwell = Date.now() - pageLoadTime;
+            if (dwell < minDwellMs) {
+                this.flagBot('reaction_speed_anomaly');
+                return { valid: false, reason: 'speed_anomaly' };
+            }
+
+            // 4. Rate limiting check
+            if (!this.checkRateLimit(4, 6000)) {
+                return { valid: false, reason: 'rate_limited' };
+            }
+
+            // 5. Compute micro Proof-of-Work puzzle
+            try {
+                const seed = `${dwell}-${mouseMoves + touchEvents + keyPresses + scrollEvents}`;
+                const pow = await solvePoW(seed);
+                return { valid: true, pow };
+            } catch (_) {
+                return { valid: true };
+            }
+        }
+    };
+})();
+
+// Expose globally for inline honeypots and debugging
+if (typeof window !== 'undefined') {
+    window.BotShield = BotShield;
+}
+
 // === DATA FETCHING ===
 async function fetchNbpRates() {
     const cached = getStoredCache('nbp');
@@ -350,8 +528,21 @@ async function fetchMainData() {
 }
 
 // === VOTING LOGIC ===
-async function vote(partyId) {
+async function vote(partyId, event) {
     if (state.userVoted[partyId]) return;
+
+    // BotShield anti-bot inspection
+    const check = await BotShield.validateHumanAction(event);
+    if (!check.valid) {
+        const t = getT();
+        if (check.reason === 'rate_limited') {
+            showToast(t.botToastRateLimit || 'Zbyt wiele akcji w krótkim czasie. Poczekaj chwilę.');
+        } else {
+            console.warn('[BotShield] Vote rejected:', check.reason);
+            showToast(t.botToastBlocked || 'Akcja zablokowana przez system bezpieczeństwa.');
+        }
+        return;
+    }
 
     state.votes[partyId] = (state.votes[partyId] || 0) + 1;
     state.userVoted[partyId] = true;
@@ -374,9 +565,15 @@ async function vote(partyId) {
             headers: {
                 apikey: CONFIG.supabaseKey,
                 Authorization: `Bearer ${CONFIG.supabaseKey}`,
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'X-Pow-Nonce': String(check.pow?.nonce || 0)
             },
-            body: JSON.stringify({ row_id: partyId }),
+            body: JSON.stringify({
+                row_id: partyId,
+                pow_nonce: check.pow?.nonce,
+                pow_hash: check.pow?.hash,
+                client_ts: Date.now()
+            }),
             signal: AbortSignal.timeout(2000)
         });
     } catch (_) {}
@@ -674,7 +871,7 @@ function renderCards() {
                 </div>
             </div>
 
-            <button id="btn-${party.id}" class="vote-btn ${isVoted ? 'voted' : ''}" ${isVoted ? 'disabled' : ''} onclick="vote('${party.id}')">
+            <button id="btn-${party.id}" class="vote-btn ${isVoted ? 'voted' : ''}" ${isVoted ? 'disabled' : ''} onclick="vote('${party.id}', event)">
                 <span class="vote-label">${isVoted ? t.votedSentiment : t.sentiment}</span>
                 <strong id="v-${party.id}">${votes}</strong>
             </button>
@@ -760,6 +957,9 @@ function updateStaticText() {
 
     const footerEl = document.getElementById('t-footer');
     if (footerEl) footerEl.innerHTML = t.footer;
+
+    const secBadgeEl = document.getElementById('t-security-badge');
+    if (secBadgeEl) secBadgeEl.innerText = t.securityBadge;
 
     // Status Filter Chips
     const chipsContainer = document.getElementById('filter-chips-container');
@@ -858,8 +1058,12 @@ window.resetSim = function() {
     renderMetrics();
 };
 
-window.exportToCsv = function() {
+window.exportToCsv = function(event) {
     if (!state.data?.parties) return;
+    if (!BotShield.checkRateLimit(2, 5000)) {
+        showToast(getT().botToastRateLimit || 'Zbyt wiele akcji w krótkim czasie.');
+        return;
+    }
     const t = getT();
     const rows = [
         ['Partia', 'Rola', 'Mandaty', 'Obietnica', 'Status', 'Koszt', 'Kategoria', 'Link do aktu / zrodla']
@@ -891,7 +1095,11 @@ window.exportToCsv = function() {
     showToast("Pobrano plik CSV!");
 };
 
-window.shareDashboard = async function() {
+window.shareDashboard = async function(event) {
+    if (!BotShield.checkRateLimit(3, 5000)) {
+        showToast(getT().botToastRateLimit || 'Zbyt wiele akcji w krótkim czasie.');
+        return;
+    }
     const shareData = {
         title: 'terminal obywatelski - monitoring obietnic wyborczych',
         text: 'Niezależny monitoring obietnic partii politycznych w Sejmie X kadencji i wskaźniki gospodarcze na żywo:',
@@ -927,9 +1135,13 @@ async function init() {
 
     const searchInput = document.getElementById('search-input');
     if (searchInput) {
+        let debounceTimer;
         searchInput.addEventListener('input', (e) => {
-            state.search = e.target.value;
-            renderCards();
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                state.search = e.target.value;
+                renderCards();
+            }, 80);
         });
     }
 

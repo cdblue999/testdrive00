@@ -121,10 +121,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             <div class="toolbar-row">
                 <div id="filter-chips-container" class="filter-chips"></div>
                 <div class="toolbar-actions">
-                    <button id="export-btn" class="action-btn" onclick="exportToCsv()" title="Pobierz arkusz kalkulacyjny ze wszystkimi obietnicami">
+                    <button id="export-btn" class="action-btn" onclick="exportToCsv(event)" title="Pobierz arkusz kalkulacyjny ze wszystkimi obietnicami">
                         📥 Eksportuj CSV
                     </button>
-                    <button id="share-btn" class="action-btn" onclick="shareDashboard()" title="Udostępnij stronę">
+                    <button id="share-btn" class="action-btn" onclick="shareDashboard(event)" title="Udostępnij stronę">
                         📤 Udostępnij
                     </button>
                 </div>
@@ -146,6 +146,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             </div>
         </div>
 
+        <!-- Anti-Bot Defense Honeypot Sensor (Hidden from human visual and assistive technologies) -->
+        <div class="bot-trap-sensor" aria-hidden="true">
+            <label for="to-bot-verify-token">Human Verification</label>
+            <input type="text" id="to-bot-verify-token" name="to_auth_honey_token" tabindex="-1" autocomplete="off" oninput="BotShield.flagBot('honeypot_input')">
+            <button type="button" tabindex="-1" onclick="BotShield.flagBot('honeypot_button')">Verify Human</button>
+        </div>
+
         <!-- Main Party Promises Grid -->
         <main id="app" class="party-grid" aria-live="polite">
             <div style="grid-column:1/-1; text-align:center; padding:60px; font-family:var(--font-data); color:var(--text-muted);">
@@ -155,6 +162,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
         <!-- Footer -->
         <footer class="site-footer">
+            <div class="footer-security-badge" id="t-security-badge" title="Zabezpieczenie przed manipulacją głosami i zautomatyzowanym spamem">
+                🛡️ Ochrona antybotowa aktywna (BotShield + Micro-PoW)
+            </div>
             <p id="t-footer"></p>
         </footer>
     </div>

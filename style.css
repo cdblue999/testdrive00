@@ -966,6 +966,40 @@ body {
     margin-top: 40px;
 }
 
+/* === ANTI-BOT HONEYPOT & DEFENSE BADGE === */
+.bot-trap-sensor {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+    opacity: 0.001 !important;
+    pointer-events: none !important;
+}
+
+.footer-security-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 5px 14px;
+    margin-bottom: 14px;
+    background: rgba(34, 197, 94, 0.08);
+    border: 1px solid rgba(34, 197, 94, 0.28);
+    border-radius: 20px;
+    color: #10b981;
+    font-family: var(--font-data);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    user-select: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
 /* === SMARTPHONE / MOBILE (np. Motorola Edge 60 / viewport 390-430px) === */
 @media (max-width: 600px) {
     body {
