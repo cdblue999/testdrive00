@@ -31,7 +31,7 @@ const I18N = {
         appTitle: "terminal obywatelski",
         asOf: "stan na dziś:",
         marketTitle: "RYNEK I WSKAŹNIKI (LIVE)",
-        electionsTitle: "KADENCJA SEJMU I WYBORY",
+        electionsTitle: "KADENCJA SEJMU I RZĄDU",
         legendTitle: "STATUS REALIZACJI",
         sejmTitle: "UKŁAD SIŁ W SEJMIE (WIĘKSZOŚĆ: 231)",
         coalitionGov: "Koalicja rządowa",
@@ -45,6 +45,10 @@ const I18N = {
         lastElection: "Ostatnie wybory:",
         nextElection: "Kolejne wybory:",
         termProgress: "Postęp kadencji:",
+        cabinetTenure: "Rząd Donalda Tuska:",
+        cabinetDays: (d) => `${d} dni (od 13.12.2023)`,
+        daysAgo: (d) => `${d} dni temu`,
+        daysIn: (d) => `za ${d} dni`,
         days: "dni",
         statusDone: "Zrealizowane",
         statusPending: "W realizacji",
@@ -52,7 +56,9 @@ const I18N = {
         allFilter: "Wszystkie",
         govFilter: "🏛️ Koalicja",
         oppFilter: "🏛️ Opozycja",
-        searchPlaceholder: "Szukaj obietnicy (np. ZUS, podatki)...",
+        majorityThresholdLabel: "Większość: 231",
+        noMatchingPromises: "Brak pasujących obietnic w tej kategorii",
+        searchPlaceholder: "Szukaj obietnicy (np. ZUS, podatki)... [/]",
         totalCost: "Szacowany koszt:",
         realizationRate: "Realizacja:",
         notesLabel: "Uwagi / Zbieżność:",
@@ -63,6 +69,29 @@ const I18N = {
         deficit: "Deficyt budżetowy",
         coalitionRulesText: "🏛️ Jak powstaje rząd i koalicja? Zasady (Art. 154-155 Konstytucji RP)",
         isapText: "📜 Oficjalna Baza Ustaw i Tekstów Jednolitych (ISAP Sejm RP)",
+        exportCsv: "📥 Eksportuj CSV",
+        shareBtn: "📤 Udostępnij",
+        copiedToast: "Skopiowano link do schowka!",
+        sortLabel: "Sortuj:",
+        sortMandates: "Mandaty ↓",
+        sortRealization: "% Realizacji ↓",
+        sortCost: "Koszt ↓",
+        simTitle: "Symulator większości",
+        simReset: "Reset",
+        simHasMaj: (plus) => `✓ Większość bezwzględna (+${plus})`,
+        simNoMaj: (minus) => `✕ Brak większości (brakuje ${minus})`,
+        categories: {
+            all: "Wszystkie tematy",
+            podatki: "💰 Podatki",
+            socjal: "👶 Rodzina",
+            seniorzy: "👵 Seniorzy",
+            mieszkalnictwo: "🏠 Mieszkania",
+            zdrowie: "🏥 Zdrowie",
+            edukacja: "🎓 Edukacja",
+            gospodarka: "📈 Gospodarka",
+            infra: "🚆 Infrastruktura",
+            panstwo: "⚖️ Państwo"
+        },
         newsFallback: " PILNE: Polska gospodarka w fazie stabilizacji • GUS publikuje nowe dane makroekonomiczne • ",
         footer: "© 2026 terminal obywatelski. Niezależny agregator danych publicznych (NBP, GUS, MF, Sejm RP).<br>Oprogramowanie open-source na licencji GPLv3. Copyright by ZMS."
     },
@@ -70,7 +99,7 @@ const I18N = {
         appTitle: "citizen terminal",
         asOf: "as of today:",
         marketTitle: "MARKETS & INDICATORS (LIVE)",
-        electionsTitle: "PARLIAMENTARY TERM & ELECTIONS",
+        electionsTitle: "PARLIAMENTARY & CABINET TERM",
         legendTitle: "PROMISE STATUS",
         sejmTitle: "PARLIAMENTARY BALANCE (MAJORITY: 231)",
         coalitionGov: "Government Coalition",
@@ -84,6 +113,10 @@ const I18N = {
         lastElection: "Last elections:",
         nextElection: "Next elections:",
         termProgress: "Term progress:",
+        cabinetTenure: "Tusk Cabinet tenure:",
+        cabinetDays: (d) => `${d} days (since Dec 13, 2023)`,
+        daysAgo: (d) => `${d} days ago`,
+        daysIn: (d) => `in ${d} days`,
         days: "days",
         statusDone: "Fulfilled",
         statusPending: "In progress",
@@ -91,7 +124,9 @@ const I18N = {
         allFilter: "All",
         govFilter: "🏛️ Coalition",
         oppFilter: "🏛️ Opposition",
-        searchPlaceholder: "Search promises (e.g. taxes, health)...",
+        majorityThresholdLabel: "Majority: 231",
+        noMatchingPromises: "No matching promises found in this category",
+        searchPlaceholder: "Search promises (e.g. taxes, health)... [/]",
         totalCost: "Estimated cost:",
         realizationRate: "Progress:",
         notesLabel: "Notes / Intersections:",
@@ -102,6 +137,29 @@ const I18N = {
         deficit: "Budget deficit",
         coalitionRulesText: "🏛️ Government formation & coalition rules (Art. 154-155 Constitution)",
         isapText: "📜 Official Database of Polish Laws (ISAP Sejm RP)",
+        exportCsv: "📥 Export CSV",
+        shareBtn: "📤 Share",
+        copiedToast: "Link copied to clipboard!",
+        sortLabel: "Sort:",
+        sortMandates: "Seats ↓",
+        sortRealization: "% Fulfilled ↓",
+        sortCost: "Cost ↓",
+        simTitle: "Majority simulator",
+        simReset: "Reset",
+        simHasMaj: (plus) => `✓ Absolute majority reached (+${plus})`,
+        simNoMaj: (minus) => `✕ No majority (needs ${minus})`,
+        categories: {
+            all: "All topics",
+            podatki: "💰 Taxes",
+            socjal: "👶 Family",
+            seniorzy: "👵 Seniors",
+            mieszkalnictwo: "🏠 Housing",
+            zdrowie: "🏥 Health",
+            edukacja: "🎓 Education",
+            gospodarka: "📈 Economy",
+            infra: "🚆 Infra",
+            panstwo: "⚖️ Governance"
+        },
         newsFallback: " BREAKING: Polish economy stabilizes • Statistical office publishes macro data • ",
         footer: "© 2026 Citizen Terminal. Independent public data aggregator (NBP, GUS, MF, Sejm).<br>Open-source software licensed under GPLv3. Copyright by ZMS."
     },
@@ -123,6 +181,10 @@ const I18N = {
         lastElection: "Letzte Wahlen:",
         nextElection: "Nächste Wahlen:",
         termProgress: "Fortschritt:",
+        cabinetTenure: "Amtszeit Kabinett Tusk:",
+        cabinetDays: (d) => `${d} Tage (seit 13.12.2023)`,
+        daysAgo: (d) => `vor ${d} Tagen`,
+        daysIn: (d) => `in ${d} Tagen`,
         days: "Tage",
         statusDone: "Erfüllt",
         statusPending: "In Bearbeitung",
@@ -130,7 +192,9 @@ const I18N = {
         allFilter: "Alle",
         govFilter: "🏛️ Koalition",
         oppFilter: "🏛️ Opposition",
-        searchPlaceholder: "Versprechen suchen...",
+        majorityThresholdLabel: "Mehrheit: 231",
+        noMatchingPromises: "Keine passenden Versprechen gefunden",
+        searchPlaceholder: "Versprechen suchen... [/]",
         totalCost: "Geschätzte Kosten:",
         realizationRate: "Realisierung:",
         notesLabel: "Anmerkungen:",
@@ -141,6 +205,29 @@ const I18N = {
         deficit: "Haushaltsdefizit",
         coalitionRulesText: "🏛️ Regierungsbildung & Koalitionsregeln (Art. 154-155 Verfassung)",
         isapText: "📜 Gesetzessammlung des polnischen Parlaments (ISAP)",
+        exportCsv: "📥 CSV-Export",
+        shareBtn: "📤 Teilen",
+        copiedToast: "Link in die Zwischenablage kopiert!",
+        sortLabel: "Sortieren:",
+        sortMandates: "Mandate ↓",
+        sortRealization: "% Realisierung ↓",
+        sortCost: "Kosten ↓",
+        simTitle: "Mehrheitssimulator",
+        simReset: "Zurücksetzen",
+        simHasMaj: (plus) => `✓ Absolute Mehrheit erreicht (+${plus})`,
+        simNoMaj: (minus) => `✕ Keine Mehrheit (fehlen ${minus})`,
+        categories: {
+            all: "Alle Themen",
+            podatki: "💰 Steuern",
+            socjal: "👶 Familie",
+            seniorzy: "👵 Senioren",
+            mieszkalnictwo: "🏠 Wohnen",
+            zdrowie: "🏥 Gesundheit",
+            edukacja: "🎓 Bildung",
+            gospodarka: "📈 Wirtschaft",
+            infra: "🚆 Infrastruktur",
+            panstwo: "⚖️ Staat"
+        },
         newsFallback: " EILMELDUNG: Wirtschaftswachstum stabil • Statistische Kennzahlen aktualisiert • ",
         footer: "© 2026 Bürgerterminal. Unabhängiger Datenaggregator.<br>Open-Source unter GPLv3. Copyright by ZMS."
     }
@@ -150,10 +237,14 @@ const state = {
     lang: localStorage.getItem('to_lang') || 'pl',
     theme: localStorage.getItem('to_theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'),
     filter: 'all',
+    categoryFilter: 'all',
+    sortBy: 'mandates',
     search: '',
     data: null,
     nbpRates: null,
     news: null,
+    simMode: false,
+    simParties: { ko: true, td: true, lewica: true, pis: false, konf: false },
     votes: JSON.parse(localStorage.getItem('to_local_votes') || '{}'),
     userVoted: JSON.parse(localStorage.getItem('to_user_voted') || '{}')
 };
@@ -188,6 +279,21 @@ function escapeHtml(str) {
         .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#039;');
+}
+
+function showToast(msg) {
+    const existing = document.getElementById('toast-notification');
+    if (existing) existing.remove();
+    const toast = document.createElement('div');
+    toast.id = 'toast-notification';
+    toast.className = 'toast-alert';
+    toast.innerText = msg;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.classList.add('show'), 10);
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+    }, 2400);
 }
 
 // === DATA FETCHING ===
@@ -352,14 +458,17 @@ function renderMetrics() {
         const now = new Date();
         const start = new Date('2023-10-15');
         const end = new Date('2027-10-17');
+        const cabinetStart = new Date('2023-12-13');
         const daysPast = Math.max(0, Math.floor((now - start) / (1000 * 60 * 60 * 24)));
         const daysLeft = Math.max(0, Math.floor((end - now) / (1000 * 60 * 60 * 24)));
+        const cabinetDaysPast = Math.max(0, Math.floor((now - cabinetStart) / (1000 * 60 * 60 * 24)));
         const totalTerm = Math.floor((end - start) / (1000 * 60 * 60 * 24));
         const pctElapsed = Math.min(100, Math.round((daysPast / totalTerm) * 100));
 
         electEl.innerHTML = `
-            <div class="data-row"><span>${t.lastElection}</span> <strong>${daysPast} ${t.days} temu</strong></div>
-            <div class="data-row"><span>${t.nextElection}</span> <strong>za ${daysLeft} ${t.days}</strong></div>
+            <div class="data-row"><span>${t.lastElection}</span> <strong>${t.daysAgo(daysPast)}</strong></div>
+            <div class="data-row"><span>${t.nextElection}</span> <strong>${t.daysIn(daysLeft)}</strong></div>
+            <div class="data-row" style="color:var(--text-primary);"><span>${t.cabinetTenure}</span> <strong>${t.cabinetDays(cabinetDaysPast)}</strong></div>
             <div style="margin-top:6px;">
                 <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text-muted);margin-bottom:2px;">
                     <span>${t.termProgress}</span>
@@ -382,40 +491,79 @@ function renderMetrics() {
         `;
     }
 
-    // 4. Sejm Majority Breakdown Panel & Coalition Link
+    // 4. Sejm Majority Breakdown Panel & Coalition Simulator (Koalicjometr)
     const sejmEl = document.getElementById('sejm-content');
     if (sejmEl && state.data?.parties) {
-        let govMandates = 0;
-        let oppMandates = 0;
-        state.data.parties.forEach(p => {
-            if (p.coalition === 'government') govMandates += p.mandates;
-            else oppMandates += p.mandates;
-        });
+        if (!state.simMode) {
+            // Default View: Official Coalition (248) vs Opposition (212)
+            let govMandates = 0;
+            let oppMandates = 0;
+            state.data.parties.forEach(p => {
+                if (p.coalition === 'government') govMandates += p.mandates;
+                else oppMandates += p.mandates;
+            });
 
-        const govPct = (govMandates / 460) * 100;
-        const oppPct = (oppMandates / 460) * 100;
+            const govPct = (govMandates / 460) * 100;
+            const oppPct = (oppMandates / 460) * 100;
 
-        sejmEl.innerHTML = `
-            <div class="data-row" style="font-size:11.5px;">
-                <span style="color:#2563eb;font-weight:700;" title="${t.coalitionPartiesDetail}">🏛️ ${t.coalitionGov}: ${govMandates}</span>
-                <span style="color:#dc2626;font-weight:700;" title="${t.oppositionPartiesDetail}">🏛️ ${t.opposition}: ${oppMandates}</span>
-            </div>
-            <div class="majority-bar-container" title="Większość bezwzględna w Sejmie: 231 głosów">
-                <div class="majority-threshold-line" title="Większość 231"></div>
-                <div class="maj-seg" style="width:${govPct}%;background:#2563eb;"></div>
-                <div class="maj-seg" style="width:${oppPct}%;background:#dc2626;"></div>
-            </div>
-            <div style="display:flex;justify-content:space-between;font-size:9.5px;color:var(--text-muted);margin-bottom:8px;">
-                <span>0</span>
-                <span>Większość: 231</span>
-                <span>460</span>
-            </div>
-            <div style="border-top:1px dashed var(--card-border);padding-top:6px;">
-                <a href="https://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=WDU19970780483" target="_blank" rel="noopener noreferrer" style="font-size:10.5px;color:var(--text-secondary);text-decoration:none;display:block;" onmouseover="this.style.color='var(--amarant)'" onmouseout="this.style.color='var(--text-secondary)'">
-                    ${t.coalitionRulesText} ↗
-                </a>
-            </div>
-        `;
+            sejmEl.innerHTML = `
+                <div class="data-row" style="font-size:11.5px;">
+                    <span style="color:#2563eb;font-weight:700;" title="${t.coalitionPartiesDetail}">🏛️ ${t.coalitionGov}: ${govMandates}</span>
+                    <span style="color:#dc2626;font-weight:700;" title="${t.oppositionPartiesDetail}">🏛️ ${t.opposition}: ${oppMandates}</span>
+                </div>
+                <div class="majority-bar-container" title="${t.majorityThresholdLabel}">
+                    <div class="majority-threshold-line" title="${t.majorityThresholdLabel}"></div>
+                    <div class="maj-seg" style="width:${govPct}%;background:#2563eb;"></div>
+                    <div class="maj-seg" style="width:${oppPct}%;background:#dc2626;"></div>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;font-size:9.5px;color:var(--text-muted);margin-bottom:6px;">
+                    <span>0</span>
+                    <span style="font-weight:bold;">${t.majorityThresholdLabel}</span>
+                    <button class="sim-toggle-btn" onclick="toggleSimMode(true)">⚙️ ${t.simTitle}</button>
+                    <span>460</span>
+                </div>
+                <div style="border-top:1px dashed var(--card-border);padding-top:6px;">
+                    <a href="https://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=WDU19970780483" target="_blank" rel="noopener noreferrer" style="font-size:10.5px;color:var(--text-secondary);text-decoration:none;display:block;" onmouseover="this.style.color='var(--amarant)'" onmouseout="this.style.color='var(--text-secondary)'">
+                        ${t.coalitionRulesText} ↗
+                    </a>
+                </div>
+            `;
+        } else {
+            // Interactive Simulator View ("Koalicjometr")
+            let simTotal = 0;
+            state.data.parties.forEach(p => {
+                if (state.simParties[p.id]) simTotal += p.mandates;
+            });
+            const hasMajority = simTotal >= 231;
+            const simPct = (simTotal / 460) * 100;
+
+            const partyChips = state.data.parties.map(p => {
+                const active = !!state.simParties[p.id];
+                return `<button class="sim-chip ${active ? 'active' : ''}" onclick="toggleSimParty('${p.id}')">${p.short_name}: ${p.mandates}</button>`;
+            }).join('');
+
+            sejmEl.innerHTML = `
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+                    <strong style="font-size:11px;color:${hasMajority ? 'var(--status-done)' : 'var(--status-failed)'};">
+                        ${hasMajority ? t.simHasMaj(simTotal - 231) : t.simNoMaj(231 - simTotal)}
+                    </strong>
+                    <div style="display:flex;gap:4px;">
+                        <button class="sim-chip" onclick="resetSim()">${t.simReset}</button>
+                        <button class="sim-chip" onclick="toggleSimMode(false)">✕</button>
+                    </div>
+                </div>
+                <div class="majority-bar-container" title="${t.majorityThresholdLabel}">
+                    <div class="majority-threshold-line" title="${t.majorityThresholdLabel}"></div>
+                    <div class="maj-seg" style="width:${simPct}%;background:${hasMajority ? '#16a34a' : '#e11d48'};"></div>
+                </div>
+                <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;">
+                    ${partyChips}
+                </div>
+                <div style="font-size:9.5px;color:var(--text-muted);margin-top:4px;">
+                    Wybrano: <b>${simTotal}</b> / 460 mandatów (${simPct.toFixed(1)}%)
+                </div>
+            `;
+        }
     }
 }
 
@@ -428,7 +576,29 @@ function renderCards() {
 
     const query = state.search.toLowerCase().trim();
 
-    state.data.parties.forEach(party => {
+    // Sorting logic
+    let parties = [...state.data.parties];
+    if (state.sortBy === 'realization') {
+        parties.sort((a, b) => {
+            const aDone = a.promises.filter(pr => pr.status === 'done').length / a.promises.length;
+            const bDone = b.promises.filter(pr => pr.status === 'done').length / b.promises.length;
+            return bDone - aDone;
+        });
+    } else if (state.sortBy === 'cost') {
+        const getCostVal = (p) => {
+            let sum = 0;
+            p.promises.forEach(pr => {
+                const m = (pr.cost || '').replace(',', '.').match(/([\d\.]+)/);
+                if (m) sum += parseFloat(m[1]);
+            });
+            return sum;
+        };
+        parties.sort((a, b) => getCostVal(b) - getCostVal(a));
+    } else {
+        parties.sort((a, b) => b.mandates - a.mandates);
+    }
+
+    parties.forEach(party => {
         const partyName = party[`name_${state.lang}`] || party.name_pl;
         const coalitionRole = party[`coalition_label_${state.lang}`] || (party.coalition === 'government' ? t.coalitionGov : t.opposition);
         const votes = state.votes[party.id] || 0;
@@ -443,11 +613,18 @@ function renderCards() {
             filteredPromises = filteredPromises.filter(pr => pr.status === state.filter);
         }
 
+        // Category filter
+        if (state.categoryFilter !== 'all') {
+            filteredPromises = filteredPromises.filter(pr => pr.category === state.categoryFilter);
+        }
+
+        // Text search
         if (query) {
             filteredPromises = filteredPromises.filter(pr => {
                 const desc = (pr[`desc_${state.lang}`] || pr.desc_pl || '').toLowerCase();
                 const note = (pr[`note_${state.lang}`] || pr.note_pl || '').toLowerCase();
-                return desc.includes(query) || note.includes(query) || partyName.toLowerCase().includes(query);
+                const cat = (t.categories[pr.category] || '').toLowerCase();
+                return desc.includes(query) || note.includes(query) || cat.includes(query) || partyName.toLowerCase().includes(query);
             });
             if (!filteredPromises.length && !partyName.toLowerCase().includes(query)) return;
         }
@@ -506,18 +683,22 @@ function renderCards() {
                 ${filteredPromises.length ? filteredPromises.map(pr => {
                     const desc = escapeHtml(pr[`desc_${state.lang}`] || pr.desc_pl);
                     const note = pr[`note_${state.lang}`] || pr.note_pl;
+                    const catLabel = t.categories[pr.category] || '';
                     const statusClass = pr.status === 'done' ? 'done' : (pr.status === 'failed' ? 'failed' : 'pending');
                     const statusGlyph = pr.status === 'done' ? '✓' : (pr.status === 'failed' ? '✕' : '•');
                     return `
                         <li class="promise-item ${statusClass}">
                             <span class="status-icon ${statusClass}">${statusGlyph}</span>
-                            <a href="${escapeHtml(pr.url)}" target="_blank" rel="noopener noreferrer" class="promise-text">
-                                ${desc}${note ? '<b style="color:var(--amarant);">*</b>' : ''}
-                            </a>
+                            <div style="flex-grow:1;display:flex;flex-direction:column;gap:2px;">
+                                <a href="${escapeHtml(pr.url)}" target="_blank" rel="noopener noreferrer" class="promise-text">
+                                    ${desc}${note ? '<b style="color:var(--amarant);">*</b>' : ''}
+                                </a>
+                                ${catLabel ? `<span class="promise-category-tag">${escapeHtml(catLabel)}</span>` : ''}
+                            </div>
                             ${pr.cost ? `<span class="cost-tag">${escapeHtml(pr.cost)}</span>` : ''}
                         </li>
                     `;
-                }).join('') : `<li style="padding:15px;text-align:center;color:var(--text-muted);font-size:12px;">Brak pasujących obietnic</li>`}
+                }).join('') : `<li style="padding:15px;text-align:center;color:var(--text-muted);font-size:12px;">${t.noMatchingPromises}</li>`}
             </ul>
 
             <div class="critical-section">
@@ -571,9 +752,16 @@ function updateStaticText() {
     const isapLinkEl = document.getElementById('t-isap-link');
     if (isapLinkEl) isapLinkEl.innerText = t.isapText;
 
+    const exportBtn = document.getElementById('export-btn');
+    if (exportBtn) exportBtn.innerHTML = t.exportCsv;
+
+    const shareBtn = document.getElementById('share-btn');
+    if (shareBtn) shareBtn.innerHTML = t.shareBtn;
+
     const footerEl = document.getElementById('t-footer');
     if (footerEl) footerEl.innerHTML = t.footer;
 
+    // Status Filter Chips
     const chipsContainer = document.getElementById('filter-chips-container');
     if (chipsContainer) {
         chipsContainer.innerHTML = `
@@ -583,6 +771,27 @@ function updateStaticText() {
             <button class="chip-btn ${state.filter === 'done' ? 'active' : ''}" onclick="setFilter('done')">✓ ${t.statusDone}</button>
             <button class="chip-btn ${state.filter === 'pending' ? 'active' : ''}" onclick="setFilter('pending')">• ${t.statusPending}</button>
             <button class="chip-btn ${state.filter === 'failed' ? 'active' : ''}" onclick="setFilter('failed')">✕ ${t.statusFailed}</button>
+        `;
+    }
+
+    // Category Filter Chips
+    const catContainer = document.getElementById('category-chips-container');
+    if (catContainer) {
+        const catKeys = ['all', 'podatki', 'socjal', 'seniorzy', 'mieszkalnictwo', 'zdrowie', 'edukacja', 'gospodarka', 'infra'];
+        catContainer.innerHTML = catKeys.map(k => `
+            <button class="cat-chip-btn ${state.categoryFilter === k ? 'active' : ''}" onclick="setCategoryFilter('${k}')">
+                ${t.categories[k] || k}
+            </button>
+        `).join('');
+    }
+
+    // Sort Selector options
+    const sortSelect = document.getElementById('sort-select');
+    if (sortSelect) {
+        sortSelect.innerHTML = `
+            <option value="mandates" ${state.sortBy === 'mandates' ? 'selected' : ''}>${t.sortMandates}</option>
+            <option value="realization" ${state.sortBy === 'realization' ? 'selected' : ''}>${t.sortRealization}</option>
+            <option value="cost" ${state.sortBy === 'cost' ? 'selected' : ''}>${t.sortCost}</option>
         `;
     }
 
@@ -615,10 +824,91 @@ window.setFilter = function(filterVal) {
     renderAll();
 };
 
+window.setCategoryFilter = function(catVal) {
+    if (state.categoryFilter === catVal) return;
+    state.categoryFilter = catVal;
+    renderCards();
+    updateStaticText();
+};
+
+window.setSort = function(sortVal) {
+    if (state.sortBy === sortVal) return;
+    state.sortBy = sortVal;
+    renderCards();
+};
+
 window.toggleTheme = function() {
     state.theme = state.theme === 'light' ? 'dark' : 'light';
     localStorage.setItem('to_theme', state.theme);
     applyTheme();
+};
+
+window.toggleSimMode = function(enable) {
+    state.simMode = enable;
+    renderMetrics();
+};
+
+window.toggleSimParty = function(partyId) {
+    state.simParties[partyId] = !state.simParties[partyId];
+    renderMetrics();
+};
+
+window.resetSim = function() {
+    state.simParties = { ko: true, td: true, lewica: true, pis: false, konf: false };
+    renderMetrics();
+};
+
+window.exportToCsv = function() {
+    if (!state.data?.parties) return;
+    const t = getT();
+    const rows = [
+        ['Partia', 'Rola', 'Mandaty', 'Obietnica', 'Status', 'Koszt', 'Kategoria', 'Link do aktu / zrodla']
+    ];
+    state.data.parties.forEach(p => {
+        p.promises.forEach(pr => {
+            rows.push([
+                p.name_pl,
+                p.coalition === 'government' ? 'Koalicja' : 'Opozycja',
+                p.mandates,
+                pr[`desc_${state.lang}`] || pr.desc_pl,
+                pr.status === 'done' ? 'Zrealizowane' : (pr.status === 'failed' ? 'Niezrealizowane' : 'W realizacji'),
+                pr.cost || 'n/d',
+                t.categories[pr.category] || pr.category || '',
+                pr.url || ''
+            ]);
+        });
+    });
+    const csvContent = '\uFEFF' + rows.map(e => e.map(x => `"${String(x).replace(/"/g, '""')}"`).join(';')).join('\r\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.setAttribute('href', url);
+    link.setAttribute('download', `terminal_obywatelski_${new Date().toISOString().slice(0, 10)}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    showToast("Pobrano plik CSV!");
+};
+
+window.shareDashboard = async function() {
+    const shareData = {
+        title: 'terminal obywatelski - monitoring obietnic wyborczych',
+        text: 'Niezależny monitoring obietnic partii politycznych w Sejmie X kadencji i wskaźniki gospodarcze na żywo:',
+        url: window.location.href
+    };
+    if (navigator.share) {
+        try {
+            await navigator.share(shareData);
+        } catch (_) {}
+    } else {
+        try {
+            await navigator.clipboard.writeText(window.location.href);
+            showToast(getT().copiedToast);
+        } catch (_) {
+            showToast(window.location.href);
+        }
+    }
 };
 
 window.vote = vote;
@@ -642,6 +932,21 @@ async function init() {
             renderCards();
         });
     }
+
+    // Keyboard Shortcuts: '/' to search, 'Escape' to clear
+    document.addEventListener('keydown', (e) => {
+        if (e.key === '/' && document.activeElement !== searchInput) {
+            e.preventDefault();
+            searchInput?.focus();
+            searchInput?.select();
+        }
+        if (e.key === 'Escape' && document.activeElement === searchInput) {
+            searchInput.value = '';
+            state.search = '';
+            searchInput.blur();
+            renderCards();
+        }
+    });
 
     const [mainDataRes, nbpRes, newsRes] = await Promise.allSettled([
         fetchMainData(),

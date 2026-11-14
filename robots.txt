@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://licznik-obietnic.pages.dev/sitemap.xml

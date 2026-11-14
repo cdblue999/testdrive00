@@ -1,0 +1,17 @@
+{
+  "name": "terminal obywatelski",
+  "short_name": "Terminal",
+  "description": "Niezależny monitoring obietnic wyborczych i wskaźników gospodarczych w Polsce",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080c14",
+  "theme_color": "#080c14",
+  "icons": [
+    {
+      "src": "assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

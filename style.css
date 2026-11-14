@@ -398,21 +398,56 @@ body {
     transition: width 0.3s ease;
 }
 
-/* === TOOLBAR (SEARCH & FILTERS) === */
+/* === TOOLBAR (SEARCH, FILTERS, CATEGORIES & ACTIONS) === */
 .toolbar-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 18px;
+    padding: 12px 14px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+}
+
+.toolbar-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 18px;
-    padding: 10px 14px;
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 10px;
+    gap: 8px;
 }
 
-.filter-chips {
+.toolbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.action-btn {
+    background: var(--btn-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 11.5px;
+    font-family: var(--font-data);
+    font-weight: 700;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+}
+
+.action-btn:hover {
+    background: var(--btn-hover);
+    color: var(--text-primary);
+    border-color: #94a3b8;
+}
+
+.filter-chips, .category-chips {
     display: flex;
     gap: 6px;
     overflow-x: auto;
@@ -421,7 +456,8 @@ body {
     padding: 2px 0;
 }
 
-.filter-chips::-webkit-scrollbar {
+.filter-chips::-webkit-scrollbar,
+.category-chips::-webkit-scrollbar {
     display: none;
 }
 
@@ -451,11 +487,42 @@ body {
     border-color: var(--text-primary);
 }
 
+.cat-chip-btn {
+    background: transparent;
+    border: 1px solid var(--card-border);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-family: var(--font-data);
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: all 0.15s ease;
+    white-space: nowrap;
+}
+
+.cat-chip-btn:hover {
+    border-color: var(--text-secondary);
+    color: var(--text-primary);
+    background: var(--btn-bg);
+}
+
+.cat-chip-btn.active {
+    background: var(--tag-bg);
+    border-color: var(--amarant);
+    color: var(--amarant);
+    font-weight: 700;
+}
+
+.search-sort-row {
+    gap: 10px;
+    width: 100%;
+}
+
 .search-box {
     position: relative;
-    min-width: 240px;
     flex: 1;
-    max-width: 380px;
+    min-width: 240px;
 }
 
 .search-input {
@@ -474,6 +541,104 @@ body {
 
 .search-input:focus {
     border-color: var(--amarant);
+}
+
+.sort-box {
+    flex-shrink: 0;
+}
+
+.sort-select {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--card-border);
+    background: var(--bg-color);
+    color: var(--text-secondary);
+    font-family: var(--font-data);
+    font-size: 12px;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    min-height: 40px;
+    transition: border-color 0.2s;
+}
+
+.sort-select:focus {
+    border-color: var(--amarant);
+}
+
+/* === PROMISE CATEGORY BADGE === */
+.promise-category-tag {
+    font-family: var(--font-data);
+    font-size: 9.5px;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+}
+
+/* === COALITION SIMULATOR (KOALICJOMETR) === */
+.sim-toggle-btn {
+    background: transparent;
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    font-family: var(--font-data);
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 1px 6px;
+    transition: all 0.15s ease;
+}
+
+.sim-toggle-btn:hover {
+    color: var(--text-primary);
+    border-color: #94a3b8;
+}
+
+.sim-chip {
+    background: var(--btn-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    padding: 2px 7px;
+    font-family: var(--font-data);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.sim-chip:hover {
+    border-color: #94a3b8;
+}
+
+.sim-chip.active {
+    background: var(--text-primary);
+    color: var(--card-bg);
+    border-color: var(--text-primary);
+}
+
+/* === TOAST NOTIFICATION === */
+.toast-alert {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(30px);
+    background: var(--text-primary);
+    color: var(--card-bg);
+    font-family: var(--font-data);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 8px 18px;
+    border-radius: 30px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    z-index: 5000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.toast-alert.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
 }
 
 /* === PARTY GRID & CARDS === */
@@ -835,9 +1000,36 @@ body {
     }
 
     .toolbar-bar {
+        padding: 10px 10px;
+    }
+
+    .toolbar-row {
+        width: 100%;
+    }
+
+    .toolbar-actions {
+        width: 100%;
+        gap: 6px;
+    }
+
+    .action-btn {
+        flex: 1;
+        justify-content: center;
+        min-height: 40px;
+    }
+
+    .category-chips {
+        width: 100%;
+    }
+
+    .search-sort-row {
         flex-direction: column;
         align-items: stretch;
-        padding: 10px 10px;
+    }
+
+    .sort-select {
+        width: 100%;
+        min-height: 42px;
     }
 
     .filter-chips {
