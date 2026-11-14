@@ -708,13 +708,13 @@ function renderMetrics() {
 
             sejmEl.innerHTML = `
                 <div class="data-row" style="font-size:11.5px;">
-                    <span style="color:#2563eb;font-weight:700;" title="${t.coalitionPartiesDetail}">🏛️ ${t.coalitionGov}: ${govMandates}</span>
-                    <span style="color:#dc2626;font-weight:700;" title="${t.oppositionPartiesDetail}">🏛️ ${t.opposition}: ${oppMandates}</span>
+                    <span style="color:var(--coalition-gov-text);font-weight:700;" title="${t.coalitionPartiesDetail}">🏛️ ${t.coalitionGov}: ${govMandates}</span>
+                    <span style="color:var(--coalition-opp-text);font-weight:700;" title="${t.oppositionPartiesDetail}">🏛️ ${t.opposition}: ${oppMandates}</span>
                 </div>
                 <div class="majority-bar-container" title="${t.majorityThresholdLabel}">
                     <div class="majority-threshold-line" title="${t.majorityThresholdLabel}"></div>
-                    <div class="maj-seg" style="width:${govPct}%;background:#2563eb;"></div>
-                    <div class="maj-seg" style="width:${oppPct}%;background:#dc2626;"></div>
+                    <div class="maj-seg" style="width:${govPct}%;background:var(--coalition-gov-text);"></div>
+                    <div class="maj-seg" style="width:${oppPct}%;background:var(--coalition-opp-text);"></div>
                 </div>
                 <div style="display:flex;justify-content:space-between;align-items:center;font-size:9.5px;color:var(--text-muted);margin-bottom:6px;">
                     <span>0</span>
@@ -754,7 +754,7 @@ function renderMetrics() {
                 </div>
                 <div class="majority-bar-container" title="${t.majorityThresholdLabel}">
                     <div class="majority-threshold-line" title="${t.majorityThresholdLabel}"></div>
-                    <div class="maj-seg" style="width:${simPct}%;background:${hasMajority ? '#16a34a' : '#e11d48'};"></div>
+                    <div class="maj-seg" style="width:${simPct}%;background:${hasMajority ? 'var(--status-done)' : 'var(--status-failed)'};"></div>
                 </div>
                 <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;">
                     ${partyChips}
