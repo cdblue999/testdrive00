@@ -93,7 +93,8 @@ const I18N = {
             panstwo: "⚖️ Państwo"
         },
         newsFallback: " PILNE: Polska gospodarka w fazie stabilizacji • GUS publikuje nowe dane makroekonomiczne • ",
-        securityBadge: "🛡️ Ochrona antybotowa: aktywna (BotShield + Micro-PoW)",
+        securityBadge: "AB-P",
+        securityBadgeTitle: "AB-P (Anti-Bot Protection): Ochrona antybotowa aktywna (BotShield + Micro-PoW)",
         botToastRateLimit: "Zbyt wiele akcji w krótkim czasie. Poczekaj chwilę.",
         botToastBlocked: "Akcja zablokowana przez system bezpieczeństwa BotShield.",
         footer: "© 2026 terminal obywatelski. Niezależny agregator danych publicznych (NBP, GUS, MF, Sejm RP).<br>Oprogramowanie open-source na licencji GPLv3. Copyright by ZMS."
@@ -164,7 +165,8 @@ const I18N = {
             panstwo: "⚖️ Governance"
         },
         newsFallback: " BREAKING: Polish economy stabilizes • Statistical office publishes macro data • ",
-        securityBadge: "🛡️ Anti-bot protection: active (BotShield + Micro-PoW)",
+        securityBadge: "AB-P",
+        securityBadgeTitle: "AB-P (Anti-Bot Protection): Protection active (BotShield + Micro-PoW)",
         botToastRateLimit: "Too many actions in a short period. Please wait a moment.",
         botToastBlocked: "Action blocked by BotShield security defense.",
         footer: "© 2026 Citizen Terminal. Independent public data aggregator (NBP, GUS, MF, Sejm).<br>Open-source software licensed under GPLv3. Copyright by ZMS."
@@ -235,7 +237,8 @@ const I18N = {
             panstwo: "⚖️ Staat"
         },
         newsFallback: " EILMELDUNG: Wirtschaftswachstum stabil • Statistische Kennzahlen aktualisiert • ",
-        securityBadge: "🛡️ Bot-Schutz: aktiv (BotShield + Micro-PoW)",
+        securityBadge: "AB-P",
+        securityBadgeTitle: "AB-P (Anti-Bot Protection): Schutz aktiv (BotShield + Micro-PoW)",
         botToastRateLimit: "Zu viele Aktionen in kurzer Zeit. Bitte warten.",
         botToastBlocked: "Aktion durch das BotShield-Sicherheitssystem blockiert.",
         footer: "© 2026 Bürgerterminal. Unabhängiger Datenaggregator.<br>Open-Source unter GPLv3. Copyright by ZMS."
@@ -959,7 +962,10 @@ function updateStaticText() {
     if (footerEl) footerEl.innerHTML = t.footer;
 
     const secBadgeEl = document.getElementById('t-security-badge');
-    if (secBadgeEl) secBadgeEl.innerText = t.securityBadge;
+    if (secBadgeEl) {
+        secBadgeEl.innerText = t.securityBadge;
+        if (t.securityBadgeTitle) secBadgeEl.title = t.securityBadgeTitle;
+    }
 
     // Status Filter Chips
     const chipsContainer = document.getElementById('filter-chips-container');
